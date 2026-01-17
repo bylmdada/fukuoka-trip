@@ -872,12 +872,20 @@ function addPhrasesSection() {
     section.id = 'phrases';
     section.innerHTML = `
         <h2 class="section-title"><span class="title-icon">🗣️</span>實用日語</h2>
+        <p class="phrases-hint">👆 點擊 🔊 聆聽發音</p>
         <div class="phrases-list">
-            ${phrases.map(p => `
+            ${phrases.map((p, i) => `
                 <div class="phrase-card">
-                    <div class="phrase-jp">${p.jp}</div>
-                    <div class="phrase-read">${p.read}</div>
-                    <div class="phrase-tw">${p.tw}</div>
+                    <div class="phrase-main">
+                        <div class="phrase-text">
+                            <div class="phrase-jp">${p.jp}</div>
+                            <div class="phrase-read">${p.read}</div>
+                            <div class="phrase-tw">${p.tw}</div>
+                        </div>
+                        <button class="speak-btn" onclick="speakJapanese('${p.jp.replace(/'/g, "\\'")}')">
+                            🔊
+                        </button>
+                    </div>
                 </div>
             `).join('')}
         </div>
@@ -887,34 +895,120 @@ function addPhrasesSection() {
     
     const style = document.createElement('style');
     style.textContent = `
+        .phrases-hint {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-align: center;
+        }
         .phrases-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
         .phrase-card {
             background: var(--bg-card);
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius);
             padding: 14px 16px;
-            border: 1px solid var(--border);
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+        }
+        .phrase-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .phrase-text {
+            flex: 1;
         }
         .phrase-jp {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.15rem;
+            font-weight: 900;
             margin-bottom: 4px;
         }
         .phrase-read {
             font-size: 0.8rem;
             color: var(--secondary);
             margin-bottom: 4px;
+            font-weight: 700;
         }
         .phrase-tw {
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
+        .speak-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            background: var(--accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 3px 3px 0px var(--border);
+            transition: all 0.15s;
+        }
+        .speak-btn:hover {
+            transform: scale(1.1);
+        }
+        .speak-btn:active {
+            transform: scale(0.95);
+            box-shadow: 1px 1px 0px var(--border);
+        }
+        .speak-btn.speaking {
+            background: var(--primary);
+            animation: pulse 0.5s ease infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
     `;
     document.head.appendChild(style);
 }
+
+// ===== 日語發音功能 =====
+function speakJapanese(text) {
+    // 檢查瀏覽器是否支援
+    if (!('speechSynthesis' in window)) {
+        alert('您的瀏覽器不支援語音功能');
+        return;
+    }
+    
+    // 停止正在播放的語音
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ja-JP';
+    utterance.rate = 0.8; // 稍微放慢速度
+    utterance.pitch = 1;
+    
+    // 嘗試使用日語語音
+    const voices = window.speechSynthesis.getVoices();
+    const japaneseVoice = voices.find(v => v.lang.includes('ja'));
+    if (japaneseVoice) {
+        utterance.voice = japaneseVoice;
+    }
+    
+    // 播放動畫
+    const buttons = document.querySelectorAll('.speak-btn');
+    buttons.forEach(btn => btn.classList.remove('speaking'));
+    event.target.closest('.speak-btn').classList.add('speaking');
+    
+    utterance.onend = () => {
+        event.target.closest('.speak-btn').classList.remove('speaking');
+    };
+    
+    window.speechSynthesis.speak(utterance);
+}
+
+// 預載語音列表
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.getVoices();
+}
+
 
 // ===== 伴手禮區塊 =====
 function addSouvenirSection() {
