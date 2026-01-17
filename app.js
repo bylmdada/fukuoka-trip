@@ -127,6 +127,37 @@ const souvenirData = [
     { icon: "🎌", name: "博多人形", desc: "傳統工藝品", where: "川端商店街" }
 ];
 
+// 飯店附近購物店家
+const shoppingData = [
+    { 
+        icon: "🪙", 
+        name: "3COINS +plus", 
+        desc: "300円均一雜貨・有食品區", 
+        addr: "ミーナ天神 B1F",
+        hours: "10:00-21:00",
+        distance: "步行5-7分鐘",
+        map: "3COINS plus ミーナ天神店"
+    },
+    { 
+        icon: "📷", 
+        name: "Bic Camera 2号館", 
+        desc: "家電3C・藥妝・免稅", 
+        addr: "天神2-4-5",
+        hours: "10:00-21:00",
+        distance: "步行2-3分鐘 ⭐最近",
+        map: "ビックカメラ天神2号館"
+    },
+    { 
+        icon: "📷", 
+        name: "Bic Camera 1号館", 
+        desc: "家電・眼鏡・自行車", 
+        addr: "今泉1-25-1",
+        hours: "10:00-21:00",
+        distance: "步行5-7分鐘",
+        map: "ビックカメラ天神1号館"
+    }
+];
+
 
 // 行李清單
 const packingData = {
@@ -159,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderDayDetail(0);
     renderFoodScroll();
     addSouvenirSection();
+    addShoppingSection();
     renderPacking();
     initBottomNav();
     updateProgress();
@@ -938,6 +970,69 @@ function addSouvenirSection() {
         .souvenir-card h4 { font-size: 0.95rem; font-weight: 900; margin-bottom: 6px; }
         .souvenir-desc { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px; }
         .souvenir-where { font-size: 0.7rem; color: var(--orange); font-weight: 700; }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===== 飯店附近購物 =====
+function addShoppingSection() {
+    const souvenirSection = document.getElementById('souvenir');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'shopping';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">🛒</span>飯店附近購物</h2>
+        <div class="shopping-list">
+            ${shoppingData.map(s => `
+                <div class="shopping-card">
+                    <div class="shopping-icon">${s.icon}</div>
+                    <div class="shopping-info">
+                        <h4>${s.name}</h4>
+                        <p class="shopping-desc">${s.desc}</p>
+                        <p class="shopping-addr">📍 ${s.addr}</p>
+                        <p class="shopping-hours">⏰ ${s.hours}</p>
+                        <p class="shopping-distance">${s.distance}</p>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.map)}" 
+                       target="_blank" class="map-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        導航
+                    </a>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    souvenirSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .shopping-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .shopping-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+        }
+        .shopping-icon { font-size: 2.5rem; }
+        .shopping-info { flex: 1; }
+        .shopping-info h4 { font-size: 1rem; font-weight: 900; margin-bottom: 4px; }
+        .shopping-desc { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 4px; }
+        .shopping-addr { font-size: 0.75rem; color: var(--text-muted); }
+        .shopping-hours { font-size: 0.75rem; color: var(--secondary); font-weight: 700; }
+        .shopping-distance { font-size: 0.8rem; color: var(--primary); font-weight: 900; }
     `;
     document.head.appendChild(style);
 }
