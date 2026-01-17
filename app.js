@@ -75,7 +75,8 @@ const itineraryData = [
             { time: "12:30", title: "俺の焼肉 博多", desc: "🍖 午餐：A5黑毛和牛", tag: "lunch", map: "俺の焼肉 博多" },
             { time: "14:00", title: "大濠公園", desc: "市中心綠洲・可租船", map: "大濠公園" },
             { time: "15:30", title: "福岡城跡", desc: "舞鶴公園・歷史遺跡", map: "福岡城跡" },
-            { time: "18:30", title: "元祖博多めんたい重", desc: "🍱 晚餐：明太子料理", tag: "food", map: "元祖博多めんたい重" }
+            { time: "18:00", title: "元祖博多めんたい重", desc: "🍱 晚餐：明太子料理", tag: "food", map: "元祖博多めんたい重" },
+            { time: "19:30", title: "福岡塔夜景 🌃", desc: "✨ 234m展望台俯瞰百萬夜景", tag: "food", map: "福岡タワー" }
         ]
     },
     {
