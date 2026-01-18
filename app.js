@@ -907,6 +907,54 @@ function addEmergencySection() {
             <p>地址：福岡市中央區桜坂3-12-42</p>
             <p>緊急聯絡：+81-92-734-2810 (24小時)</p>
         </div>
+        
+        <h3 class="sub-section-title">💊 藥品購買（猛健樂ミノキシジル）</h3>
+        <div class="pharmacy-list">
+            <div class="pharmacy-card">
+                <div class="pharm-main">
+                    <span class="pharm-icon">💊</span>
+                    <div class="pharm-info">
+                        <h4>リアップX5 / リグロEX5（5%外用）</h4>
+                        <p>💰 約 ¥5,940~5,980（60ml/30日份）</p>
+                        <p>第一類醫藥品・無需處方</p>
+                        <p class="pharm-note">⚠️ 需向藥劑師說明購買</p>
+                    </div>
+                </div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=ビックカメラ天神2号館" 
+               target="_blank" class="pharmacy-card clickable">
+                <div class="pharm-main">
+                    <span class="pharm-icon">🏪</span>
+                    <div class="pharm-info">
+                        <h4>Bic Camera 天神2号館</h4>
+                        <p>藥妝區有販售・步行2-3分鐘</p>
+                    </div>
+                    <span class="pharm-arrow">→</span>
+                </div>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=ドン・キホーテ天神店" 
+               target="_blank" class="pharmacy-card clickable">
+                <div class="pharm-main">
+                    <span class="pharm-icon">🏪</span>
+                    <div class="pharm-info">
+                        <h4>唐吉訶德 天神店</h4>
+                        <p>藥妝區有販售・營業至深夜</p>
+                    </div>
+                    <span class="pharm-arrow">→</span>
+                </div>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=マツモトキヨシ天神" 
+               target="_blank" class="pharmacy-card clickable">
+                <div class="pharm-main">
+                    <span class="pharm-icon">💊</span>
+                    <div class="pharm-info">
+                        <h4>松本清藥妝 天神</h4>
+                        <p>連鎖藥妝店・種類齊全</p>
+                    </div>
+                    <span class="pharm-arrow">→</span>
+                </div>
+            </a>
+        </div>
     `;
     
     mainContent.appendChild(section);
@@ -948,6 +996,41 @@ function addEmergencySection() {
             color: var(--text-secondary);
         }
         .emergency-note p { margin-bottom: 4px; }
+        .sub-section-title {
+            font-size: 1rem;
+            font-weight: 900;
+            margin: 20px 0 12px;
+            color: var(--text-primary);
+        }
+        .pharmacy-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .pharmacy-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 3px 3px 0px var(--border);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        .pharmacy-card.clickable:hover {
+            background: var(--bg-elevated);
+            transform: translateX(4px);
+        }
+        .pharm-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .pharm-icon { font-size: 1.8rem; }
+        .pharm-info { flex: 1; }
+        .pharm-info h4 { font-size: 0.95rem; font-weight: 900; margin-bottom: 2px; }
+        .pharm-info p { font-size: 0.8rem; color: var(--text-secondary); }
+        .pharm-note { color: var(--orange) !important; font-weight: 700; }
+        .pharm-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; }
     `;
     document.head.appendChild(style);
 }
