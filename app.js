@@ -116,6 +116,37 @@ const foodData = [
     { icon: "🍡", name: "梅枝餅", shops: "太宰府表參道" }
 ];
 
+// 飯店附近推薦（一蘭24小時・甜點）
+const nearbyData = [
+    {
+        icon: "🍜",
+        name: "一蘭 天神西通店",
+        desc: "福岡代表豚骨拉麵・可調濃度辣度硬度",
+        addr: "天神西通",
+        tag: "24H營業",
+        note: "超適合宵夜！距飯店步行5分鐘",
+        map: "一蘭 天神西通店"
+    },
+    {
+        icon: "🍎",
+        name: "RINGO 蘋果派",
+        desc: "現烤卡士達蘋果派・外酥內餡大塊蘋果",
+        addr: "天神地下街西4",
+        tag: "超人氣",
+        note: "回飯店前的點心首選",
+        map: "RINGO 天神地下街"
+    },
+    {
+        icon: "🥞",
+        name: "天神茶屋",
+        desc: "法式薄餅可麗餅・冰淇淋咖啡",
+        addr: "天神",
+        tag: "親子友善",
+        note: "午後散步甜點・有內用座位",
+        map: "天神茶屋たばねのし"
+    }
+];
+
 // 飯店附近購物店家
 const shoppingData = [
     { 
@@ -258,6 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderDaySelector();
     renderDayDetail(0);
     renderFoodScroll();
+    addNearbySection();
     addSouvenirSection();
     addShoppingSection();
     addDessertSection();
@@ -1035,6 +1067,76 @@ function addPhrasesSection() {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===== 飯店附近推薦 =====
+function addNearbySection() {
+    const foodSection = document.getElementById('food');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'nearby';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">📍</span>飯店附近推薦</h2>
+        <div class="nearby-list">
+            ${nearbyData.map(n => `
+                <div class="nearby-card">
+                    <div class="nearby-icon">${n.icon}</div>
+                    <div class="nearby-info">
+                        <div class="nearby-header">
+                            <h4>${n.name}</h4>
+                            <span class="nearby-tag">${n.tag}</span>
+                        </div>
+                        <p class="nearby-desc">${n.desc}</p>
+                        <p class="nearby-note">💡 ${n.note}</p>
+                        <p class="nearby-addr">📍 ${n.addr}</p>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(n.map)}" 
+                       target="_blank" class="map-link">
+                        🗺️
+                    </a>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    foodSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .nearby-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .nearby-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+        }
+        .nearby-icon { font-size: 2.2rem; flex-shrink: 0; }
+        .nearby-info { flex: 1; min-width: 0; }
+        .nearby-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+        .nearby-header h4 { font-size: 1rem; font-weight: 900; }
+        .nearby-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .nearby-desc { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 4px; }
+        .nearby-note { font-size: 0.75rem; color: var(--orange); font-weight: 700; margin-bottom: 4px; }
+        .nearby-addr { font-size: 0.7rem; color: var(--text-muted); }
     `;
     document.head.appendChild(style);
 }
