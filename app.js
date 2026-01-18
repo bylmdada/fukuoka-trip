@@ -955,6 +955,53 @@ function addEmergencySection() {
                 </div>
             </a>
         </div>
+        
+        <h3 class="sub-section-title">💉 猛健樂 Mounjaro（マンジャロ）處方診所</h3>
+        <p class="clinic-note">⚠️ 需醫師處方・每週1次皮下注射・減肥用</p>
+        <div class="pharmacy-list">
+            <a href="https://www.google.com/maps/search/?api=1&query=クララ美容皮膚科+福岡天神院" 
+               target="_blank" class="pharmacy-card clickable">
+                <div class="pharm-main">
+                    <span class="pharm-icon">🏥</span>
+                    <div class="pharm-info">
+                        <h4>クララ美容皮膚科 天神院</h4>
+                        <p>💰 2.5mg ¥4,400起・診察料免費</p>
+                        <p class="clinic-tag">📍 天神站旁・有注射教學</p>
+                    </div>
+                    <span class="pharm-arrow">→</span>
+                </div>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=東郷美容形成外科+福岡" 
+               target="_blank" class="pharmacy-card clickable">
+                <div class="pharm-main">
+                    <span class="pharm-icon">🏥</span>
+                    <div class="pharm-info">
+                        <h4>東郷美容形成外科</h4>
+                        <p>💰 初回 ¥4,400・2回目 ¥5,500</p>
+                        <p class="clinic-tag">📍 博多站步行3分・可郵寄</p>
+                    </div>
+                    <span class="pharm-arrow">→</span>
+                </div>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=クリニーク福岡天神" 
+               target="_blank" class="pharmacy-card clickable">
+                <div class="pharm-main">
+                    <span class="pharm-icon">🏥</span>
+                    <div class="pharm-info">
+                        <h4>クリニーク福岡天神</h4>
+                        <p>💰 多款GLP-1可選・可散買</p>
+                        <p class="clinic-tag">📍 天神站步行5分</p>
+                    </div>
+                    <span class="pharm-arrow">→</span>
+                </div>
+            </a>
+        </div>
+        <div class="mounjaro-note">
+            <p>📋 <strong>帶回台灣須知</strong></p>
+            <p>• 針劑需醫師處方箋（必備）</p>
+            <p>• 最多攜帶 6 個月用量</p>
+            <p>• 需 2-8°C 冷藏保存（帶保冷袋）</p>
+        </div>
     `;
     
     mainContent.appendChild(section);
@@ -1031,6 +1078,27 @@ function addEmergencySection() {
         .pharm-info p { font-size: 0.8rem; color: var(--text-secondary); }
         .pharm-note { color: var(--orange) !important; font-weight: 700; }
         .pharm-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; }
+        .clinic-note {
+            font-size: 0.8rem;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .clinic-tag {
+            color: var(--secondary) !important;
+            font-weight: 700;
+        }
+        .mounjaro-note {
+            background: linear-gradient(135deg, var(--pink) 0%, var(--secondary) 100%);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            margin-top: 12px;
+            color: white;
+            font-size: 0.8rem;
+            border: var(--border-width) solid var(--border);
+        }
+        .mounjaro-note strong { font-weight: 900; }
+        .mounjaro-note p { margin-bottom: 4px; }
     `;
     document.head.appendChild(style);
 }
