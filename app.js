@@ -159,6 +159,74 @@ const shoppingData = [
     }
 ];
 
+// 福岡必吃甜點
+const dessertData = [
+    { 
+        icon: "🍩", 
+        name: "I'm donut?", 
+        desc: "超人氣生甜甜圈！蓬鬆Q彈", 
+        addr: "天神渡邊通",
+        tag: "排隊名店",
+        map: "I'm donut 福岡"
+    },
+    { 
+        icon: "🍓", 
+        name: "伊都きんぐ", 
+        desc: "甘王草莓大福・鮮奶油麻糬", 
+        addr: "天神/博多站",
+        tag: "草莓控必吃",
+        map: "伊都きんぐ 天神店"
+    },
+    { 
+        icon: "🥐", 
+        name: "三日月屋", 
+        desc: "天然酵母可頌・10+種口味", 
+        addr: "博多站",
+        tag: "可頌/伴手禮",
+        map: "三日月屋 博多駅店"
+    },
+    { 
+        icon: "🧁", 
+        name: "kohakudo", 
+        desc: "酥脆泡芙・濃郁卡士達", 
+        addr: "天神大名",
+        tag: "泡芙專賣",
+        map: "kohakudo 福岡"
+    },
+    { 
+        icon: "🍫", 
+        name: "チョコレートショップ", 
+        desc: "博多の石畳・抹茶巧克力蛋糕", 
+        addr: "博多站AMU",
+        tag: "伴手禮",
+        map: "チョコレートショップ 博多の石畳"
+    },
+    { 
+        icon: "🍵", 
+        name: "天神茶屋", 
+        desc: "抹茶布蕾可麗餅・東京名店", 
+        addr: "天神",
+        tag: "抹茶控",
+        map: "天神茶屋たばねのし"
+    },
+    { 
+        icon: "🥧", 
+        name: "キル フェ ボン", 
+        desc: "新鮮水果塔・季節限定", 
+        addr: "天神",
+        tag: "水果塔",
+        map: "キルフェボン 福岡店"
+    },
+    { 
+        icon: "🍰", 
+        name: "フランス菓子16区", 
+        desc: "達克瓦茲發源地・名廚手作", 
+        addr: "藥院",
+        tag: "法式甜點",
+        map: "フランス菓子16区"
+    }
+];
+
 
 // 行李清單
 const packingData = {
@@ -192,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFoodScroll();
     addSouvenirSection();
     addShoppingSection();
+    addDessertSection();
     renderPacking();
     initBottomNav();
     updateProgress();
@@ -1128,6 +1197,95 @@ function addShoppingSection() {
         .shopping-addr { font-size: 0.75rem; color: var(--text-muted); }
         .shopping-hours { font-size: 0.75rem; color: var(--secondary); font-weight: 700; }
         .shopping-distance { font-size: 0.8rem; color: var(--primary); font-weight: 900; }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===== 必吃甜點區塊 =====
+function addDessertSection() {
+    const shoppingSection = document.getElementById('shopping');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'dessert';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">🍰</span>必吃甜點</h2>
+        <div class="dessert-scroll">
+            ${dessertData.map(d => `
+                <div class="dessert-card">
+                    <div class="dessert-icon">${d.icon}</div>
+                    <h4>${d.name}</h4>
+                    <p class="dessert-desc">${d.desc}</p>
+                    <span class="dessert-tag">${d.tag}</span>
+                    <p class="dessert-addr">📍 ${d.addr}</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.map)}" 
+                       target="_blank" class="dessert-map-btn">
+                        🗺️ 導航
+                    </a>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    shoppingSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .dessert-scroll {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .dessert-scroll::-webkit-scrollbar { display: none; }
+        .dessert-card {
+            flex-shrink: 0;
+            width: 160px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px 14px;
+            text-align: center;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+            transition: all 0.15s;
+        }
+        .dessert-card:nth-child(odd) { transform: rotate(-1deg); }
+        .dessert-card:nth-child(even) { transform: rotate(1deg); }
+        .dessert-card:hover {
+            transform: translateY(-4px) rotate(0deg);
+        }
+        .dessert-icon { font-size: 2.5rem; margin-bottom: 8px; }
+        .dessert-card h4 { font-size: 0.9rem; font-weight: 900; margin-bottom: 6px; }
+        .dessert-desc { font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 6px; line-height: 1.4; }
+        .dessert-tag {
+            display: inline-block;
+            background: var(--pink);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+        }
+        .dessert-addr { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 8px; }
+        .dessert-map-btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 6px 12px;
+            border-radius: 15px;
+            text-decoration: none;
+            border: 2px solid var(--border);
+            transition: all 0.15s;
+        }
+        .dessert-map-btn:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
     `;
     document.head.appendChild(style);
 }
