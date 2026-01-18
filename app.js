@@ -116,18 +116,6 @@ const foodData = [
     { icon: "🍡", name: "梅枝餅", shops: "太宰府表參道" }
 ];
 
-// 伴手禮資料
-const souvenirData = [
-    { icon: "🍙", name: "博多通りもん", desc: "白餡饅頭・福岡No.1伴手禮", where: "機場/車站/百貨" },
-    { icon: "🍓", name: "あまおう草莓", desc: "福岡名產甜王草莓", where: "超市/機場" },
-    { icon: "🌶️", name: "明太子", desc: "ふくや/やまや 辣味鱈魚卵", where: "機場/博多站" },
-    { icon: "🍪", name: "めんべい", desc: "明太子仙貝・香脆必買", where: "機場/伴手禮店" },
-    { icon: "🍫", name: "博多の石畳", desc: "抹茶巧克力蛋糕", where: "機場/百貨" },
-    { icon: "🍵", name: "八女茶", desc: "福岡高級綠茶", where: "茶專賣店/機場" },
-    { icon: "🍶", name: "日本酒", desc: "福岡在地清酒", where: "機場免稅店" },
-    { icon: "🎌", name: "博多人形", desc: "傳統工藝品", where: "川端商店街" }
-];
-
 // 飯店附近購物店家
 const shoppingData = [
     { 
@@ -159,8 +147,56 @@ const shoppingData = [
     }
 ];
 
-// 福岡必吃甜點
+// 福岡必吃甜點與咖啡
 const dessertData = [
+    { 
+        icon: "🧀", 
+        name: "BAKE CHEESE TART", 
+        desc: "濃起司卡士達・外皮酥脆", 
+        addr: "天神地下街",
+        tag: "下午茶首選",
+        map: "BAKE CHEESE TART 天神地下街"
+    },
+    { 
+        icon: "🍡", 
+        name: "鈴懸", 
+        desc: "福岡老字號和菓子・生銅鑼燒", 
+        addr: "博多站/天神百貨",
+        tag: "伴手禮必買",
+        map: "鈴懸 博多駅"
+    },
+    { 
+        icon: "🍞", 
+        name: "八天堂", 
+        desc: "冷藏奶油麵包・濕潤綿密", 
+        addr: "博多站商場",
+        tag: "小朋友愛",
+        map: "八天堂 博多駅"
+    },
+    { 
+        icon: "🍓", 
+        name: "伊都きんぐ", 
+        desc: "甘王草莓銅鑼燒・草莓控必試", 
+        addr: "博多站AMU",
+        tag: "草莓控",
+        map: "伊都きんぐ 博多マイング"
+    },
+    { 
+        icon: "☕", 
+        name: "BLUE BOTTLE", 
+        desc: "福岡天神店・警固神社旁", 
+        addr: "天神警固神社旁",
+        tag: "8:00-20:00",
+        map: "ブルーボトルコーヒー 福岡天神カフェ"
+    },
+    { 
+        icon: "🥧", 
+        name: "博多風美庵", 
+        desc: "甘王草莓夾心餅・包裝漂亮", 
+        addr: "機場/博多站",
+        tag: "送禮首選",
+        map: "博多風美庵"
+    },
     { 
         icon: "🍩", 
         name: "I'm donut?", 
@@ -170,61 +206,25 @@ const dessertData = [
         map: "I'm donut 福岡"
     },
     { 
-        icon: "🍓", 
-        name: "伊都きんぐ", 
-        desc: "甘王草莓大福・鮮奶油麻糬", 
-        addr: "天神/博多站",
-        tag: "草莓控必吃",
-        map: "伊都きんぐ 天神店"
-    },
-    { 
         icon: "🥐", 
         name: "三日月屋", 
         desc: "天然酵母可頌・10+種口味", 
         addr: "博多站",
-        tag: "可頌/伴手禮",
+        tag: "可頌必買",
         map: "三日月屋 博多駅店"
-    },
-    { 
-        icon: "🧁", 
-        name: "kohakudo", 
-        desc: "酥脆泡芙・濃郁卡士達", 
-        addr: "天神大名",
-        tag: "泡芙專賣",
-        map: "kohakudo 福岡"
-    },
-    { 
-        icon: "🍫", 
-        name: "チョコレートショップ", 
-        desc: "博多の石畳・抹茶巧克力蛋糕", 
-        addr: "博多站AMU",
-        tag: "伴手禮",
-        map: "チョコレートショップ 博多の石畳"
-    },
-    { 
-        icon: "🍵", 
-        name: "天神茶屋", 
-        desc: "抹茶布蕾可麗餅・東京名店", 
-        addr: "天神",
-        tag: "抹茶控",
-        map: "天神茶屋たばねのし"
-    },
-    { 
-        icon: "🥧", 
-        name: "キル フェ ボン", 
-        desc: "新鮮水果塔・季節限定", 
-        addr: "天神",
-        tag: "水果塔",
-        map: "キルフェボン 福岡店"
-    },
-    { 
-        icon: "🍰", 
-        name: "フランス菓子16区", 
-        desc: "達克瓦茲發源地・名廚手作", 
-        addr: "藥院",
-        tag: "法式甜點",
-        map: "フランス菓子16区"
     }
+];
+
+// 必買伴手禮（整合更新）
+const souvenirData = [
+    { icon: "🍙", name: "博多通りもん", desc: "福岡代表銘菓・奶油白豆沙", where: "機場/車站/百貨" },
+    { icon: "🍡", name: "筑紫もち", desc: "如水庵・淋黑糖蜜裹黃豆粉", where: "機場/博多站" },
+    { icon: "🍪", name: "めんべい", desc: "明太子仙貝・鹹香微辣", where: "機場/博多站" },
+    { icon: "🎭", name: "二◯加煎餅", desc: "千鳥屋・造型有趣", where: "機場/百貨" },
+    { icon: "🧈", name: "Press Butter Sand", desc: "博多限定甘王草莓口味", where: "博多站/機場" },
+    { icon: "🍓", name: "甘王草莓系列", desc: "餅乾蛋糕果凍・博多限定", where: "機場/博多站" },
+    { icon: "🍫", name: "博多の石畳", desc: "抹茶巧克力蛋糕", where: "博多站AMU" },
+    { icon: "🐤", name: "ひよ子蛋糕", desc: "小雞造型・黃豆沙", where: "機場/博多站" }
 ];
 
 
