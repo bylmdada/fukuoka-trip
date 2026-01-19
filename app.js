@@ -233,6 +233,50 @@ const arcadeData = {
     ]
 };
 
+// 服飾店資料
+const clothingData = [
+    {
+        icon: "🔴",
+        brand: "UNIQLO",
+        name: "ユニクロ天神店",
+        floor: "ミーナ天神 1-2F",
+        tag: "九州最大",
+        map: "ユニクロ ミーナ天神店"
+    },
+    {
+        icon: "🔵",
+        brand: "GU",
+        name: "ジーユー天神店",
+        floor: "ミーナ天神 3F",
+        tag: "九州最大級",
+        map: "GU ミーナ天神店"
+    },
+    {
+        icon: "🟢",
+        brand: "GAP",
+        name: "福岡三越店",
+        floor: "福岡三越 3F",
+        tag: "",
+        map: "Gap 福岡三越店"
+    },
+    {
+        icon: "🟤",
+        brand: "無印良品",
+        name: "大丸福岡天神店",
+        floor: "大丸",
+        tag: "2024裝修新開",
+        map: "無印良品 大丸福岡天神店"
+    },
+    {
+        icon: "🟤",
+        brand: "無印良品",
+        name: "天神ショッパーズ福岡店",
+        floor: "イオンショッパーズ",
+        tag: "",
+        map: "無印良品 天神ショッパーズ福岡店"
+    }
+];
+
 
 const drugstoreData = [
     {
@@ -481,6 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addShoppingSection();
     addDrugstoreSection();
     add100YenSection();
+    addClothingSection();
     addDessertSection();
     addMetroSection();
     renderPacking();
@@ -1819,9 +1864,82 @@ function add100YenSection() {
     document.head.appendChild(style);
 }
 
+// ===== 服飾店區塊 =====
+function addClothingSection() {
+    const hundredyenSection = document.getElementById('hundredyen');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'clothing';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">👔</span>服飾店</h2>
+        <div class="clothing-list">
+            ${clothingData.map(c => `
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.map)}" 
+                   target="_blank" class="clothing-card">
+                    <div class="clothing-icon">${c.icon}</div>
+                    <div class="clothing-info">
+                        <div class="clothing-header">
+                            <span class="clothing-brand">${c.brand}</span>
+                            <h4>${c.name}</h4>
+                            ${c.tag ? `<span class="clothing-tag">${c.tag}</span>` : ''}
+                        </div>
+                        <p class="clothing-floor">📍 ${c.floor}</p>
+                    </div>
+                    <span class="clothing-arrow">→</span>
+                </a>
+            `).join('')}
+        </div>
+    `;
+    
+    hundredyenSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .clothing-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .clothing-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.15s;
+        }
+        .clothing-card:hover {
+            transform: translateX(4px);
+            background: var(--bg-elevated);
+        }
+        .clothing-icon { font-size: 1.5rem; }
+        .clothing-info { flex: 1; min-width: 0; }
+        .clothing-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+        .clothing-brand { font-size: 0.75rem; font-weight: 900; color: var(--primary); }
+        .clothing-header h4 { font-size: 0.85rem; font-weight: 700; }
+        .clothing-tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .clothing-floor { font-size: 0.7rem; color: var(--text-muted); }
+        .clothing-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; }
+    `;
+    document.head.appendChild(style);
+}
 
 function addDessertSection() {
-    const hundredyenSection = document.getElementById('hundredyen');
+    const clothingSection = document.getElementById('clothing');
     
     const section = document.createElement('section');
     section.className = 'section';
@@ -1845,7 +1963,7 @@ function addDessertSection() {
         </div>
     `;
     
-    hundredyenSection.after(section);
+    clothingSection.after(section);
     
     const style = document.createElement('style');
     style.textContent = `
