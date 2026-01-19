@@ -178,6 +178,46 @@ const shoppingData = [
     }
 ];
 
+// 100円商店資料
+const hundredYenData = [
+    {
+        icon: "🔴",
+        brand: "DAISO",
+        name: "ラシック福岡天神店",
+        addr: "ラシック内",
+        hours: "10:00-20:00",
+        tag: "3品牌複合",
+        map: "DAISO ラシック福岡天神店"
+    },
+    {
+        icon: "🔴",
+        brand: "DAISO",
+        name: "イオンショッパーズ福岡店",
+        addr: "イオン4F",
+        hours: "9:00-21:00",
+        tag: "最早開",
+        map: "DAISO イオンショッパーズ福岡店"
+    },
+    {
+        icon: "🟢",
+        brand: "Seria",
+        name: "ミーナ天神店",
+        addr: "ミーナ6F",
+        hours: "10:00-21:00",
+        tag: "大型店",
+        map: "セリア ミーナ天神店"
+    },
+    {
+        icon: "🟡",
+        brand: "Can Do",
+        name: "天神店",
+        addr: "新天町地下ファーボ",
+        hours: "10:00-20:00",
+        tag: "",
+        map: "キャンドゥ 天神店"
+    }
+];
+
 // 藥妝店資料（優惠排行）
 const drugstoreData = [
     {
@@ -425,6 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addSouvenirSection();
     addShoppingSection();
     addDrugstoreSection();
+    add100YenSection();
     addDessertSection();
     addMetroSection();
     renderPacking();
@@ -1688,9 +1729,83 @@ function addDrugstoreSection() {
     document.head.appendChild(style);
 }
 
+// ===== 100円商店區塊 =====
+function add100YenSection() {
+    const drugstoreSection = document.getElementById('drugstore');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'hundredyen';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">💯</span>100円商店</h2>
+        <div class="hundredyen-list">
+            ${hundredYenData.map(s => `
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.map)}" 
+                   target="_blank" class="hundredyen-card">
+                    <div class="hundredyen-icon">${s.icon}</div>
+                    <div class="hundredyen-info">
+                        <div class="hundredyen-header">
+                            <span class="hundredyen-brand">${s.brand}</span>
+                            <h4>${s.name}</h4>
+                            ${s.tag ? `<span class="hundredyen-tag">${s.tag}</span>` : ''}
+                        </div>
+                        <p class="hundredyen-detail">📍 ${s.addr} ⏰ ${s.hours}</p>
+                    </div>
+                    <span class="hundredyen-arrow">→</span>
+                </a>
+            `).join('')}
+        </div>
+    `;
+    
+    drugstoreSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .hundredyen-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .hundredyen-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.15s;
+        }
+        .hundredyen-card:hover {
+            transform: translateX(4px);
+            background: var(--bg-elevated);
+        }
+        .hundredyen-icon { font-size: 1.5rem; }
+        .hundredyen-info { flex: 1; min-width: 0; }
+        .hundredyen-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+        .hundredyen-brand { font-size: 0.75rem; font-weight: 900; color: var(--primary); }
+        .hundredyen-header h4 { font-size: 0.85rem; font-weight: 700; }
+        .hundredyen-tag {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .hundredyen-detail { font-size: 0.7rem; color: var(--text-muted); }
+        .hundredyen-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; }
+    `;
+    document.head.appendChild(style);
+}
+
 
 function addDessertSection() {
-    const drugstoreSection = document.getElementById('drugstore');
+    const hundredyenSection = document.getElementById('hundredyen');
     
     const section = document.createElement('section');
     section.className = 'section';
@@ -1714,7 +1829,7 @@ function addDessertSection() {
         </div>
     `;
     
-    drugstoreSection.after(section);
+    hundredyenSection.after(section);
     
     const style = document.createElement('style');
     style.textContent = `
