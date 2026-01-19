@@ -329,6 +329,38 @@ const metroData = {
     ]
 };
 
+// 周遊券資料
+const passData = [
+    {
+        icon: "🏆",
+        name: "太宰府・柳川觀光套票",
+        price: "¥3,210~3,380",
+        includes: "天神⇄太宰府⇄柳川電車 + 柳川遊船",
+        useDay: "Day 3（太宰府＋柳川）",
+        save: "省約 ¥1,000~1,500",
+        recommended: true
+    },
+    {
+        icon: "🚇",
+        name: "地下鐵 1日乘車券",
+        price: "¥640",
+        includes: "全3線無限搭乘",
+        useDay: "搭3次以上的日子",
+        save: "單程 ¥210 × 3 = ¥630",
+        recommended: false
+    },
+    {
+        icon: "🚕",
+        name: "機場⇄天神 計程車",
+        price: "¥3,000~3,500",
+        includes: "約20-30分車程・直達飯店",
+        useDay: "Day 1 抵達",
+        save: "有小孩/行李最方便",
+        recommended: true
+    }
+];
+
+
 // 行李清單
 const packingData = {
     "👕 衣物": ["厚羽絨外套", "毛衣x3", "長褲x3", "發熱衣x4", "圍巾", "手套", "毛帽"],
@@ -1744,6 +1776,22 @@ function addMetroSection() {
             `).join('')}
         </div>
         
+        <h3 class="metro-subtitle">🎟️ 推薦周遊券</h3>
+        <div class="pass-list">
+            ${passData.map(p => `
+                <div class="pass-card ${p.recommended ? 'recommended' : ''}">
+                    <div class="pass-icon">${p.icon}</div>
+                    <div class="pass-info">
+                        <h4>${p.name} ${p.recommended ? '<span class="pass-badge">推薦</span>' : ''}</h4>
+                        <p class="pass-price">${p.price}</p>
+                        <p class="pass-includes">${p.includes}</p>
+                        <p class="pass-use">📅 ${p.useDay}</p>
+                        <p class="pass-save">💰 ${p.save}</p>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+        
         <a href="https://www.google.com/maps/search/?api=1&query=福岡市地下鉄+天神駅" 
            target="_blank" class="metro-map-btn">🗺️ 開啟天神站地圖</a>
     `;
@@ -1816,6 +1864,40 @@ function addMetroSection() {
         .ticket-name { display: block; font-size: 0.8rem; font-weight: 900; margin-bottom: 4px; }
         .ticket-price { display: block; font-size: 1.1rem; font-weight: 900; margin-bottom: 2px; }
         .ticket-note { display: block; font-size: 0.65rem; opacity: 0.9; }
+        
+        .pass-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .pass-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px;
+            border: var(--border-width) solid var(--border);
+        }
+        .pass-card.recommended {
+            background: linear-gradient(135deg, rgba(255,113,206,0.1) 0%, rgba(1,205,254,0.1) 100%);
+            border-color: var(--primary);
+        }
+        .pass-icon { font-size: 2rem; }
+        .pass-info { flex: 1; }
+        .pass-info h4 { font-size: 0.9rem; font-weight: 900; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .pass-badge {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .pass-price { font-size: 1rem; font-weight: 900; color: var(--primary); margin-bottom: 4px; }
+        .pass-includes { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px; }
+        .pass-use { font-size: 0.7rem; color: var(--secondary); font-weight: 700; margin-bottom: 2px; }
+        .pass-save { font-size: 0.7rem; color: var(--orange); font-weight: 700; }
         
         .metro-map-btn {
             display: block;
