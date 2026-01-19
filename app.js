@@ -375,6 +375,21 @@ const nightlifeData = {
     ]
 };
 
+// 親子友善廁所資料
+const babyRoomData = {
+    tenjin: [
+        { name: "岩田屋本店", floor: "本館6F", diaper: 3, nursing: 4, extras: ["熱水", "微波爐", "離乳食販賣機", "Stokke椅"], recommended: true, map: "岩田屋本店 福岡" },
+        { name: "天神地下街", floor: "南端12番街", diaper: 2, nursing: 2, extras: ["熱水80°C", "自動門"], recommended: false, map: "天神地下街 授乳室" },
+        { name: "大丸福岡天神店", floor: "本館7F", diaper: 2, nursing: 2, extras: ["乾淨"], recommended: false, map: "大丸福岡天神店" },
+        { name: "福岡PARCO", floor: "本館6F", diaper: 2, nursing: 2, extras: ["可愛插畫"], recommended: false, map: "福岡パルコ" }
+    ],
+    hakata: [
+        { name: "博多阪急", floor: "7F", diaper: 9, nursing: 4, extras: ["熱水", "微波爐", "尿布販賣機", "保健師"], recommended: true, map: "博多阪急" },
+        { name: "デイトス", floor: "B1F", diaper: 3, nursing: 3, extras: ["可丟用過尿布"], recommended: false, map: "デイトス 博多" },
+        { name: "KITTE博多", floor: "6F/10F", diaper: 2, nursing: 2, extras: ["嬰兒床"], recommended: false, map: "KITTE博多" }
+    ]
+};
+
 
 // 行李清單
 const packingData = {
@@ -418,6 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addExpenseSection();
     addSplitBillSection();
     addNightlifeSection();
+    addBabyRoomSection();
     addEmergencySection();
     addPhrasesSection();
 });
@@ -2178,6 +2194,129 @@ function addNightlifeSection() {
     document.head.appendChild(style);
 }
 
+// ===== 親子友善廁所區塊 =====
+function addBabyRoomSection() {
+    const nightlifeSection = document.getElementById('nightlife');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'babyroom';
+    
+    const renderRoom = (room) => `
+        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(room.map)}" 
+           target="_blank" class="babyroom-card ${room.recommended ? 'recommended' : ''}">
+            <div class="babyroom-main">
+                <div class="babyroom-header">
+                    <h4>${room.name} ${room.recommended ? '<span class="babyroom-badge">⭐推薦</span>' : ''}</h4>
+                    <span class="babyroom-floor">${room.floor}</span>
+                </div>
+                <div class="babyroom-stats">
+                    <span>🚼 尿布台×${room.diaper}</span>
+                    <span>🤱 授乳室×${room.nursing}</span>
+                </div>
+                <div class="babyroom-extras">
+                    ${room.extras.map(e => `<span class="extra-tag">${e}</span>`).join('')}
+                </div>
+            </div>
+            <span class="babyroom-arrow">→</span>
+        </a>
+    `;
+    
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">👶</span>親子友善廁所</h2>
+        
+        <h3 class="babyroom-subtitle">📍 天神區（飯店附近）</h3>
+        <div class="babyroom-list">
+            ${babyRoomData.tenjin.map(renderRoom).join('')}
+        </div>
+        
+        <h3 class="babyroom-subtitle">📍 博多區</h3>
+        <div class="babyroom-list">
+            ${babyRoomData.hakata.map(renderRoom).join('')}
+        </div>
+        
+        <div class="babyroom-tip">
+            <p>💡 <strong>推薦</strong>：博多阪急7F 設備最齊全（尿布台×9・授乳室×4）</p>
+        </div>
+    `;
+    
+    nightlifeSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .babyroom-subtitle {
+            font-size: 0.95rem;
+            font-weight: 900;
+            margin: 16px 0 10px;
+            color: var(--text-primary);
+        }
+        .babyroom-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .babyroom-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.15s;
+        }
+        .babyroom-card:hover {
+            transform: translateX(4px);
+            background: var(--bg-elevated);
+        }
+        .babyroom-card.recommended {
+            background: linear-gradient(135deg, rgba(255,113,206,0.1) 0%, rgba(78,205,196,0.1) 100%);
+            border-color: var(--pink);
+        }
+        .babyroom-main { flex: 1; }
+        .babyroom-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+        .babyroom-header h4 { font-size: 0.9rem; font-weight: 900; display: flex; align-items: center; gap: 6px; }
+        .babyroom-floor { font-size: 0.75rem; color: var(--secondary); font-weight: 900; }
+        .babyroom-badge {
+            display: inline-block;
+            background: var(--pink);
+            color: white;
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .babyroom-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .babyroom-extras { display: flex; gap: 6px; flex-wrap: wrap; }
+        .extra-tag {
+            font-size: 0.65rem;
+            background: var(--bg-elevated);
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: var(--text-muted);
+        }
+        .babyroom-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; }
+        .babyroom-tip {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: rgba(255, 113, 206, 0.12);
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--pink);
+        }
+        .babyroom-tip p { font-size: 0.8rem; color: var(--text-secondary); }
+        .babyroom-tip strong { color: var(--pink); }
+    `;
+    document.head.appendChild(style);
+}
 
 function renderMembers() {
     const container = document.getElementById('membersList');
