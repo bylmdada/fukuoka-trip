@@ -178,6 +178,55 @@ const shoppingData = [
     }
 ];
 
+// 藥妝店資料（優惠排行）
+const drugstoreData = [
+    {
+        icon: "🥇",
+        name: "ダイコクドラッグ 天神西通り店",
+        desc: "免稅10%＋最高8%折扣券",
+        addr: "天神西通",
+        hours: "9:00-23:00",
+        tag: "最便宜",
+        map: "ダイコクドラッグ 天神西通り店"
+    },
+    {
+        icon: "🥈",
+        name: "唐吉訶德 天神本店",
+        desc: "「地區最安價」・商品超多",
+        addr: "天神2-6-35",
+        hours: "24小時",
+        tag: "24H營業",
+        map: "ドン・キホーテ福岡天神本店"
+    },
+    {
+        icon: "🥉",
+        name: "マツモトキヨシ 天神地下街",
+        desc: "品項齊全・免稅對應・5%券",
+        addr: "天神地下街",
+        hours: "10:00-21:00",
+        tag: "品項齊全",
+        map: "マツモトキヨシ 天神地下街"
+    },
+    {
+        icon: "💊",
+        name: "ココカラファイン PARCO",
+        desc: "醫藥品・健康食品・化妝品",
+        addr: "福岡PARCO新館B1F",
+        hours: "10:00-21:00",
+        tag: "免稅對應",
+        map: "ココカラファイン 福岡パルコ新館"
+    },
+    {
+        icon: "💊",
+        name: "ドラッグ新生堂 天神南店",
+        desc: "在地連鎖・營業至23時",
+        addr: "天神南",
+        hours: "9:00-23:00",
+        tag: "營業到晚",
+        map: "ドラッグ新生堂 天神南店"
+    }
+];
+
 // 福岡必吃甜點與咖啡
 const dessertData = [
     { 
@@ -292,6 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addNearbySection();
     addSouvenirSection();
     addShoppingSection();
+    addDrugstoreSection();
     addDessertSection();
     renderPacking();
     initBottomNav();
@@ -1454,9 +1504,91 @@ function addShoppingSection() {
     document.head.appendChild(style);
 }
 
-// ===== 必吃甜點區塊 =====
-function addDessertSection() {
+// ===== 藥妝店區塊 =====
+function addDrugstoreSection() {
     const shoppingSection = document.getElementById('shopping');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'drugstore';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">💊</span>藥妝店優惠排行</h2>
+        <p class="drugstore-tip">💡 買滿 ¥5,000 可辦理免稅（省10%）</p>
+        <div class="drugstore-list">
+            ${drugstoreData.map(d => `
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.map)}" 
+                   target="_blank" class="drugstore-card">
+                    <div class="drugstore-icon">${d.icon}</div>
+                    <div class="drugstore-info">
+                        <div class="drugstore-header">
+                            <h4>${d.name}</h4>
+                            <span class="drugstore-tag">${d.tag}</span>
+                        </div>
+                        <p class="drugstore-desc">${d.desc}</p>
+                        <p class="drugstore-detail">📍 ${d.addr} ⏰ ${d.hours}</p>
+                    </div>
+                    <span class="drugstore-arrow">→</span>
+                </a>
+            `).join('')}
+        </div>
+    `;
+    
+    shoppingSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .drugstore-tip {
+            font-size: 0.85rem;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .drugstore-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .drugstore-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.15s;
+        }
+        .drugstore-card:hover {
+            transform: translateX(4px);
+            background: var(--bg-elevated);
+        }
+        .drugstore-icon { font-size: 2rem; }
+        .drugstore-info { flex: 1; min-width: 0; }
+        .drugstore-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+        .drugstore-header h4 { font-size: 0.9rem; font-weight: 900; }
+        .drugstore-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .drugstore-desc { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 2px; }
+        .drugstore-detail { font-size: 0.7rem; color: var(--text-muted); }
+        .drugstore-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; }
+    `;
+    document.head.appendChild(style);
+}
+
+
+function addDessertSection() {
+    const drugstoreSection = document.getElementById('drugstore');
     
     const section = document.createElement('section');
     section.className = 'section';
@@ -1480,7 +1612,7 @@ function addDessertSection() {
         </div>
     `;
     
-    shoppingSection.after(section);
+    drugstoreSection.after(section);
     
     const style = document.createElement('style');
     style.textContent = `
