@@ -277,6 +277,35 @@ const clothingData = [
     }
 ];
 
+// 福岡機場購物資料
+const airportShopData = {
+    dutyfree: [
+        { name: "ISSEY MIYAKE", tag: "日本機場首登場", category: "時尚" },
+        { name: "KENZO", tag: "日本機場首登場", category: "時尚" },
+        { name: "ONITSUKA TIGER", tag: "", category: "鞋類" },
+        { name: "AESOP", tag: "", category: "美妝" },
+        { name: "MAISON KITSUNÉ", tag: "", category: "時尚" }
+    ],
+    food: [
+        { name: "博多ラーメン 幸ちゃん", type: "博多拉麵" },
+        { name: "博多長浜海鮮丼 うみの食堂", type: "海鮮丼" },
+        { name: "釜喜利うどん", type: "烏龍麵" },
+        { name: "元祖もつ鍋 楽天地", type: "牛腸鍋" },
+        { name: "和心とんかつ あんず", type: "豬排" }
+    ],
+    souvenirs: [
+        { name: "博多通りもん", desc: "博多必買" },
+        { name: "一蘭拉麵", desc: "帶回家煮" },
+        { name: "東京芭娜娜", desc: "日本全國" },
+        { name: "白色戀人", desc: "北海道" }
+    ],
+    info: {
+        dutyFreeArea: "約6,000㎡（原來4倍）",
+        brands: "128個品牌（44新品牌）",
+        openDate: "2025年3月28日全面開幕"
+    }
+};
+
 
 const drugstoreData = [
     {
@@ -536,6 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addNightlifeSection();
     addBabyRoomSection();
     addArcadeSection();
+    addAirportShopSection();
     addEmergencySection();
     addPhrasesSection();
 });
@@ -2665,6 +2695,114 @@ function addArcadeSection() {
         }
         .arcade-tip p { font-size: 0.8rem; color: var(--text-secondary); }
         .arcade-tip strong { color: var(--purple); }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===== 機場購物區塊 =====
+function addAirportShopSection() {
+    const arcadeSection = document.getElementById('arcade');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'airportshop';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">✈️</span>機場購物</h2>
+        
+        <div class="airport-info-box">
+            <p class="airport-date">📅 ${airportShopData.info.openDate}</p>
+            <p class="airport-stat">🛍️ 免稅店：${airportShopData.info.dutyFreeArea}</p>
+            <p class="airport-stat">🏷️ ${airportShopData.info.brands}</p>
+        </div>
+        
+        <h3 class="airport-subtitle">🛒 免稅店亮點品牌</h3>
+        <div class="airport-brands">
+            ${airportShopData.dutyfree.map(d => `
+                <span class="brand-tag ${d.tag ? 'new' : ''}">${d.name}${d.tag ? ` ⭐` : ''}</span>
+            `).join('')}
+        </div>
+        
+        <h3 class="airport-subtitle">🍜 HAKATA FOOD HALL（出境後）</h3>
+        <div class="airport-food">
+            ${airportShopData.food.map(f => `
+                <div class="food-item">
+                    <span class="food-name">${f.name}</span>
+                    <span class="food-type">${f.type}</span>
+                </div>
+            `).join('')}
+        </div>
+        
+        <h3 class="airport-subtitle">🎁 伴手禮區（57品牌）</h3>
+        <div class="airport-souvenirs">
+            ${airportShopData.souvenirs.map(s => `
+                <span class="souvenir-tag">${s.name}</span>
+            `).join('')}
+        </div>
+    `;
+    
+    arcadeSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .airport-info-box {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+            border: var(--border-width) solid var(--border);
+        }
+        .airport-date { font-size: 0.95rem; font-weight: 900; margin-bottom: 8px; }
+        .airport-stat { font-size: 0.8rem; opacity: 0.95; }
+        .airport-subtitle {
+            font-size: 0.95rem;
+            font-weight: 900;
+            margin: 16px 0 10px;
+            color: var(--text-primary);
+        }
+        .airport-brands {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .brand-tag {
+            background: var(--bg-card);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 2px solid var(--border);
+        }
+        .brand-tag.new { background: var(--accent); }
+        .airport-food {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .food-item {
+            display: flex;
+            justify-content: space-between;
+            background: var(--bg-card);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border);
+        }
+        .food-name { font-size: 0.8rem; font-weight: 700; }
+        .food-type { font-size: 0.75rem; color: var(--secondary); font-weight: 700; }
+        .airport-souvenirs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .souvenir-tag {
+            background: var(--orange);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 2px solid var(--border);
+        }
     `;
     document.head.appendChild(style);
 }
