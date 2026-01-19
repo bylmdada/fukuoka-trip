@@ -307,6 +307,27 @@ const souvenirData = [
     { icon: "🐤", name: "ひよ子蛋糕", desc: "小雞造型・黃豆沙", where: "機場/博多站" }
 ];
 
+// 地鐵交通資料
+const metroData = {
+    stations: [
+        { line: "🟠 空港線", name: "天神駅", exit: "5號/6a號出口", distance: "步行3分鐘", note: "最近！" },
+        { line: "🟢 七隈線", name: "天神南駅", exit: "西8出口", distance: "步行5分鐘", note: "往藥院" },
+        { line: "🚃 西鐵電車", name: "西鉄福岡駅", exit: "—", distance: "直結", note: "往太宰府" }
+    ],
+    routes: [
+        { dest: "福岡機場", line: "🟠", time: "11分", fare: "¥260" },
+        { dest: "博多站", line: "🟠", time: "5分", fare: "¥210" },
+        { dest: "中洲川端（屋台）", line: "🟠", time: "3分", fare: "¥210" },
+        { dest: "大濠公園", line: "🟠", time: "5分", fare: "¥210" },
+        { dest: "唐人町（福岡塔巴士）", line: "🟠", time: "7分", fare: "¥260" },
+        { dest: "藥院（甜點街）", line: "🟢", time: "4分", fare: "¥210" }
+    ],
+    tickets: [
+        { name: "單程票", price: "¥210~380", note: "依距離" },
+        { name: "1日乘車券", price: "¥640", note: "3次以上划算！" },
+        { name: "信用卡觸碰", price: "上限¥640", note: "超過自動變1日券" }
+    ]
+};
 
 // 行李清單
 const packingData = {
@@ -343,6 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addShoppingSection();
     addDrugstoreSection();
     addDessertSection();
+    addMetroSection();
     renderPacking();
     initBottomNav();
     updateProgress();
@@ -1675,7 +1697,144 @@ function addDessertSection() {
     document.head.appendChild(style);
 }
 
-// ===== 分帳功能 =====
+// ===== 地鐵交通區塊 =====
+function addMetroSection() {
+    const dessertSection = document.getElementById('dessert');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'metro';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">🚇</span>地鐵交通</h2>
+        
+        <h3 class="metro-subtitle">📍 飯店最近車站</h3>
+        <div class="metro-stations">
+            ${metroData.stations.map(s => `
+                <div class="station-card">
+                    <div class="station-line">${s.line}</div>
+                    <div class="station-info">
+                        <h4>${s.name}</h4>
+                        <p>${s.exit} • ${s.distance}</p>
+                    </div>
+                    <span class="station-note">${s.note}</span>
+                </div>
+            `).join('')}
+        </div>
+        
+        <h3 class="metro-subtitle">🗺️ 行程常用路線</h3>
+        <div class="metro-routes">
+            ${metroData.routes.map(r => `
+                <div class="route-row">
+                    <span class="route-line">${r.line}</span>
+                    <span class="route-dest">${r.dest}</span>
+                    <span class="route-time">${r.time}</span>
+                    <span class="route-fare">${r.fare}</span>
+                </div>
+            `).join('')}
+        </div>
+        
+        <h3 class="metro-subtitle">🎫 票價優惠</h3>
+        <div class="ticket-list">
+            ${metroData.tickets.map(t => `
+                <div class="ticket-card">
+                    <span class="ticket-name">${t.name}</span>
+                    <span class="ticket-price">${t.price}</span>
+                    <span class="ticket-note">${t.note}</span>
+                </div>
+            `).join('')}
+        </div>
+        
+        <a href="https://www.google.com/maps/search/?api=1&query=福岡市地下鉄+天神駅" 
+           target="_blank" class="metro-map-btn">🗺️ 開啟天神站地圖</a>
+    `;
+    
+    dessertSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .metro-subtitle {
+            font-size: 0.95rem;
+            font-weight: 900;
+            margin: 16px 0 10px;
+            color: var(--text-primary);
+        }
+        .metro-stations {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .station-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            border: var(--border-width) solid var(--border);
+        }
+        .station-line { font-size: 0.8rem; font-weight: 900; white-space: nowrap; }
+        .station-info { flex: 1; }
+        .station-info h4 { font-size: 0.9rem; font-weight: 900; }
+        .station-info p { font-size: 0.75rem; color: var(--text-secondary); }
+        .station-note { font-size: 0.7rem; color: var(--primary); font-weight: 900; }
+        
+        .metro-routes {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: var(--border-width) solid var(--border);
+            overflow: hidden;
+        }
+        .route-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+        .route-row:last-child { border-bottom: none; }
+        .route-line { font-size: 1rem; }
+        .route-dest { flex: 1; font-size: 0.85rem; font-weight: 700; }
+        .route-time { font-size: 0.8rem; color: var(--secondary); font-weight: 900; }
+        .route-fare { font-size: 0.75rem; color: var(--text-muted); }
+        
+        .ticket-list {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        .ticket-card {
+            flex: 0 0 auto;
+            min-width: 120px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 12px;
+            text-align: center;
+            border: var(--border-width) solid var(--border);
+        }
+        .ticket-name { display: block; font-size: 0.8rem; font-weight: 900; margin-bottom: 4px; }
+        .ticket-price { display: block; font-size: 1.1rem; font-weight: 900; margin-bottom: 2px; }
+        .ticket-note { display: block; font-size: 0.65rem; opacity: 0.9; }
+        
+        .metro-map-btn {
+            display: block;
+            text-align: center;
+            background: var(--orange);
+            color: white;
+            font-weight: 900;
+            padding: 12px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            margin-top: 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 3px 3px 0 var(--border);
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+
 let members = JSON.parse(localStorage.getItem('fukuoka-members') || '["我"]');
 
 function addSplitBillSection() {
