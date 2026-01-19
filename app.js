@@ -218,7 +218,22 @@ const hundredYenData = [
     }
 ];
 
-// 藥妝店資料（優惠排行）
+// 夾娃娃機店資料
+const arcadeData = {
+    tenjin: [
+        { name: "GiGO 福岡天神", desc: "夾娃娃・大頭貼・音Game", note: "西鉄福岡駅步行3分", map: "GiGO 福岡天神" },
+        { name: "タイトーステーション 福岡天神店", desc: "扭蛋・大頭貼・夾娃娃", note: "1-2F有夾娃娃", map: "タイトーステーション 福岡天神店" },
+        { name: "ラウンドワン 福岡天神店", desc: "大型綜合遊樂場", note: "很多種遊戲", map: "ラウンドワン 福岡天神店" },
+        { name: "GiGO ミーナ天神", desc: "夾娃娃・音Game", note: "ミーナ内", map: "GiGO ミーナ天神" }
+    ],
+    hakata: [
+        { name: "namco 博多バスターミナル店", desc: "最新機台・限定景品", note: "博多BT 7F", map: "namco 博多バスターミナル店", recommended: true },
+        { name: "タイトーステーション キャナルシティ博多店", desc: "大型・適合全家", note: "Canal City", map: "タイトーステーション キャナルシティ博多店" },
+        { name: "G-pala博多", desc: "10円夾娃娃！", note: "音Game也多", map: "G-pala博多", recommended: true }
+    ]
+};
+
+
 const drugstoreData = [
     {
         icon: "🥇",
@@ -475,6 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addSplitBillSection();
     addNightlifeSection();
     addBabyRoomSection();
+    addArcadeSection();
     addEmergencySection();
     addPhrasesSection();
 });
@@ -2429,6 +2445,108 @@ function addBabyRoomSection() {
         }
         .babyroom-tip p { font-size: 0.8rem; color: var(--text-secondary); }
         .babyroom-tip strong { color: var(--pink); }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===== 夾娃娃機店區塊 =====
+function addArcadeSection() {
+    const babyRoomSection = document.getElementById('babyroom');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'arcade';
+    
+    const renderArcade = (a) => `
+        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(a.map)}" 
+           target="_blank" class="arcade-card ${a.recommended ? 'recommended' : ''}">
+            <div class="arcade-icon">🎮</div>
+            <div class="arcade-info">
+                <h4>${a.name} ${a.recommended ? '<span class="arcade-badge">⭐推薦</span>' : ''}</h4>
+                <p class="arcade-desc">${a.desc}</p>
+                <p class="arcade-note">📍 ${a.note}</p>
+            </div>
+            <span class="arcade-arrow">→</span>
+        </a>
+    `;
+    
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">🎮</span>夾娃娃機店</h2>
+        
+        <h3 class="arcade-subtitle">📍 天神區（飯店附近）</h3>
+        <div class="arcade-list">
+            ${arcadeData.tenjin.map(renderArcade).join('')}
+        </div>
+        
+        <h3 class="arcade-subtitle">📍 博多區</h3>
+        <div class="arcade-list">
+            ${arcadeData.hakata.map(renderArcade).join('')}
+        </div>
+        
+        <div class="arcade-tip">
+            <p>💡 <strong>省錢推薦</strong>：G-pala博多 有10円夾娃娃機！</p>
+        </div>
+    `;
+    
+    babyRoomSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .arcade-subtitle {
+            font-size: 0.95rem;
+            font-weight: 900;
+            margin: 16px 0 10px;
+            color: var(--text-primary);
+        }
+        .arcade-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .arcade-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.15s;
+        }
+        .arcade-card:hover {
+            transform: translateX(4px);
+            background: var(--bg-elevated);
+        }
+        .arcade-card.recommended {
+            background: linear-gradient(135deg, rgba(166,108,255,0.1) 0%, rgba(255,230,109,0.1) 100%);
+            border-color: var(--purple);
+        }
+        .arcade-icon { font-size: 1.8rem; }
+        .arcade-info { flex: 1; min-width: 0; }
+        .arcade-info h4 { font-size: 0.9rem; font-weight: 900; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .arcade-badge {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .arcade-desc { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 2px; }
+        .arcade-note { font-size: 0.7rem; color: var(--text-muted); }
+        .arcade-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; }
+        .arcade-tip {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: rgba(166,108,255,0.12);
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--purple);
+        }
+        .arcade-tip p { font-size: 0.8rem; color: var(--text-secondary); }
+        .arcade-tip strong { color: var(--purple); }
     `;
     document.head.appendChild(style);
 }
