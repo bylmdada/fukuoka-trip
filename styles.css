@@ -335,6 +335,39 @@ body {
 
 .hotel-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
+.backup-hotel {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 3px dashed var(--text-muted);
+}
+
+.backup-label {
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+
+.hotel-main.backup {
+    background: var(--bg-elevated);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+.hotel-main.backup h3 { font-size: 1rem; }
+.backup-note { 
+    font-size: 0.8rem; 
+    color: var(--secondary); 
+    margin-top: 6px;
+    font-weight: 700;
+}
+
+.btn-sm {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+}
+
 .btn {
     display: inline-flex;
     align-items: center;

@@ -477,6 +477,22 @@ function renderHotel() {
             <a href="https://www.google.com/maps/search/?api=1&query=ソラリア西鉄ホテル福岡" target="_blank" class="btn btn-secondary">🗺️ 地圖</a>
             <a href="tel:+81-92-752-5555" class="btn btn-ghost">📞 電話</a>
         </div>
+        
+        <div class="backup-hotel">
+            <p class="backup-label">📋 備案飯店</p>
+            <div class="hotel-main backup">
+                <div class="hotel-info">
+                    <h3>Richmond Hotel 福岡天神</h3>
+                    <p class="en">Richmond Hotels Fukuoka Tenjin</p>
+                    <p class="addr">📍 福岡市中央區渡邊通4-8-25</p>
+                    <p class="backup-note">🚇 七隈線天神南站步行3分・三越對面</p>
+                </div>
+            </div>
+            <div class="hotel-actions">
+                <a href="https://www.google.com/maps/search/?api=1&query=リッチモンドホテル福岡天神" target="_blank" class="btn btn-accent btn-sm">🗺️ 地圖</a>
+                <a href="tel:+81-92-739-2855" class="btn btn-ghost btn-sm">📞 電話</a>
+            </div>
+        </div>
     `;
 }
 
