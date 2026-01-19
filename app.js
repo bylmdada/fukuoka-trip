@@ -360,6 +360,21 @@ const passData = [
     }
 ];
 
+// 夜生活推薦
+const nightlifeData = {
+    izakaya: [
+        { icon: "🍜", name: "小金ちゃん", desc: "焼きラーメン發源地", loc: "天神", map: "屋台 小金ちゃん", tag: "必吃" },
+        { icon: "🍲", name: "一慶 西中洲店", desc: "隱藏版炙燒牛腸鍋", loc: "中洲", map: "一慶 西中洲店", tag: "牛腸鍋" },
+        { icon: "🐟", name: "せいもん払い", desc: "新鮮刺身海鮮", loc: "中洲", map: "せいもん払い 中洲", tag: "海鮮" },
+        { icon: "🔥", name: "藁焼 みかん", desc: "藁焼鰹魚・和風居酒屋", loc: "天神", map: "藁焼 みかん 天神", tag: "藁焼" }
+    ],
+    bars: [
+        { icon: "🥃", name: "ハート・ストリングス", desc: "30年老舗・No Charge", loc: "中洲", map: "ハートストリングス 中洲", tag: "老舗" },
+        { icon: "🍸", name: "Bar Oscar", desc: "日本冠軍調酒師・「日ノ和」必點", loc: "天神赤坂", map: "バー オスカー 赤坂", tag: "人氣" },
+        { icon: "🥂", name: "ハイボールバー 1923", desc: "高級Highball・看中洲夜景", loc: "中洲", map: "ハイボールバー 中洲1923", tag: "夜景" }
+    ]
+};
+
 
 // 行李清單
 const packingData = {
@@ -402,6 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgress();
     addExpenseSection();
     addSplitBillSection();
+    addNightlifeSection();
     addEmergencySection();
     addPhrasesSection();
 });
@@ -2043,6 +2059,125 @@ function addSplitBillSection() {
     `;
     document.head.appendChild(style);
 }
+
+// ===== 夜生活區塊 =====
+function addNightlifeSection() {
+    const splitBillSection = document.getElementById('splitbill');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'nightlife';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">🌙</span>夜生活推薦</h2>
+        
+        <h3 class="nightlife-subtitle">🍺 居酒屋推薦</h3>
+        <div class="nightlife-list">
+            ${nightlifeData.izakaya.map(i => `
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(i.map)}" 
+                   target="_blank" class="nightlife-card">
+                    <div class="nightlife-icon">${i.icon}</div>
+                    <div class="nightlife-info">
+                        <div class="nightlife-header">
+                            <h4>${i.name}</h4>
+                            <span class="nightlife-tag">${i.tag}</span>
+                        </div>
+                        <p class="nightlife-desc">${i.desc}</p>
+                        <p class="nightlife-loc">📍 ${i.loc}</p>
+                    </div>
+                    <span class="nightlife-arrow">→</span>
+                </a>
+            `).join('')}
+        </div>
+        
+        <h3 class="nightlife-subtitle">🍸 酒吧推薦</h3>
+        <div class="nightlife-list">
+            ${nightlifeData.bars.map(b => `
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.map)}" 
+                   target="_blank" class="nightlife-card bar">
+                    <div class="nightlife-icon">${b.icon}</div>
+                    <div class="nightlife-info">
+                        <div class="nightlife-header">
+                            <h4>${b.name}</h4>
+                            <span class="nightlife-tag bar">${b.tag}</span>
+                        </div>
+                        <p class="nightlife-desc">${b.desc}</p>
+                        <p class="nightlife-loc">📍 ${b.loc}</p>
+                    </div>
+                    <span class="nightlife-arrow">→</span>
+                </a>
+            `).join('')}
+        </div>
+        
+        <div class="nightlife-note">
+            <p>💡 <strong>親子提醒</strong>：屋台街適合帶小孩，居酒屋建議18:00前入場</p>
+        </div>
+    `;
+    
+    splitBillSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .nightlife-subtitle {
+            font-size: 0.95rem;
+            font-weight: 900;
+            margin: 16px 0 10px;
+            color: var(--text-primary);
+        }
+        .nightlife-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .nightlife-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.15s;
+        }
+        .nightlife-card:hover {
+            transform: translateX(4px);
+            background: var(--bg-elevated);
+        }
+        .nightlife-card.bar {
+            background: linear-gradient(135deg, rgba(166,108,255,0.08) 0%, rgba(255,113,206,0.08) 100%);
+        }
+        .nightlife-icon { font-size: 1.8rem; }
+        .nightlife-info { flex: 1; min-width: 0; }
+        .nightlife-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+        .nightlife-header h4 { font-size: 0.9rem; font-weight: 900; }
+        .nightlife-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .nightlife-tag.bar { background: var(--purple); }
+        .nightlife-desc { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 2px; }
+        .nightlife-loc { font-size: 0.7rem; color: var(--text-muted); }
+        .nightlife-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; }
+        .nightlife-note {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: rgba(255, 159, 67, 0.15);
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--orange);
+        }
+        .nightlife-note p { font-size: 0.8rem; color: var(--text-secondary); }
+        .nightlife-note strong { color: var(--orange); }
+    `;
+    document.head.appendChild(style);
+}
+
 
 function renderMembers() {
     const container = document.getElementById('membersList');
