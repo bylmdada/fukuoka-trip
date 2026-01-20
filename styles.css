@@ -363,6 +363,13 @@ body {
     font-weight: 700;
 }
 
+.hotel-access {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    font-weight: 600;
+}
+
 .btn-sm {
     padding: 8px 14px;
     font-size: 0.8rem;

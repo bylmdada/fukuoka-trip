@@ -557,6 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addClothingSection();
     addDessertSection();
     addMetroSection();
+    addTransportMapsSection();
     renderPacking();
     initBottomNav();
     updateProgress();
@@ -632,30 +633,17 @@ function renderHotel() {
     container.innerHTML = `
         <div class="hotel-main">
             <div class="hotel-info">
-                <h3>福岡索拉利亞西鐵酒店</h3>
-                <p class="en">Solaria Nishitetsu Hotel Fukuoka</p>
-                <p class="addr">📍 福岡市中央區天神2-2-43</p>
+                <h3>The OneFive Villa Fukuoka</h3>
+                <p class="en">ザ・ワンファイブヴィラ福岡</p>
+                <p class="addr">📍 福岡市中央區春吉3-4-6</p>
+                <p class="hotel-access">🚇 中洲川端站1號出口步行7分</p>
+                <p class="hotel-access">🚇 櫛田神社站1號出口步行5分</p>
+                <p class="hotel-access">🚶 西鉄福岡(天神)站南口步行7分</p>
             </div>
         </div>
         <div class="hotel-actions">
-            <a href="https://www.google.com/maps/search/?api=1&query=ソラリア西鉄ホテル福岡" target="_blank" class="btn btn-secondary">🗺️ 地圖</a>
-            <a href="tel:+81-92-752-5555" class="btn btn-ghost">📞 電話</a>
-        </div>
-        
-        <div class="backup-hotel">
-            <p class="backup-label">📋 備案飯店</p>
-            <div class="hotel-main backup">
-                <div class="hotel-info">
-                    <h3>Richmond Hotel 福岡天神</h3>
-                    <p class="en">Richmond Hotels Fukuoka Tenjin</p>
-                    <p class="addr">📍 福岡市中央區渡邊通4-8-25</p>
-                    <p class="backup-note">🚇 七隈線天神南站步行3分・三越對面</p>
-                </div>
-            </div>
-            <div class="hotel-actions">
-                <a href="https://www.google.com/maps/search/?api=1&query=リッチモンドホテル福岡天神" target="_blank" class="btn btn-accent btn-sm">🗺️ 地圖</a>
-                <a href="tel:+81-92-739-2855" class="btn btn-ghost btn-sm">📞 電話</a>
-            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+OneFive+Villa+Fukuoka" target="_blank" class="btn btn-secondary">🗺️ 地圖</a>
+            <a href="https://www.booking.com/hotel/jp/the-onefive-villa-fukuoka.html" target="_blank" class="btn btn-accent">📅 Booking</a>
         </div>
     `;
 }
@@ -2243,6 +2231,309 @@ function addMetroSection() {
     document.head.appendChild(style);
 }
 
+// ===== 交通路線圖區塊 =====
+function addTransportMapsSection() {
+    const metroSection = document.getElementById('metro');
+    
+    const transportMapsData = [
+        {
+            id: 'shuttle',
+            icon: '🚌',
+            name: '機場接駁巴士',
+            desc: '國際線⇄國內線 免費接駁',
+            note: '約10-15分鐘車程',
+            image: '國內線・國際線接駁巴士運行路線圖.png'
+        },
+        {
+            id: 'subway',
+            icon: '🚇',
+            name: '福岡地鐵路線圖',
+            desc: '空港線・箱崎線・七隈線',
+            note: '機場→天神 約11分 ¥260',
+            image: '福岡地鐵.png'
+        },
+        {
+            id: 'nishitetsu',
+            icon: '🚃',
+            name: '西鐵電車路線圖',
+            desc: '天神大牟田線・太宰府線',
+            note: '往太宰府・柳川必搭',
+            image: '西鐵.png'
+        },
+        {
+            id: 'taxi',
+            icon: '🚕',
+            name: '計程車乘車處',
+            desc: '國際線航廈1樓',
+            note: '機場→天神 約¥3,000-3,500',
+            image: '計程車(國際線).png'
+        }
+    ];
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'transport-maps';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">🗺️</span>交通路線圖</h2>
+        <p class="section-desc">點擊查看大圖</p>
+        <div class="transport-maps-grid">
+            ${transportMapsData.map(m => `
+                <div class="transport-map-card" onclick="openTransportMapModal('${m.image}', '${m.name}')">
+                    <div class="map-thumb">
+                        <img src="${m.image}" alt="${m.name}" loading="lazy">
+                        <div class="map-overlay">
+                            <span class="zoom-icon">🔍</span>
+                        </div>
+                    </div>
+                    <div class="map-info">
+                        <span class="map-icon">${m.icon}</span>
+                        <div class="map-text">
+                            <h4>${m.name}</h4>
+                            <p>${m.desc}</p>
+                            <span class="map-note">${m.note}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    metroSection.after(section);
+    
+    // 新增圖片 Modal
+    if (!document.getElementById('transportMapModal')) {
+        const modal = document.createElement('div');
+        modal.id = 'transportMapModal';
+        modal.className = 'transport-map-modal';
+        modal.innerHTML = `
+            <div class="modal-backdrop" onclick="closeTransportMapModal()"></div>
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3 id="transportMapTitle">路線圖</h3>
+                    <button class="modal-close" onclick="closeTransportMapModal()">✕</button>
+                </div>
+                <div class="modal-image-wrapper">
+                    <img id="transportMapImage" src="" alt="" />
+                </div>
+                <div class="modal-footer">
+                    <span class="pinch-hint">📱 可雙指縮放</span>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .section-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .transport-maps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .transport-map-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: var(--border-width) solid var(--border);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .transport-map-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .transport-map-card:active {
+            transform: scale(0.98);
+        }
+        .map-thumb {
+            position: relative;
+            height: 80px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+        .map-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .transport-map-card:hover .map-thumb img {
+            transform: scale(1.05);
+        }
+        .map-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .transport-map-card:hover .map-overlay {
+            opacity: 1;
+        }
+        .zoom-icon {
+            font-size: 1.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        .map-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 10px;
+        }
+        .map-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .map-text {
+            flex: 1;
+            min-width: 0;
+        }
+        .map-text h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .map-text p {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .map-note {
+            display: inline-block;
+            font-size: 0.6rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Transport Map Modal */
+        .transport-map-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+        }
+        .transport-map-modal.open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .transport-map-modal .modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+        }
+        .transport-map-modal .modal-container {
+            position: relative;
+            width: 95%;
+            max-width: 800px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .transport-map-modal .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border);
+        }
+        .transport-map-modal .modal-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .transport-map-modal .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+        .transport-map-modal .modal-close:hover {
+            color: var(--primary);
+        }
+        .transport-map-modal .modal-image-wrapper {
+            flex: 1;
+            overflow: auto;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .transport-map-modal .modal-image-wrapper img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .transport-map-modal .modal-footer {
+            padding: 8px 16px;
+            text-align: center;
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border);
+        }
+        .pinch-hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        @media (max-width: 400px) {
+            .transport-maps-grid {
+                grid-template-columns: 1fr;
+            }
+            .map-thumb {
+                height: 100px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// 開啟路線圖 Modal
+function openTransportMapModal(imageSrc, title) {
+    const modal = document.getElementById('transportMapModal');
+    const img = document.getElementById('transportMapImage');
+    const titleEl = document.getElementById('transportMapTitle');
+    
+    img.src = imageSrc;
+    img.alt = title;
+    titleEl.textContent = title;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+// 關閉路線圖 Modal
+function closeTransportMapModal() {
+    const modal = document.getElementById('transportMapModal');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+// 支援 ESC 鍵關閉
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeTransportMapModal();
+    }
+});
 
 let members = JSON.parse(localStorage.getItem('fukuoka-members') || '["我"]');
 
