@@ -743,11 +743,142 @@ function renderHotel() {
                 <p class="hotel-access">🚶 西鉄福岡(天神)站南口步行7分</p>
             </div>
         </div>
+        
+        <div class="hotel-family-section">
+            <h4>👨‍👩‍👧 親子設施資訊</h4>
+            <div class="family-features">
+                <div class="family-item good">
+                    <span class="family-icon">🛏️</span>
+                    <div class="family-text">
+                        <strong>寬敞房型</strong>
+                        <p>房間30㎡以上・空間舒適</p>
+                    </div>
+                </div>
+                <div class="family-item good">
+                    <span class="family-icon">☕</span>
+                    <div class="family-text">
+                        <strong>免費迎賓下午茶</strong>
+                        <p>入住送客房三層式下午茶</p>
+                    </div>
+                </div>
+                <div class="family-item good">
+                    <span class="family-icon">🍸</span>
+                    <div class="family-text">
+                        <strong>1F河畔餐廳酒吧</strong>
+                        <p>MITSUBACHI・可賞中洲夜景</p>
+                    </div>
+                </div>
+                <div class="family-item good">
+                    <span class="family-icon">🛗</span>
+                    <div class="family-text">
+                        <strong>電梯 & 24H櫃台</strong>
+                        <p>推車無障礙・全天候服務</p>
+                    </div>
+                </div>
+                <div class="family-item warn">
+                    <span class="family-icon">⚠️</span>
+                    <div class="family-text">
+                        <strong>無嬰兒床/加床</strong>
+                        <p>需自備旅行嬰兒床或與大人同睡</p>
+                    </div>
+                </div>
+                <div class="family-item note">
+                    <span class="family-icon">💰</span>
+                    <div class="family-text">
+                        <strong>兒童收費政策</strong>
+                        <p>2歲以上視為大人計費・13歲以上成人價</p>
+                    </div>
+                </div>
+                <div class="family-item note">
+                    <span class="family-icon">🍳</span>
+                    <div class="family-text">
+                        <strong>早餐資訊</strong>
+                        <p>需至步行1分鐘的Hotel Il Palazzo用餐（另計費）</p>
+                    </div>
+                </div>
+            </div>
+            <div class="nearby-baby-tip">
+                <span class="tip-icon">👶</span>
+                <span>附近親子廁所：岩田屋本店6F（最完善）、天神地下街南端12番街</span>
+            </div>
+        </div>
+        
         <div class="hotel-actions">
             <a href="https://www.google.com/maps/search/?api=1&query=The+OneFive+Villa+Fukuoka" target="_blank" class="btn btn-secondary">🗺️ 地圖</a>
             <a href="https://www.booking.com/hotel/jp/the-onefive-villa-fukuoka.html" target="_blank" class="btn btn-accent">📅 Booking</a>
         </div>
     `;
+    
+    // 親子設施樣式
+    const style = document.createElement('style');
+    style.textContent = `
+        .hotel-family-section {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border);
+        }
+        .hotel-family-section h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+        .family-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        .family-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 12px;
+            background: var(--bg-elevated);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--secondary);
+        }
+        .family-item.good {
+            border-left-color: var(--secondary);
+        }
+        .family-item.warn {
+            border-left-color: var(--orange);
+            background: rgba(245, 158, 11, 0.1);
+        }
+        .family-item.note {
+            border-left-color: var(--text-muted);
+        }
+        .family-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .family-text strong {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .family-text p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .nearby-baby-tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 10px 12px;
+            background: linear-gradient(135deg, rgba(255,113,206,0.1) 0%, rgba(1,205,254,0.1) 100%);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .tip-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+    `;
+    document.head.appendChild(style);
 }
 
 // ===== 日期選擇 =====
