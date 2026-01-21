@@ -1671,194 +1671,236 @@ function addEmergencySection() {
     document.head.appendChild(style);
 }
 
-// ===== 飯店周邊地圖 =====
+// ===== 區域地圖總覽 =====
 function addHotelAreaMapSection() {
     const airportSection = document.getElementById('airport-shop');
     
-    // 飯店座標 (The OneFive Villa Fukuoka)
-    const hotelLat = 33.5896;
-    const hotelLng = 130.4068;
-    
-    // 周邊景點資料（分類）
-    const nearbyPOIs = {
-        food: [
-            { name: "燒肉すどう春吉", distance: "步行3分", icon: "🥩" },
-            { name: "樂天地 中洲本店", distance: "步行5分", icon: "🍲" },
-            { name: "元祖博多明太重", distance: "步行5分", icon: "🍙" },
-            { name: "中洲屋台街", distance: "步行5分", icon: "🏮" },
-            { name: "一蘭 天神西通店", distance: "步行7分", icon: "🍜" }
-        ],
-        cafe: [
-            { name: "FUK COFFEE 祇園店", distance: "步行8分", icon: "☕" },
-            { name: "RINGO 天神地下街", distance: "步行7分", icon: "🍎" },
-            { name: "天神茶屋", distance: "步行7分", icon: "🥞" }
-        ],
-        shop: [
-            { name: "MaxValu Express 博多祇園店", distance: "步行8分", icon: "🛒", tag: "24H" },
-            { name: "Foodway 中洲ゲイツ店", distance: "步行5分", icon: "🏪", tag: "24H" },
-            { name: "Bic Camera 天神2号館", distance: "步行3分", icon: "📷" },
-            { name: "天神地下街", distance: "步行7分", icon: "🛍️" }
-        ],
-        transport: [
-            { name: "中洲川端站", distance: "步行7分", icon: "🚇" },
-            { name: "櫛田神社前站", distance: "步行5分", icon: "🚇" },
-            { name: "西鉄福岡(天神)站", distance: "步行7分", icon: "🚃" }
-        ]
-    };
+    // 區域資料
+    const areaData = [
+        {
+            id: 'hotel',
+            icon: '🏨',
+            name: '飯店周邊',
+            subtitle: 'The OneFive Villa',
+            mapUrl: 'https://www.google.com/maps/place/The+OneFive+Villa+Fukuoka/@33.5896,130.4068,16z',
+            embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.6!2d130.4068!3d33.5896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3541918e8f8d6c0d%3A0x1a2b3c4d5e6f7890!2sThe%20OneFive%20Villa%20Fukuoka!5e0!3m2!1szh-TW!2sjp!4v1',
+            highlights: ['燒肉すどう 3分', '中洲屋台 5分', 'MaxValu 8分', '中洲川端站 7分'],
+            color: '#FF6B6B'
+        },
+        {
+            id: 'hakata',
+            icon: '🚄',
+            name: '博多站區',
+            subtitle: 'JR/新幹線樞紐',
+            mapUrl: 'https://www.google.com/maps/place/博多駅/@33.5897,130.4207,16z',
+            embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.6!2d130.4207!3d33.5897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191c0d79c6c5b%3A0x4c0e8051bb963a5b!2sHakata%20Station!5e0!3m2!1szh-TW!2sjp!4v1',
+            highlights: ['博多阪急', 'AMU Plaza', '一蘭總本店', 'KITTE博多'],
+            color: '#4ECDC4'
+        },
+        {
+            id: 'tenjin',
+            icon: '🛍️',
+            name: '天神區域',
+            subtitle: '購物美食中心',
+            mapUrl: 'https://www.google.com/maps/place/天神/@33.5917,130.3992,16z',
+            embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.4!2d130.3992!3d33.5917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191909eb1eccd%3A0x65d77f09c9f8aaf0!2sTenjin!5e0!3m2!1szh-TW!2sjp!4v1',
+            highlights: ['天神地下街', '岩田屋', '大丸百貨', '一蘭天神店'],
+            color: '#FFE66D'
+        },
+        {
+            id: 'dazaifu',
+            icon: '⛩️',
+            name: '太宰府',
+            subtitle: 'Day 3 景點',
+            mapUrl: 'https://www.google.com/maps/place/太宰府天満宮/@33.5212,130.5348,16z',
+            embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.1!2d130.5348!3d33.5212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354187946e3c1d5b%3A0x18c8c9c1c1c1c1c1!2sDazaifu%20Tenmangu%20Shrine!5e0!3m2!1szh-TW!2sjp!4v1',
+            highlights: ['天滿宮', '表參道', '梅枝餅', '星巴克特別店'],
+            color: '#A66CFF'
+        },
+        {
+            id: 'momochi',
+            icon: '🗼',
+            name: '百道海濱',
+            subtitle: 'Day 6 福岡塔',
+            mapUrl: 'https://www.google.com/maps/place/福岡タワー/@33.5934,130.3511,16z',
+            embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.2!2d130.3511!3d33.5934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354193c7e8c1d5c9%3A0x5c5c5c5c5c5c5c5c!2sFukuoka%20Tower!5e0!3m2!1szh-TW!2sjp!4v1',
+            highlights: ['福岡塔', 'Marizon', '市博物館', '大濠公園'],
+            color: '#FF9F43'
+        }
+    ];
     
     const section = document.createElement('section');
     section.className = 'section';
     section.id = 'hotel-area-map';
     section.innerHTML = `
-        <h2 class="section-title"><span class="title-icon">🗺️</span>飯店周邊地圖</h2>
-        <p class="map-subtitle">以 The OneFive Villa Fukuoka 為中心</p>
+        <h2 class="section-title"><span class="title-icon">🗺️</span>區域地圖</h2>
+        <p class="area-map-subtitle">選擇區域查看詳細地圖</p>
         
-        <div class="map-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.6!2d130.4068!3d33.5896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3541918e8f8d6c0d%3A0x1a2b3c4d5e6f7890!2sThe%20OneFive%20Villa%20Fukuoka!5e0!3m2!1szh-TW!2sjp!4v1!5m2!1szh-TW!2sjp"
-                width="100%" 
-                height="250" 
-                style="border:0; border-radius: var(--radius);" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+        <div class="area-selector">
+            ${areaData.map((area, index) => `
+                <button class="area-btn ${index === 0 ? 'active' : ''}" data-area="${area.id}" style="--area-color: ${area.color}">
+                    <span class="area-icon">${area.icon}</span>
+                    <span class="area-name">${area.name}</span>
+                </button>
+            `).join('')}
         </div>
         
-        <a href="https://www.google.com/maps/place/The+OneFive+Villa+Fukuoka/@33.5896,130.4068,16z" 
-           target="_blank" class="open-map-btn">
-            🗺️ 在 Google Maps 開啟
-        </a>
-        
-        <div class="poi-categories">
-            <div class="poi-category">
-                <h4>🍜 美食餐廳</h4>
-                <div class="poi-list">
-                    ${nearbyPOIs.food.map(p => `
-                        <div class="poi-item">
-                            <span class="poi-icon">${p.icon}</span>
-                            <span class="poi-name">${p.name}</span>
-                            <span class="poi-distance">${p.distance}</span>
+        <div class="area-content">
+            ${areaData.map((area, index) => `
+                <div class="area-panel ${index === 0 ? 'active' : ''}" data-panel="${area.id}">
+                    <div class="area-header" style="background: ${area.color}">
+                        <span class="area-header-icon">${area.icon}</span>
+                        <div>
+                            <h3>${area.name}</h3>
+                            <p>${area.subtitle}</p>
                         </div>
-                    `).join('')}
-                </div>
-            </div>
-            
-            <div class="poi-category">
-                <h4>☕ 咖啡甜點</h4>
-                <div class="poi-list">
-                    ${nearbyPOIs.cafe.map(p => `
-                        <div class="poi-item">
-                            <span class="poi-icon">${p.icon}</span>
-                            <span class="poi-name">${p.name}</span>
-                            <span class="poi-distance">${p.distance}</span>
+                    </div>
+                    <div class="area-map-embed">
+                        <iframe 
+                            src="${area.embedUrl}"
+                            width="100%" 
+                            height="200" 
+                            style="border:0; border-radius: 12px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="area-highlights">
+                        <h4>📍 周邊亮點</h4>
+                        <div class="highlight-tags">
+                            ${area.highlights.map(h => `<span class="highlight-tag">${h}</span>`).join('')}
                         </div>
-                    `).join('')}
+                    </div>
+                    <a href="${area.mapUrl}" target="_blank" class="area-open-btn" style="background: ${area.color}">
+                        🗺️ 在 Google Maps 開啟
+                    </a>
                 </div>
-            </div>
-            
-            <div class="poi-category">
-                <h4>🛒 購物商店</h4>
-                <div class="poi-list">
-                    ${nearbyPOIs.shop.map(p => `
-                        <div class="poi-item">
-                            <span class="poi-icon">${p.icon}</span>
-                            <span class="poi-name">${p.name}</span>
-                            ${p.tag ? `<span class="poi-tag">${p.tag}</span>` : ''}
-                            <span class="poi-distance">${p.distance}</span>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-            
-            <div class="poi-category">
-                <h4>🚇 交通站點</h4>
-                <div class="poi-list">
-                    ${nearbyPOIs.transport.map(p => `
-                        <div class="poi-item">
-                            <span class="poi-icon">${p.icon}</span>
-                            <span class="poi-name">${p.name}</span>
-                            <span class="poi-distance">${p.distance}</span>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
+            `).join('')}
         </div>
     `;
     
     airportSection.after(section);
     
+    // 區域切換邏輯
+    const areaBtns = section.querySelectorAll('.area-btn');
+    const areaPanels = section.querySelectorAll('.area-panel');
+    
+    areaBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const areaId = btn.dataset.area;
+            
+            areaBtns.forEach(b => b.classList.remove('active'));
+            areaPanels.forEach(p => p.classList.remove('active'));
+            
+            btn.classList.add('active');
+            section.querySelector(`[data-panel="${areaId}"]`).classList.add('active');
+        });
+    });
+    
     const style = document.createElement('style');
     style.textContent = `
-        .map-subtitle {
-            font-size: 0.8rem;
+        .area-map-subtitle {
+            font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
-        .map-container {
+        .area-selector {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            scrollbar-width: none;
+        }
+        .area-selector::-webkit-scrollbar { display: none; }
+        .area-btn {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border: var(--border-width) solid var(--border);
             border-radius: var(--radius);
-            overflow: hidden;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 3px 3px 0px var(--border);
+            min-width: 70px;
         }
-        .open-map-btn {
+        .area-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--border);
+        }
+        .area-btn.active {
+            background: var(--area-color);
+            color: white;
+            transform: rotate(-2deg);
+        }
+        .area-icon { font-size: 1.5rem; }
+        .area-name { font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+        .area-content { position: relative; }
+        .area-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .area-panel.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .area-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: var(--radius) var(--radius) 0 0;
+            color: white;
+        }
+        .area-header-icon { font-size: 2rem; }
+        .area-header h3 { font-size: 1.1rem; font-weight: 900; margin: 0; }
+        .area-header p { font-size: 0.8rem; opacity: 0.9; margin: 0; }
+        .area-map-embed {
+            background: var(--bg-card);
+            padding: 12px;
+            border-left: var(--border-width) solid var(--border);
+            border-right: var(--border-width) solid var(--border);
+        }
+        .area-highlights {
+            background: var(--bg-card);
+            padding: 12px 16px;
+            border-left: var(--border-width) solid var(--border);
+            border-right: var(--border-width) solid var(--border);
+        }
+        .area-highlights h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .highlight-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .highlight-tag {
+            background: var(--bg-elevated);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .area-open-btn {
             display: block;
             text-align: center;
-            background: var(--primary);
             color: white;
             font-weight: 700;
             padding: 12px;
-            border-radius: var(--radius);
+            border-radius: 0 0 var(--radius) var(--radius);
             text-decoration: none;
-            margin-bottom: 16px;
-        }
-        .poi-categories {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .poi-category h4 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-        .poi-list {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .poi-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 10px;
-            background: var(--bg-card);
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-            font-size: 0.8rem;
-        }
-        .poi-icon {
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-        .poi-name {
-            flex: 1;
-            font-weight: 500;
-        }
-        .poi-tag {
-            background: var(--orange);
-            color: white;
-            font-size: 0.65rem;
-            padding: 2px 6px;
-            border-radius: 8px;
-            font-weight: 700;
-        }
-        .poi-distance {
-            font-size: 0.7rem;
-            color: var(--secondary);
-            font-weight: 600;
-            white-space: nowrap;
+            border: var(--border-width) solid var(--border);
+            border-top: none;
         }
     `;
     document.head.appendChild(style);
