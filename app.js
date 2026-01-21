@@ -511,6 +511,14 @@ const dessertData = [
         map: "三日月屋 博多駅店"
     },
     { 
+        icon: "🍞", 
+        name: "Dacomecca", 
+        desc: "人氣麻粉咖啡店・卡士達奶油麵包必買", 
+        addr: "博多站前4-14-1",
+        tag: "7:00-20:00",
+        map: "Dacomecca 博多"
+    },
+    { 
         icon: "✈️", 
         name: "FUK COFFEE 祇園店", 
         desc: "機場主題咖啡廳・昭和布丁必點", 
@@ -1968,6 +1976,7 @@ function addVisualMapSection() {
         { name: "🧀", label: "BAKE", x: 16, y: 22, type: "cafe" },
         { name: "🍡", label: "鈴懸", x: 75, y: 28, type: "cafe" },
         { name: "🍓", label: "伊都きんぐ", x: 78, y: 25, type: "cafe" },
+        { name: "🍞", label: "Dacomecca", x: 82, y: 45, type: "cafe" },
         
         // === 購物商店 ===
         { name: "🛒", label: "MaxValu 24H", x: 72, y: 50, type: "shop" },
