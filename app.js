@@ -116,7 +116,7 @@ const foodData = [
     { icon: "🍡", name: "梅枝餅", shops: "太宰府表參道" }
 ];
 
-// 飯店附近推薦（一蘭24小時・甜點）
+// 飯店附近推薦（The OneFive Villa Fukuoka 周邊美食）
 const nearbyData = [
     {
         icon: "🍜",
@@ -128,11 +128,65 @@ const nearbyData = [
         map: "一蘭 天神西通店"
     },
     {
+        icon: "🥩",
+        name: "燒肉すどう春吉",
+        desc: "Tabelog百名店！厚切頂級和牛",
+        addr: "春吉3-11-19（步行3分）",
+        tag: "必訂位！",
+        note: "餐廳人氣超旺・建議提早預約",
+        map: "焼肉すどう 春吉"
+    },
+    {
+        icon: "🍲",
+        name: "樂天地",
+        desc: "在地人最愛牛腸鍋・濃郁湯頭",
+        addr: "中洲（步行5分）",
+        tag: "牛腸鍋",
+        note: "福岡名物！吃完湯底可加麵",
+        map: "楽天地 中洲本店"
+    },
+    {
+        icon: "🍲",
+        name: "博多華味鳥",
+        desc: "水炊雞鍋專門店・濃郁雞湯",
+        addr: "天神店",
+        tag: "水炊鍋",
+        note: "雞肉鮮嫩・湯頭超濃郁",
+        map: "博多華味鳥 天神店"
+    },
+    {
+        icon: "🍙",
+        name: "元祖博多明太重",
+        desc: "日本第一家明太子丼專門店",
+        addr: "西中洲（步行3分）",
+        tag: "明太子控",
+        note: "明太子沾麵也超讚！",
+        map: "元祖博多めんたい重"
+    },
+    {
+        icon: "🍣",
+        name: "うお田",
+        desc: "散壽司・明太子鮭魚卵玉子燒丼",
+        addr: "中洲",
+        tag: "份量大",
+        note: "CP值超高的海鮮丼",
+        map: "うお田 中洲"
+    },
+    {
+        icon: "✈️",
+        name: "FUK COFFEE 祇園店",
+        desc: "機場主題咖啡廳・昭和布丁必點",
+        addr: "祇園町（櫛田神社前站1分）",
+        tag: "超人氣",
+        note: "拿鐵+20円可拉小飛機圖案",
+        map: "FUK COFFEE 祇園"
+    },
+    {
         icon: "🍎",
         name: "RINGO 蘋果派",
         desc: "現烤卡士達蘋果派・外酥內餡大塊蘋果",
         addr: "天神地下街西4",
-        tag: "超人氣",
+        tag: "下午茶",
         note: "回飯店前的點心首選",
         map: "RINGO 天神地下街"
     },
@@ -420,6 +474,54 @@ const dessertData = [
         addr: "博多站",
         tag: "可頌必買",
         map: "三日月屋 博多駅店"
+    },
+    { 
+        icon: "✈️", 
+        name: "FUK COFFEE 祇園店", 
+        desc: "機場主題咖啡廳・昭和布丁必點", 
+        addr: "祇園町6-22（櫛田神社前站1分）",
+        tag: "超人氣！",
+        map: "FUK COFFEE 祇園"
+    },
+    { 
+        icon: "🛫", 
+        name: "FUK COFFEE Parks", 
+        desc: "大濠公園旁・悠閒氛圍", 
+        addr: "大濠公園站步行3分",
+        tag: "不用排隊",
+        map: "FUK COFFEE Parks"
+    },
+    { 
+        icon: "🍰", 
+        name: "キルフェボン", 
+        desc: "精美水果塔名店・視覺味覺雙享受", 
+        addr: "天神",
+        tag: "網美必拍",
+        map: "キルフェボン 福岡"
+    },
+    { 
+        icon: "🍨", 
+        name: "氷菓子屋KOMARU", 
+        desc: "米其林主廚監製軟雪糕", 
+        addr: "天神/博多",
+        tag: "高級甜點",
+        map: "氷菓子屋KOMARU 福岡"
+    },
+    { 
+        icon: "🍮", 
+        name: "甘味処たきむら", 
+        desc: "宇治抹茶刨冰・烤糰子", 
+        addr: "天神",
+        tag: "和風甜點",
+        map: "甘味処たきむら 福岡"
+    },
+    { 
+        icon: "🥧", 
+        name: "フランス菓子16区", 
+        desc: "經典法式甜點老舖", 
+        addr: "藥院大通",
+        tag: "法式甜點",
+        map: "フランス菓子16区"
     }
 ];
 
