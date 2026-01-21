@@ -71,13 +71,13 @@ const itineraryData = [
         day: 6, date: "2/13", weekday: "五", theme: "福岡塔・百道海濱", icon: "🗼", weather: "5-11°C ☀️",
         schedule: [
             { time: "10:00", title: "福岡市博物館", desc: "🏛️ 國寶金印・中學生以下免費", map: "福岡市博物館" },
-            { time: "11:30", title: "福岡塔", desc: "日本最高海濱塔234m・互動設施", map: "福岡タワー" },
-            { time: "12:30", title: "海濱百道公園", desc: "海邊沙灘散步・適合親子", map: "シーサイドももち海浜公園" },
-            { time: "13:30", title: "Marizon 午餐", desc: "🍽️ 海濱餐廳・賞海景用餐", tag: "lunch", map: "マリゾン" },
-            { time: "15:00", title: "FUK COFFEE Parks", desc: "☕ 大濠公園旁・悠閒咖啡時光", map: "FUK COFFEE Parks" },
-            { time: "16:00", title: "大濠公園", desc: "租天鵝船遊湖・餵魚", map: "大濠公園" },
-            { time: "17:30", title: "福岡城跡", desc: "夕陽時刻・舞鶴公園散步", map: "福岡城跡" },
-            { time: "19:00", title: "福岡塔夜景 🌃", desc: "✨ 234m俯瞰百萬夜景・點燈秀", tag: "food", map: "福岡タワー" }
+            { time: "11:30", title: "海濱百道公園", desc: "🏖️ 沙灘散步・適合親子放風", map: "シーサイドももち海浜公園" },
+            { time: "12:30", title: "Marizon 午餐", desc: "🍽️ 海濱餐廳・賞海景用餐", tag: "lunch", map: "マリゾン" },
+            { time: "14:00", title: "FUK COFFEE Parks", desc: "☕ 大濠公園旁・招牌昭和布丁", map: "FUK COFFEE Parks" },
+            { time: "15:00", title: "大濠公園", desc: "🚣 租天鵝船遊湖・餵魚放鬆", map: "大濠公園" },
+            { time: "16:30", title: "福岡城跡", desc: "🏯 夕陽時刻・舞鶴公園散步", map: "福岡城跡" },
+            { time: "18:00", title: "晚餐時間", desc: "🍜 返回天神/中洲用餐", tag: "food", map: "" },
+            { time: "19:30", title: "福岡塔夜景 🌃", desc: "✨ 234m百萬夜景・省去白天門票！", tag: "food", map: "福岡タワー" }
         ]
     },
     {
@@ -720,6 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addBabyRoomSection();
     addArcadeSection();
     addAirportShopSection();
+    addHotelAreaMapSection();
     addEmergencySection();
     addPhrasesSection();
 });
@@ -1655,6 +1656,199 @@ function addEmergencySection() {
         }
         .mounjaro-note strong { font-weight: 900; }
         .mounjaro-note p { margin-bottom: 4px; }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===== 飯店周邊地圖 =====
+function addHotelAreaMapSection() {
+    const airportSection = document.getElementById('airport-shop');
+    
+    // 飯店座標 (The OneFive Villa Fukuoka)
+    const hotelLat = 33.5896;
+    const hotelLng = 130.4068;
+    
+    // 周邊景點資料（分類）
+    const nearbyPOIs = {
+        food: [
+            { name: "燒肉すどう春吉", distance: "步行3分", icon: "🥩" },
+            { name: "樂天地 中洲本店", distance: "步行5分", icon: "🍲" },
+            { name: "元祖博多明太重", distance: "步行5分", icon: "🍙" },
+            { name: "中洲屋台街", distance: "步行5分", icon: "🏮" },
+            { name: "一蘭 天神西通店", distance: "步行7分", icon: "🍜" }
+        ],
+        cafe: [
+            { name: "FUK COFFEE 祇園店", distance: "步行8分", icon: "☕" },
+            { name: "RINGO 天神地下街", distance: "步行7分", icon: "🍎" },
+            { name: "天神茶屋", distance: "步行7分", icon: "🥞" }
+        ],
+        shop: [
+            { name: "MaxValu Express 博多祇園店", distance: "步行8分", icon: "🛒", tag: "24H" },
+            { name: "Foodway 中洲ゲイツ店", distance: "步行5分", icon: "🏪", tag: "24H" },
+            { name: "Bic Camera 天神2号館", distance: "步行3分", icon: "📷" },
+            { name: "天神地下街", distance: "步行7分", icon: "🛍️" }
+        ],
+        transport: [
+            { name: "中洲川端站", distance: "步行7分", icon: "🚇" },
+            { name: "櫛田神社前站", distance: "步行5分", icon: "🚇" },
+            { name: "西鉄福岡(天神)站", distance: "步行7分", icon: "🚃" }
+        ]
+    };
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'hotel-area-map';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">🗺️</span>飯店周邊地圖</h2>
+        <p class="map-subtitle">以 The OneFive Villa Fukuoka 為中心</p>
+        
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.6!2d130.4068!3d33.5896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3541918e8f8d6c0d%3A0x1a2b3c4d5e6f7890!2sThe%20OneFive%20Villa%20Fukuoka!5e0!3m2!1szh-TW!2sjp!4v1!5m2!1szh-TW!2sjp"
+                width="100%" 
+                height="250" 
+                style="border:0; border-radius: var(--radius);" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        
+        <a href="https://www.google.com/maps/place/The+OneFive+Villa+Fukuoka/@33.5896,130.4068,16z" 
+           target="_blank" class="open-map-btn">
+            🗺️ 在 Google Maps 開啟
+        </a>
+        
+        <div class="poi-categories">
+            <div class="poi-category">
+                <h4>🍜 美食餐廳</h4>
+                <div class="poi-list">
+                    ${nearbyPOIs.food.map(p => `
+                        <div class="poi-item">
+                            <span class="poi-icon">${p.icon}</span>
+                            <span class="poi-name">${p.name}</span>
+                            <span class="poi-distance">${p.distance}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="poi-category">
+                <h4>☕ 咖啡甜點</h4>
+                <div class="poi-list">
+                    ${nearbyPOIs.cafe.map(p => `
+                        <div class="poi-item">
+                            <span class="poi-icon">${p.icon}</span>
+                            <span class="poi-name">${p.name}</span>
+                            <span class="poi-distance">${p.distance}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="poi-category">
+                <h4>🛒 購物商店</h4>
+                <div class="poi-list">
+                    ${nearbyPOIs.shop.map(p => `
+                        <div class="poi-item">
+                            <span class="poi-icon">${p.icon}</span>
+                            <span class="poi-name">${p.name}</span>
+                            ${p.tag ? `<span class="poi-tag">${p.tag}</span>` : ''}
+                            <span class="poi-distance">${p.distance}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="poi-category">
+                <h4>🚇 交通站點</h4>
+                <div class="poi-list">
+                    ${nearbyPOIs.transport.map(p => `
+                        <div class="poi-item">
+                            <span class="poi-icon">${p.icon}</span>
+                            <span class="poi-name">${p.name}</span>
+                            <span class="poi-distance">${p.distance}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+    
+    airportSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .map-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .open-map-btn {
+            display: block;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            margin-bottom: 16px;
+        }
+        .poi-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .poi-category h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        .poi-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .poi-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+        }
+        .poi-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .poi-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        .poi-tag {
+            background: var(--orange);
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+        .poi-distance {
+            font-size: 0.7rem;
+            color: var(--secondary);
+            font-weight: 600;
+            white-space: nowrap;
+        }
     `;
     document.head.appendChild(style);
 }
