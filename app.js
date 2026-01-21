@@ -201,8 +201,26 @@ const nearbyData = [
     }
 ];
 
-// 飯店附近購物店家
+// 飯店附近購物店家（含24小時商店）
 const shoppingData = [
+    { 
+        icon: "🛒", 
+        name: "MaxValu Express 博多祇園店", 
+        desc: "24H超市！生鮮食品・熟食便當・日用品", 
+        addr: "祇園町7-20",
+        hours: "⭐ 24小時營業",
+        distance: "步行8分（櫛田神社旁）",
+        map: "マックスバリュエクスプレス博多祇園店"
+    },
+    { 
+        icon: "🏪", 
+        name: "Foodway 中洲食小町ゲイツ店", 
+        desc: "24H超市！中洲川端站直結・生鮮熟食", 
+        addr: "Gate's大樓 B1F",
+        hours: "⭐ 平日24H・週日營業至4AM",
+        distance: "步行5分（車站直結）",
+        map: "フードウェイ 中洲食小町ゲイツ店"
+    },
     { 
         icon: "🪙", 
         name: "3COINS +plus", 
@@ -230,6 +248,13 @@ const shoppingData = [
         distance: "步行5-7分鐘",
         map: "ビックカメラ天神1号館"
     }
+];
+
+// 24小時便利超商資訊
+const convenienceStoreData = [
+    { brand: "7-Eleven", icon: "🔴", locations: ["博多中洲3丁目", "博多中洲大通り", "春吉"] },
+    { brand: "FamilyMart", icon: "🟢", locations: ["博多リバレイン", "博多中洲四丁目"] },
+    { brand: "Lawson", icon: "🔵", locations: ["上川端町", "中洲であい橋通り", "西中洲"] }
 ];
 
 // 100円商店資料
