@@ -2051,19 +2051,68 @@ function addVisualMapSection() {
     
     hotelMapSection.appendChild(visualMap);
     
-    // 縮放功能
+    // 縮放與拖曳功能
     let currentZoom = 1;
+    let panX = 0, panY = 0;
+    let isDragging = false;
+    let startX, startY;
+    
     const mapArea = visualMap.querySelector('#zoomableMap');
+    const mapViewport = visualMap.querySelector('.map-viewport');
     const zoomBtns = visualMap.querySelectorAll('.zoom-btn');
+    
+    const updateTransform = () => {
+        mapArea.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoom})`;
+    };
     
     zoomBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const action = btn.dataset.zoom;
-            if (action === 'in' && currentZoom < 2) currentZoom += 0.25;
+            if (action === 'in' && currentZoom < 2.5) currentZoom += 0.25;
             if (action === 'out' && currentZoom > 0.5) currentZoom -= 0.25;
-            if (action === 'reset') currentZoom = 1;
-            mapArea.style.transform = `scale(${currentZoom})`;
+            if (action === 'reset') { currentZoom = 1; panX = 0; panY = 0; }
+            updateTransform();
         });
+    });
+    
+    // 滑鼠拖曳
+    mapViewport.addEventListener('mousedown', (e) => {
+        if (currentZoom <= 1) return;
+        isDragging = true;
+        startX = e.clientX - panX;
+        startY = e.clientY - panY;
+        mapViewport.style.cursor = 'grabbing';
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        panX = e.clientX - startX;
+        panY = e.clientY - startY;
+        updateTransform();
+    });
+    
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mapViewport.style.cursor = currentZoom > 1 ? 'grab' : 'default';
+    });
+    
+    // 觸控拖曳
+    mapViewport.addEventListener('touchstart', (e) => {
+        if (currentZoom <= 1 || e.touches.length !== 1) return;
+        isDragging = true;
+        startX = e.touches[0].clientX - panX;
+        startY = e.touches[0].clientY - panY;
+    }, { passive: true });
+    
+    mapViewport.addEventListener('touchmove', (e) => {
+        if (!isDragging || e.touches.length !== 1) return;
+        panX = e.touches[0].clientX - startX;
+        panY = e.touches[0].clientY - startY;
+        updateTransform();
+    }, { passive: true });
+    
+    mapViewport.addEventListener('touchend', () => {
+        isDragging = false;
     });
     
     // 分類過濾功能
@@ -2111,7 +2160,7 @@ function addVisualMapSection() {
         .zoom-controls { display: flex; gap: 4px; }
         .zoom-btn { width: 28px; height: 28px; border: 2px solid var(--border); border-radius: 6px; background: var(--bg-card); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
         .zoom-btn:hover { background: var(--primary); color: white; }
-        .map-viewport { overflow: hidden; border-radius: var(--radius-sm); }
+        .map-viewport { overflow: hidden; border-radius: var(--radius-sm); user-select: none; touch-action: none; }
         .map-area { position: relative; width: 100%; height: 320px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(245,245,245,0.9) 100%); transition: transform 0.3s ease; transform-origin: center center; }
         .map-poi { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: all 0.2s; z-index: 1; }
         .map-poi:hover { transform: translate(-50%, -50%) scale(1.3); z-index: 10; }
