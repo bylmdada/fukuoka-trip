@@ -1715,7 +1715,7 @@ function addHotelAreaMapSection() {
             subtitle: 'Day 7 購物美食',
             mapUrl: 'https://www.google.com/maps/place/天神/@33.5917,130.3992,16z',
             embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.4!2d130.3992!3d33.5917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191909eb1eccd%3A0x65d77f09c9f8aaf0!2sTenjin!5e0!3m2!1szh-TW!2sjp!4v1',
-            highlights: ['天神地下街', '大丸百貨', 'PARCO', 'Bic Camera', '一蘭天神店', '唐吉訶德'],
+            highlights: ['天神地下街', '大丸百貨', 'PARCO', 'Bic Camera', '一蘭天神店', '警固神社'],
             color: '#FFE66D'
         },
         {
@@ -1725,7 +1725,7 @@ function addHotelAreaMapSection() {
             subtitle: 'Day 3 鋼彈朝聖',
             mapUrl: 'https://www.google.com/maps/place/ららぽーと福岡/@33.5771,130.4417,16z',
             embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.2!2d130.4417!3d33.5771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3541915e8f8d6c0d%3A0xabcdef1234567890!2sLaLaport%20Fukuoka!5e0!3m2!1szh-TW!2sjp!4v1',
-            highlights: ['RX-93 ν鋼彈', 'GUNDAM SIDE-F', 'VS PARK', 'namco遊樂區', '夜間點燈秀'],
+            highlights: ['RX-93 ν鋼彈', 'GUNDAM SIDE-F', 'teamLab Forest', 'VS PARK', 'namco'],
             color: '#26DE81'
         },
         {
@@ -1968,6 +1968,9 @@ function addVisualMapSection() {
         { name: "🏮", label: "川端商店街", x: 58, y: 35, type: "attraction" },
         { name: "🌊", label: "博多運河城", x: 68, y: 55, type: "attraction" },
         { name: "🐟", label: "柳橋市場", x: 35, y: 65, type: "attraction" },
+        { name: "⛩️", label: "警固神社", x: 22, y: 32, type: "attraction" },
+        // 咖啡甜點補充
+        { name: "🍩", label: "Mister Donut", x: 28, y: 45, type: "cafe" },
         // 交通
         { name: "🚇", label: "中洲川端", x: 48, y: 25, type: "transport" },
         { name: "🚇", label: "櫛田神社前", x: 65, y: 38, type: "transport" },
