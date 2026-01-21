@@ -709,6 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     add100YenSection();
     addClothingSection();
     addDessertSection();
+    addStrawberrySection();
     addMetroSection();
     addTransportMapsSection();
     renderPacking();
@@ -721,6 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addArcadeSection();
     addAirportShopSection();
     addHotelAreaMapSection();
+    addVisualMapSection();
     addEmergencySection();
     addPhrasesSection();
 });
@@ -1853,6 +1855,169 @@ function addHotelAreaMapSection() {
     document.head.appendChild(style);
 }
 
+// ===== 視覺化周邊地圖 =====
+function addVisualMapSection() {
+    const hotelMapSection = document.getElementById('hotel-area-map');
+    if (!hotelMapSection) return;
+    
+    // POI 位置資料（以飯店為中心的相對位置 %）
+    const mapPOIs = [
+        // 飯店中心
+        { name: "🏨", label: "飯店", x: 50, y: 50, type: "hotel" },
+        // 美食
+        { name: "🥩", label: "燒肉すどう", x: 45, y: 55, type: "food" },
+        { name: "🍲", label: "樂天地", x: 55, y: 60, type: "food" },
+        { name: "🍙", label: "明太重", x: 40, y: 45, type: "food" },
+        { name: "🏮", label: "中洲屋台", x: 60, y: 65, type: "food" },
+        { name: "🍜", label: "一蘭", x: 30, y: 40, type: "food" },
+        // 咖啡
+        { name: "☕", label: "FUK祇園", x: 65, y: 35, type: "cafe" },
+        { name: "🍎", label: "RINGO", x: 25, y: 35, type: "cafe" },
+        // 購物
+        { name: "🛒", label: "MaxValu", x: 70, y: 40, type: "shop" },
+        { name: "🏪", label: "Foodway", x: 55, y: 70, type: "shop" },
+        { name: "📷", label: "Bic Camera", x: 35, y: 30, type: "shop" },
+        { name: "🛍️", label: "天神地下街", x: 20, y: 25, type: "shop" },
+        // 交通
+        { name: "🚇", label: "中洲川端", x: 45, y: 25, type: "transport" },
+        { name: "🚇", label: "櫛田神社前", x: 60, y: 45, type: "transport" },
+        { name: "🚃", label: "西鉄天神", x: 15, y: 30, type: "transport" }
+    ];
+    
+    const visualMap = document.createElement('div');
+    visualMap.className = 'visual-map-container';
+    visualMap.innerHTML = `
+        <h4 class="visual-map-title">📍 周邊景點分佈</h4>
+        <div class="visual-map">
+            <div class="map-legend">
+                <span class="legend-item"><span class="dot food"></span>美食</span>
+                <span class="legend-item"><span class="dot cafe"></span>咖啡</span>
+                <span class="legend-item"><span class="dot shop"></span>購物</span>
+                <span class="legend-item"><span class="dot transport"></span>交通</span>
+            </div>
+            <div class="map-area">
+                ${mapPOIs.map(poi => `
+                    <div class="map-poi ${poi.type}" style="left: ${poi.x}%; top: ${poi.y}%;" title="${poi.label}">
+                        <span class="poi-emoji">${poi.name}</span>
+                        <span class="poi-label">${poi.label}</span>
+                    </div>
+                `).join('')}
+                <div class="hotel-center">
+                    <div class="pulse-ring"></div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    hotelMapSection.appendChild(visualMap);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .visual-map-container {
+            margin-top: 20px;
+        }
+        .visual-map-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .visual-map {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: var(--radius);
+            padding: 12px;
+            border: 1px solid var(--border);
+        }
+        .map-legend {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot.food { background: #ff6b6b; }
+        .dot.cafe { background: #51cf66; }
+        .dot.shop { background: #339af0; }
+        .dot.transport { background: #fcc419; }
+        .map-area {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(240,240,240,0.8) 100%);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+        .map-poi {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s, z-index 0.2s;
+            z-index: 1;
+        }
+        .map-poi:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+            z-index: 10;
+        }
+        .poi-emoji {
+            font-size: 1.2rem;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+        }
+        .poi-label {
+            font-size: 0.55rem;
+            background: rgba(255,255,255,0.95);
+            padding: 2px 4px;
+            border-radius: 4px;
+            white-space: nowrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+            margin-top: 2px;
+        }
+        .map-poi.hotel .poi-emoji {
+            font-size: 1.8rem;
+        }
+        .map-poi.hotel .poi-label {
+            font-weight: 700;
+            background: var(--primary);
+            color: white;
+        }
+        .hotel-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            z-index: 0;
+        }
+        .pulse-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s ease-out infinite;
+            opacity: 0.6;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.5); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
 // ===== 實用日語 =====
 function addPhrasesSection() {
     const emergencySection = document.getElementById('emergency');
@@ -2517,6 +2682,198 @@ function addDessertSection() {
         .dessert-map-btn:hover {
             background: var(--primary);
             transform: scale(1.05);
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===== 草莓推薦區塊 =====
+function addStrawberrySection() {
+    const dessertSection = document.getElementById('dessert');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'strawberry';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">🍓</span>2月必吃：甘王草莓</h2>
+        <p class="strawberry-subtitle">福岡獨家・1-2月正是最佳品嚐期！</p>
+        
+        <div class="strawberry-hero">
+            <div class="strawberry-badge">草莓之王 👑</div>
+            <h3>${strawberryData.featured.japanese}</h3>
+            <p class="strawberry-meaning">${strawberryData.featured.meaning}</p>
+            <div class="strawberry-stats">
+                <div class="stat-item">
+                    <span class="stat-value">${strawberryData.featured.sweetness}</span>
+                    <span class="stat-label">甜度</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">${strawberryData.featured.season.split('（')[1].replace('）','')}</span>
+                    <span class="stat-label">最佳期</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">福岡限定</span>
+                    <span class="stat-label">產地</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="strawberry-features">
+            ${strawberryData.featured.features.map(f => `<span class="feature-tag">✨ ${f}</span>`).join('')}
+        </div>
+        
+        <h4 class="strawberry-subtitle-sm">🆚 日本草莓品種比較</h4>
+        <div class="strawberry-compare">
+            ${strawberryData.comparison.map(s => `
+                <div class="compare-row ${s.name === '甘王' ? 'highlight' : ''}">
+                    <span class="compare-name">${s.name}</span>
+                    <span class="compare-origin">${s.origin}</span>
+                    <span class="compare-feature">${s.feature}</span>
+                    <span class="compare-rating">${'⭐'.repeat(s.rating)}</span>
+                </div>
+            `).join('')}
+        </div>
+        
+        <h4 class="strawberry-subtitle-sm">🛒 哪裡買？</h4>
+        <div class="strawberry-buy">
+            ${strawberryData.whereToBuy.map(b => `
+                <div class="buy-item">
+                    <span class="buy-place">${b.place}</span>
+                    <span class="buy-note">${b.note}</span>
+                </div>
+            `).join('')}
+        </div>
+        
+        <div class="strawberry-tips">
+            <h4>💡 品嚐小技巧</h4>
+            ${strawberryData.featured.tips.map(t => `<p>• ${t}</p>`).join('')}
+        </div>
+    `;
+    
+    dessertSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .strawberry-subtitle {
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .strawberry-hero {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .strawberry-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+        }
+        .strawberry-hero h3 {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+        .strawberry-meaning {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+        .strawberry-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 0.65rem;
+            opacity: 0.8;
+        }
+        .strawberry-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .feature-tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        .strawberry-subtitle-sm {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin: 12px 0 8px;
+        }
+        .strawberry-compare {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        .compare-row {
+            display: grid;
+            grid-template-columns: 60px 50px 1fr auto;
+            gap: 8px;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.75rem;
+            align-items: center;
+        }
+        .compare-row:last-child { border-bottom: none; }
+        .compare-row.highlight {
+            background: rgba(255,107,107,0.1);
+        }
+        .compare-name { font-weight: 700; }
+        .compare-origin { color: var(--text-muted); }
+        .compare-feature { color: var(--text-secondary); }
+        .compare-rating { font-size: 0.65rem; }
+        .strawberry-buy {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .buy-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+        }
+        .buy-place { font-weight: 600; }
+        .buy-note { color: var(--secondary); font-weight: 600; }
+        .strawberry-tips {
+            background: linear-gradient(135deg, rgba(255,107,107,0.1) 0%, rgba(255,193,193,0.1) 100%);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+        }
+        .strawberry-tips h4 {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+        .strawberry-tips p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
         }
     `;
     document.head.appendChild(style);
