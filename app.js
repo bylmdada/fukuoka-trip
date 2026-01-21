@@ -1775,6 +1775,10 @@ function addHotelAreaMapSection() {
         <h2 class="section-title"><span class="title-icon">🗺️</span>區域地圖</h2>
         <p class="area-map-subtitle">選擇區域查看詳細地圖</p>
         
+        <a href="https://www.google.com/maps/d/u/1/edit?mid=1yTfGKQHRdgu1I9Lxgy9BTlvFEtvwbhw&usp=sharing" target="_blank" class="my-map-btn">
+            📍 開啟完整行程地圖（Google 我的地圖）
+        </a>
+        
         <div class="area-selector">
             ${areaData.map((area, index) => `
                 <button class="area-btn ${index === 0 ? 'active' : ''}" data-area="${area.id}" style="--area-color: ${area.color}">
@@ -1853,6 +1857,24 @@ function addHotelAreaMapSection() {
             scrollbar-width: none;
         }
         .area-selector::-webkit-scrollbar { display: none; }
+        .my-map-btn {
+            display: block;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 14px 20px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: all 0.2s;
+        }
+        .my-map-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
         .area-btn {
             flex-shrink: 0;
             display: flex;
