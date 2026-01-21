@@ -1673,7 +1673,7 @@ function addEmergencySection() {
 
 // ===== 區域地圖總覽 =====
 function addHotelAreaMapSection() {
-    const airportSection = document.getElementById('airport-shop');
+    const airportSection = document.getElementById('airportshop');
     
     // 區域資料
     const areaData = [
