@@ -129,6 +129,15 @@ const nearbyData = [
         map: "一蘭 天神西通店"
     },
     {
+        icon: "🍜",
+        name: "一蘭 天神店",
+        desc: "位於地下街ICHINAKA・本店風味",
+        addr: "天神1-10-20 B2F",
+        tag: "11-23時",
+        note: "購物逛累了來一碗！距飯店步行7分鐘",
+        map: "一蘭 天神店"
+    },
+    {
         icon: "🥩",
         name: "燒肉すどう春吉",
         desc: "Tabelog百名店！厚切頂級和牛",
