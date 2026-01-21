@@ -1773,11 +1773,23 @@ function addHotelAreaMapSection() {
     section.id = 'hotel-area-map';
     section.innerHTML = `
         <h2 class="section-title"><span class="title-icon">🗺️</span>區域地圖</h2>
-        <p class="area-map-subtitle">選擇區域查看詳細地圖</p>
+        <p class="area-map-subtitle">完整行程地圖（可縮放、平移）</p>
         
+        <div class="my-map-embed">
+            <iframe 
+                src="https://www.google.com/maps/d/embed?mid=1yTfGKQHRdgu1I9Lxgy9BTlvFEtvwbhw&ehbc=2E312F"
+                width="100%" 
+                height="350" 
+                style="border:0; border-radius: 12px;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
         <a href="https://www.google.com/maps/d/u/1/edit?mid=1yTfGKQHRdgu1I9Lxgy9BTlvFEtvwbhw&usp=sharing" target="_blank" class="my-map-btn">
-            📍 開啟完整行程地圖（Google 我的地圖）
+            🗺️ 在新視窗開啟完整地圖
         </a>
+        
+        <p class="area-map-subtitle" style="margin-top: 20px;">快速查看各區域</p>
         
         <div class="area-selector">
             ${areaData.map((area, index) => `
@@ -1874,6 +1886,16 @@ function addHotelAreaMapSection() {
         .my-map-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+        .my-map-embed {
+            margin-bottom: 12px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .my-map-embed iframe {
+            display: block;
         }
         .area-btn {
             flex-shrink: 0;
