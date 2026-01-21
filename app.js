@@ -70,13 +70,14 @@ const itineraryData = [
     {
         day: 6, date: "2/13", weekday: "五", theme: "福岡塔・百道海濱", icon: "🗼", weather: "5-11°C ☀️",
         schedule: [
-            { time: "10:00", title: "福岡塔", desc: "日本最高海濱塔234m", map: "福岡タワー" },
-            { time: "11:30", title: "海濱百道公園", desc: "海邊散步", map: "シーサイドももち海浜公園" },
-            { time: "12:30", title: "俺の焼肉 博多", desc: "🍖 午餐：A5黑毛和牛", tag: "lunch", map: "俺の焼肉 博多" },
-            { time: "14:00", title: "大濠公園", desc: "市中心綠洲・可租船", map: "大濠公園" },
-            { time: "15:30", title: "福岡城跡", desc: "舞鶴公園・歷史遺跡", map: "福岡城跡" },
-            { time: "18:00", title: "元祖博多めんたい重", desc: "🍱 晚餐：明太子料理", tag: "food", map: "元祖博多めんたい重" },
-            { time: "19:30", title: "福岡塔夜景 🌃", desc: "✨ 234m展望台俯瞰百萬夜景", tag: "food", map: "福岡タワー" }
+            { time: "10:00", title: "福岡市博物館", desc: "🏛️ 國寶金印・中學生以下免費", map: "福岡市博物館" },
+            { time: "11:30", title: "福岡塔", desc: "日本最高海濱塔234m・互動設施", map: "福岡タワー" },
+            { time: "12:30", title: "海濱百道公園", desc: "海邊沙灘散步・適合親子", map: "シーサイドももち海浜公園" },
+            { time: "13:30", title: "Marizon 午餐", desc: "🍽️ 海濱餐廳・賞海景用餐", tag: "lunch", map: "マリゾン" },
+            { time: "15:00", title: "FUK COFFEE Parks", desc: "☕ 大濠公園旁・悠閒咖啡時光", map: "FUK COFFEE Parks" },
+            { time: "16:00", title: "大濠公園", desc: "租天鵝船遊湖・餵魚", map: "大濠公園" },
+            { time: "17:30", title: "福岡城跡", desc: "夕陽時刻・舞鶴公園散步", map: "福岡城跡" },
+            { time: "19:00", title: "福岡塔夜景 🌃", desc: "✨ 234m俯瞰百萬夜景・點燈秀", tag: "food", map: "福岡タワー" }
         ]
     },
     {
@@ -550,6 +551,31 @@ const dessertData = [
     }
 ];
 
+// 福岡當季水果（2月推薦）
+const strawberryData = {
+    featured: {
+        name: "甘王草莓",
+        japanese: "あまおう (Amaou)",
+        origin: "福岡縣獨家生產",
+        season: "12月~5月（1-2月最佳）",
+        sweetness: "11度以上",
+        meaning: "あ(紅)・ま(圓)・お(大)・う(甜)",
+        features: ["果實超大顆", "圓潤飽滿", "多汁甜度高", "草莓之王"],
+        tips: ["從蒂頭開始吃（尖端最甜）", "不需沾醬直接享用", "冷藏保存2-3天內吃完"]
+    },
+    comparison: [
+        { name: "甘王", origin: "福岡", feature: "大顆圓潤・超甜多汁", rating: 5 },
+        { name: "栃乙女", origin: "栃木", feature: "甜酸平衡・東日本第一", rating: 4 },
+        { name: "紅臉頰", origin: "靜岡", feature: "香氣濃郁・口感紮實", rating: 4 }
+    ],
+    whereToBuy: [
+        { place: "MaxValu Express 博多祇園店", note: "24H・價格實惠" },
+        { place: "博多站地下街", note: "多家水果專賣店" },
+        { place: "岩田屋/大丸百貨", note: "禮盒包裝・送禮首選" },
+        { place: "伊都きんぐ", note: "甘王草莓銅鑼燒！" }
+    ]
+};
+
 // 必買伴手禮（整合更新）
 const souvenirData = [
     { icon: "🍙", name: "博多通りもん", desc: "福岡代表銘菓・奶油白豆沙", where: "機場/車站/百貨" },
@@ -811,7 +837,7 @@ function renderHotel() {
                     <span class="family-icon">💰</span>
                     <div class="family-text">
                         <strong>兒童收費政策</strong>
-                        <p>2歲以上視為大人計費・13歲以上成人價</p>
+                        <p>12歲以下免費（不加床）・13歲以上成人價</p>
                     </div>
                 </div>
                 <div class="family-item note">
