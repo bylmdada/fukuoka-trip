@@ -1937,68 +1937,113 @@ function addHotelAreaMapSection() {
     document.head.appendChild(style);
 }
 
-// ===== 視覺化周邊地圖 =====
+// ===== 視覺化周邊地圖（強化版）=====
 function addVisualMapSection() {
     const hotelMapSection = document.getElementById('hotel-area-map');
     if (!hotelMapSection) return;
     
-    // POI 位置資料（以飯店為中心的相對位置 %）- 整合行程地點
+    // 完整 POI 資料（整合所有 web app 資料）
     const mapPOIs = [
         // 飯店中心
         { name: "🏨", label: "飯店", x: 50, y: 50, type: "hotel" },
-        // 美食（行程相關）
+        
+        // === 美食餐廳 ===
         { name: "🥩", label: "燒肉すどう", x: 45, y: 55, type: "food" },
-        { name: "🍲", label: "樂天地", x: 55, y: 60, type: "food" },
-        { name: "🍙", label: "明太重", x: 40, y: 45, type: "food" },
-        { name: "🏮", label: "中洲屋台", x: 62, y: 68, type: "food" },
-        { name: "🍜", label: "一蘭天神", x: 25, y: 35, type: "food" },
-        { name: "🍜", label: "博多一雙", x: 75, y: 35, type: "food" },
-        { name: "🍜", label: "博多達摩", x: 78, y: 42, type: "food" },
-        // 咖啡甜點
-        { name: "☕", label: "FUK祇園", x: 65, y: 30, type: "cafe" },
-        { name: "🍎", label: "RINGO", x: 22, y: 30, type: "cafe" },
-        // 購物
-        { name: "🛒", label: "MaxValu", x: 70, y: 48, type: "shop" },
-        { name: "🏪", label: "Foodway", x: 58, y: 72, type: "shop" },
-        { name: "📷", label: "Bic Camera", x: 30, y: 28, type: "shop" },
-        { name: "🛍️", label: "天神地下街", x: 18, y: 22, type: "shop" },
-        { name: "🏯", label: "唐吉訶德", x: 20, y: 40, type: "shop" },
-        // 景點（行程Day 1）
-        { name: "⛩️", label: "櫛田神社", x: 62, y: 40, type: "attraction" },
-        { name: "🏮", label: "川端商店街", x: 58, y: 35, type: "attraction" },
-        { name: "🌊", label: "博多運河城", x: 68, y: 55, type: "attraction" },
-        { name: "🐟", label: "柳橋市場", x: 35, y: 65, type: "attraction" },
-        { name: "⛩️", label: "警固神社", x: 22, y: 32, type: "attraction" },
-        // 咖啡甜點補充
-        { name: "🍩", label: "Mister Donut", x: 28, y: 45, type: "cafe" },
-        // 交通
-        { name: "🚇", label: "中洲川端", x: 48, y: 25, type: "transport" },
-        { name: "🚇", label: "櫛田神社前", x: 65, y: 38, type: "transport" },
-        { name: "🚃", label: "西鉄天神", x: 15, y: 28, type: "transport" },
-        { name: "🚄", label: "博多站", x: 82, y: 30, type: "transport" }
+        { name: "🍲", label: "樂天地", x: 55, y: 62, type: "food" },
+        { name: "🍙", label: "明太重", x: 42, y: 45, type: "food" },
+        { name: "🏮", label: "中洲屋台", x: 60, y: 70, type: "food" },
+        { name: "🍲", label: "華味鳥", x: 25, y: 40, type: "food" },
+        { name: "🍣", label: "うお田", x: 52, y: 58, type: "food" },
+        // 拉麵店
+        { name: "🍜", label: "一蘭天神", x: 22, y: 32, type: "food" },
+        { name: "🍜", label: "一蘭西通", x: 20, y: 38, type: "food" },
+        { name: "🍜", label: "博多一雙", x: 78, y: 35, type: "food" },
+        { name: "🍜", label: "博多達摩", x: 80, y: 42, type: "food" },
+        
+        // === 咖啡甜點 ===
+        { name: "☕", label: "FUK祇園", x: 68, y: 30, type: "cafe" },
+        { name: "☕", label: "Blue Bottle", x: 20, y: 30, type: "cafe" },
+        { name: "🍎", label: "RINGO", x: 18, y: 25, type: "cafe" },
+        { name: "🍩", label: "Mister Donut", x: 28, y: 48, type: "cafe" },
+        { name: "🧀", label: "BAKE", x: 16, y: 22, type: "cafe" },
+        { name: "🍡", label: "鈴懸", x: 75, y: 28, type: "cafe" },
+        { name: "🍓", label: "伊都きんぐ", x: 78, y: 25, type: "cafe" },
+        
+        // === 購物商店 ===
+        { name: "🛒", label: "MaxValu 24H", x: 72, y: 50, type: "shop" },
+        { name: "🏪", label: "Foodway 24H", x: 56, y: 75, type: "shop" },
+        { name: "📷", label: "Bic Camera", x: 28, y: 25, type: "shop" },
+        { name: "🛍️", label: "天神地下街", x: 15, y: 20, type: "shop" },
+        { name: "🏯", label: "唐吉訶德", x: 18, y: 42, type: "shop" },
+        { name: "🪙", label: "3COINS", x: 25, y: 22, type: "shop" },
+        
+        // === 藥妝店 ===
+        { name: "💊", label: "松本清", x: 22, y: 28, type: "drugstore" },
+        { name: "💊", label: "大國藥妝", x: 26, y: 35, type: "drugstore" },
+        { name: "💊", label: "Sundrug", x: 15, y: 35, type: "drugstore" },
+        
+        // === 100円商店 ===
+        { name: "🔴", label: "DAISO", x: 30, y: 20, type: "yen100" },
+        { name: "🟢", label: "Seria", x: 24, y: 18, type: "yen100" },
+        { name: "🟡", label: "Can Do", x: 18, y: 15, type: "yen100" },
+        
+        // === 夾娃娃機 ===
+        { name: "🎮", label: "GiGO天神", x: 12, y: 28, type: "arcade" },
+        { name: "🎮", label: "namco博多", x: 82, y: 38, type: "arcade" },
+        { name: "🎮", label: "Taito", x: 70, y: 58, type: "arcade" },
+        
+        // === 景點 ===
+        { name: "⛩️", label: "櫛田神社", x: 65, y: 42, type: "attraction" },
+        { name: "⛩️", label: "警固神社", x: 20, y: 28, type: "attraction" },
+        { name: "🏮", label: "川端商店街", x: 60, y: 35, type: "attraction" },
+        { name: "🌊", label: "運河城", x: 70, y: 60, type: "attraction" },
+        { name: "🐟", label: "柳橋市場", x: 35, y: 68, type: "attraction" },
+        
+        // === 夜生活 ===
+        { name: "🍺", label: "水炊長野", x: 57, y: 65, type: "nightlife" },
+        { name: "🍻", label: "Bar Higuchi", x: 48, y: 68, type: "nightlife" },
+        
+        // === 交通 ===
+        { name: "🚇", label: "中洲川端", x: 48, y: 28, type: "transport" },
+        { name: "🚇", label: "櫛田神社前", x: 68, y: 40, type: "transport" },
+        { name: "🚃", label: "西鉄天神", x: 12, y: 25, type: "transport" },
+        { name: "🚄", label: "博多站", x: 85, y: 32, type: "transport" }
     ];
     
     const visualMap = document.createElement('div');
     visualMap.className = 'visual-map-container';
     visualMap.innerHTML = `
-        <h4 class="visual-map-title">📍 周邊景點分佈</h4>
+        <h4 class="visual-map-title">📍 周邊景點分佈 <span class="poi-count">(${mapPOIs.length}個地點)</span></h4>
         <div class="visual-map">
-            <div class="map-legend">
-                <span class="legend-item"><span class="dot food"></span>美食</span>
-                <span class="legend-item"><span class="dot cafe"></span>咖啡</span>
-                <span class="legend-item"><span class="dot shop"></span>購物</span>
-                <span class="legend-item"><span class="dot attraction"></span>景點</span>
-                <span class="legend-item"><span class="dot transport"></span>交通</span>
+            <div class="map-controls">
+                <div class="map-legend">
+                    <span class="legend-item" data-filter="food"><span class="dot food"></span>美食</span>
+                    <span class="legend-item" data-filter="cafe"><span class="dot cafe"></span>甜點</span>
+                    <span class="legend-item" data-filter="shop"><span class="dot shop"></span>購物</span>
+                    <span class="legend-item" data-filter="drugstore"><span class="dot drugstore"></span>藥妝</span>
+                    <span class="legend-item" data-filter="yen100"><span class="dot yen100"></span>百元</span>
+                    <span class="legend-item" data-filter="arcade"><span class="dot arcade"></span>遊戲</span>
+                    <span class="legend-item" data-filter="attraction"><span class="dot attraction"></span>景點</span>
+                    <span class="legend-item" data-filter="nightlife"><span class="dot nightlife"></span>夜生活</span>
+                    <span class="legend-item" data-filter="transport"><span class="dot transport"></span>交通</span>
+                </div>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" data-zoom="in">➕</button>
+                    <button class="zoom-btn" data-zoom="out">➖</button>
+                    <button class="zoom-btn" data-zoom="reset">↺</button>
+                </div>
             </div>
-            <div class="map-area">
-                ${mapPOIs.map(poi => `
-                    <div class="map-poi ${poi.type}" style="left: ${poi.x}%; top: ${poi.y}%;" title="${poi.label}">
-                        <span class="poi-emoji">${poi.name}</span>
-                        <span class="poi-label">${poi.label}</span>
+            <div class="map-viewport">
+                <div class="map-area" id="zoomableMap">
+                    ${mapPOIs.map(poi => `
+                        <div class="map-poi ${poi.type}" style="left: ${poi.x}%; top: ${poi.y}%;" title="${poi.label}">
+                            <span class="poi-emoji">${poi.name}</span>
+                            <span class="poi-label">${poi.label}</span>
+                        </div>
+                    `).join('')}
+                    <div class="hotel-center">
+                        <div class="pulse-ring"></div>
                     </div>
-                `).join('')}
-                <div class="hotel-center">
-                    <div class="pulse-ring"></div>
                 </div>
             </div>
         </div>
@@ -2006,110 +2051,77 @@ function addVisualMapSection() {
     
     hotelMapSection.appendChild(visualMap);
     
+    // 縮放功能
+    let currentZoom = 1;
+    const mapArea = visualMap.querySelector('#zoomableMap');
+    const zoomBtns = visualMap.querySelectorAll('.zoom-btn');
+    
+    zoomBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const action = btn.dataset.zoom;
+            if (action === 'in' && currentZoom < 2) currentZoom += 0.25;
+            if (action === 'out' && currentZoom > 0.5) currentZoom -= 0.25;
+            if (action === 'reset') currentZoom = 1;
+            mapArea.style.transform = `scale(${currentZoom})`;
+        });
+    });
+    
+    // 分類過濾功能
+    const legendItems = visualMap.querySelectorAll('.legend-item[data-filter]');
+    legendItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const filterType = item.dataset.filter;
+            const pois = visualMap.querySelectorAll('.map-poi');
+            const isActive = item.classList.contains('active');
+            
+            if (isActive) {
+                item.classList.remove('active');
+                pois.forEach(poi => poi.style.opacity = '1');
+            } else {
+                legendItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                pois.forEach(poi => {
+                    poi.style.opacity = poi.classList.contains(filterType) || poi.classList.contains('hotel') ? '1' : '0.15';
+                });
+            }
+        });
+    });
+    
     const style = document.createElement('style');
     style.textContent = `
-        .visual-map-container {
-            margin-top: 20px;
-        }
-        .visual-map-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        .visual-map {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: var(--radius);
-            padding: 12px;
-            border: 1px solid var(--border);
-        }
-        .map-legend {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-        }
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
+        .visual-map-container { margin-top: 20px; }
+        .visual-map-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; }
+        .poi-count { font-size: 0.7rem; color: var(--text-muted); font-weight: 500; }
+        .visual-map { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: var(--radius); padding: 12px; border: 1px solid var(--border); }
+        .map-controls { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 8px; flex-wrap: wrap; }
+        .map-legend { display: flex; gap: 6px; flex-wrap: wrap; flex: 1; }
+        .legend-item { display: flex; align-items: center; gap: 3px; font-size: 0.6rem; color: var(--text-secondary); cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: all 0.15s; }
+        .legend-item:hover { background: rgba(0,0,0,0.05); }
+        .legend-item.active { background: var(--primary); color: white; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
         .dot.food { background: #ff6b6b; }
         .dot.cafe { background: #51cf66; }
         .dot.shop { background: #339af0; }
+        .dot.drugstore { background: #f06595; }
+        .dot.yen100 { background: #ff922b; }
+        .dot.arcade { background: #845ef7; }
         .dot.attraction { background: #a66cff; }
+        .dot.nightlife { background: #be4bdb; }
         .dot.transport { background: #fcc419; }
-        .map-area {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(240,240,240,0.8) 100%);
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-        }
-        .map-poi {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.2s, z-index 0.2s;
-            z-index: 1;
-        }
-        .map-poi:hover {
-            transform: translate(-50%, -50%) scale(1.2);
-            z-index: 10;
-        }
-        .poi-emoji {
-            font-size: 1.2rem;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
-        }
-        .poi-label {
-            font-size: 0.55rem;
-            background: rgba(255,255,255,0.95);
-            padding: 2px 4px;
-            border-radius: 4px;
-            white-space: nowrap;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-            margin-top: 2px;
-        }
-        .map-poi.hotel .poi-emoji {
-            font-size: 1.8rem;
-        }
-        .map-poi.hotel .poi-label {
-            font-weight: 700;
-            background: var(--primary);
-            color: white;
-        }
-        .hotel-center {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            z-index: 0;
-        }
-        .pulse-ring {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            animation: pulse 2s ease-out infinite;
-            opacity: 0.6;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.5); opacity: 0.8; }
-            100% { transform: scale(2); opacity: 0; }
-        }
+        .zoom-controls { display: flex; gap: 4px; }
+        .zoom-btn { width: 28px; height: 28px; border: 2px solid var(--border); border-radius: 6px; background: var(--bg-card); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+        .zoom-btn:hover { background: var(--primary); color: white; }
+        .map-viewport { overflow: hidden; border-radius: var(--radius-sm); }
+        .map-area { position: relative; width: 100%; height: 320px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(245,245,245,0.9) 100%); transition: transform 0.3s ease; transform-origin: center center; }
+        .map-poi { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: all 0.2s; z-index: 1; }
+        .map-poi:hover { transform: translate(-50%, -50%) scale(1.3); z-index: 10; }
+        .poi-emoji { font-size: 1rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2)); }
+        .poi-label { font-size: 0.5rem; background: rgba(255,255,255,0.95); padding: 1px 3px; border-radius: 3px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.15); margin-top: 1px; }
+        .map-poi.hotel .poi-emoji { font-size: 1.5rem; }
+        .map-poi.hotel .poi-label { font-weight: 700; background: var(--primary); color: white; font-size: 0.6rem; }
+        .hotel-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; z-index: 0; }
+        .pulse-ring { position: absolute; width: 100%; height: 100%; border: 2px solid var(--primary); border-radius: 50%; animation: pulse 2s ease-out infinite; opacity: 0.5; }
+        @keyframes pulse { 0% { transform: scale(0.5); opacity: 0.7; } 100% { transform: scale(2); opacity: 0; } }
     `;
     document.head.appendChild(style);
 }
