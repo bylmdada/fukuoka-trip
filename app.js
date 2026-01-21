@@ -1676,46 +1676,66 @@ function addHotelAreaMapSection() {
     const mainContent = document.querySelector('.main-content');
     if (!mainContent) return;
     
-    // 區域資料
+    // 區域資料（整合完整行程地點）
     const areaData = [
         {
             id: 'hotel',
             icon: '🏨',
             name: '飯店周邊',
-            subtitle: 'The OneFive Villa',
+            subtitle: 'The OneFive Villa・中洲',
             mapUrl: 'https://www.google.com/maps/place/The+OneFive+Villa+Fukuoka/@33.5896,130.4068,16z',
             embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.6!2d130.4068!3d33.5896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3541918e8f8d6c0d%3A0x1a2b3c4d5e6f7890!2sThe%20OneFive%20Villa%20Fukuoka!5e0!3m2!1szh-TW!2sjp!4v1',
-            highlights: ['燒肉すどう 3分', '中洲屋台 5分', 'MaxValu 8分', '中洲川端站 7分'],
+            highlights: ['燒肉すどう 3分', '中洲屋台 5分', 'MaxValu 8分', '中洲川端站 7分', '櫛田神社 5分', '柳橋市場 10分'],
             color: '#FF6B6B'
+        },
+        {
+            id: 'canal',
+            icon: '🌊',
+            name: '運河城',
+            subtitle: 'Day 1 博多運河城',
+            mapUrl: 'https://www.google.com/maps/place/キャナルシティ博多/@33.5897,130.4107,16z',
+            embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.6!2d130.4107!3d33.5897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35419181b0b9f0ed%3A0x1234567890abcdef!2sCanal%20City%20Hakata!5e0!3m2!1szh-TW!2sjp!4v1',
+            highlights: ['噴泉表演', '川端商店街', '櫛田神社', '拉麵競技場', '一蘭總本店'],
+            color: '#339AF0'
         },
         {
             id: 'hakata',
             icon: '🚄',
-            name: '博多站區',
+            name: '博多站',
             subtitle: 'JR/新幹線樞紐',
             mapUrl: 'https://www.google.com/maps/place/博多駅/@33.5897,130.4207,16z',
             embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.6!2d130.4207!3d33.5897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191c0d79c6c5b%3A0x4c0e8051bb963a5b!2sHakata%20Station!5e0!3m2!1szh-TW!2sjp!4v1',
-            highlights: ['博多阪急', 'AMU Plaza', '一蘭總本店', 'KITTE博多'],
+            highlights: ['博多阪急', 'AMU Plaza', 'KITTE博多', '博多一雙', '博多達摩'],
             color: '#4ECDC4'
         },
         {
             id: 'tenjin',
             icon: '🛍️',
             name: '天神區域',
-            subtitle: '購物美食中心',
+            subtitle: 'Day 7 購物美食',
             mapUrl: 'https://www.google.com/maps/place/天神/@33.5917,130.3992,16z',
             embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.4!2d130.3992!3d33.5917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354191909eb1eccd%3A0x65d77f09c9f8aaf0!2sTenjin!5e0!3m2!1szh-TW!2sjp!4v1',
-            highlights: ['天神地下街', '岩田屋', '大丸百貨', '一蘭天神店'],
+            highlights: ['天神地下街', '大丸百貨', 'PARCO', 'Bic Camera', '一蘭天神店', '唐吉訶德'],
             color: '#FFE66D'
+        },
+        {
+            id: 'gundam',
+            icon: '🤖',
+            name: 'LaLaport',
+            subtitle: 'Day 3 鋼彈朝聖',
+            mapUrl: 'https://www.google.com/maps/place/ららぽーと福岡/@33.5771,130.4417,16z',
+            embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.2!2d130.4417!3d33.5771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3541915e8f8d6c0d%3A0xabcdef1234567890!2sLaLaport%20Fukuoka!5e0!3m2!1szh-TW!2sjp!4v1',
+            highlights: ['RX-93 ν鋼彈', 'GUNDAM SIDE-F', 'VS PARK', 'namco遊樂區', '夜間點燈秀'],
+            color: '#26DE81'
         },
         {
             id: 'dazaifu',
             icon: '⛩️',
             name: '太宰府',
-            subtitle: 'Day 3 景點',
+            subtitle: 'Day 2 學問之神',
             mapUrl: 'https://www.google.com/maps/place/太宰府天満宮/@33.5212,130.5348,16z',
             embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.1!2d130.5348!3d33.5212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354187946e3c1d5b%3A0x18c8c9c1c1c1c1c1!2sDazaifu%20Tenmangu%20Shrine!5e0!3m2!1szh-TW!2sjp!4v1',
-            highlights: ['天滿宮', '表參道', '梅枝餅', '星巴克特別店'],
+            highlights: ['天滿宮', '表參道', '梅枝餅', '星巴克特別店', '柳川遊船'],
             color: '#A66CFF'
         },
         {
@@ -1725,8 +1745,18 @@ function addHotelAreaMapSection() {
             subtitle: 'Day 6 福岡塔',
             mapUrl: 'https://www.google.com/maps/place/福岡タワー/@33.5934,130.3511,16z',
             embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.2!2d130.3511!3d33.5934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354193c7e8c1d5c9%3A0x5c5c5c5c5c5c5c5c!2sFukuoka%20Tower!5e0!3m2!1szh-TW!2sjp!4v1',
-            highlights: ['福岡塔', 'Marizon', '市博物館', '大濠公園'],
+            highlights: ['福岡塔夜景', 'Marizon', '市博物館', '大濠公園', 'FUK COFFEE', '福岡城跡'],
             color: '#FF9F43'
+        },
+        {
+            id: 'uminaka',
+            icon: '🐬',
+            name: '海之中道',
+            subtitle: 'Day 5 水族館',
+            mapUrl: 'https://www.google.com/maps/place/マリンワールド海の中道/@33.6534,130.3648,14z',
+            embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6645.8!2d130.3648!3d33.6534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354193c7e8c1d5c9%3A0x7c7c7c7c7c7c7c7c!2sMarine%20World%20Uminonakamichi!5e0!3m2!1szh-TW!2sjp!4v1',
+            highlights: ['海洋世界水族館', '海濱公園', '租自行車', '海豚表演', '親子推薦'],
+            color: '#20C997'
         }
     ];
     
@@ -1912,28 +1942,37 @@ function addVisualMapSection() {
     const hotelMapSection = document.getElementById('hotel-area-map');
     if (!hotelMapSection) return;
     
-    // POI 位置資料（以飯店為中心的相對位置 %）
+    // POI 位置資料（以飯店為中心的相對位置 %）- 整合行程地點
     const mapPOIs = [
         // 飯店中心
         { name: "🏨", label: "飯店", x: 50, y: 50, type: "hotel" },
-        // 美食
+        // 美食（行程相關）
         { name: "🥩", label: "燒肉すどう", x: 45, y: 55, type: "food" },
         { name: "🍲", label: "樂天地", x: 55, y: 60, type: "food" },
         { name: "🍙", label: "明太重", x: 40, y: 45, type: "food" },
-        { name: "🏮", label: "中洲屋台", x: 60, y: 65, type: "food" },
-        { name: "🍜", label: "一蘭", x: 30, y: 40, type: "food" },
-        // 咖啡
-        { name: "☕", label: "FUK祇園", x: 65, y: 35, type: "cafe" },
-        { name: "🍎", label: "RINGO", x: 25, y: 35, type: "cafe" },
+        { name: "🏮", label: "中洲屋台", x: 62, y: 68, type: "food" },
+        { name: "🍜", label: "一蘭天神", x: 25, y: 35, type: "food" },
+        { name: "🍜", label: "博多一雙", x: 75, y: 35, type: "food" },
+        { name: "🍜", label: "博多達摩", x: 78, y: 42, type: "food" },
+        // 咖啡甜點
+        { name: "☕", label: "FUK祇園", x: 65, y: 30, type: "cafe" },
+        { name: "🍎", label: "RINGO", x: 22, y: 30, type: "cafe" },
         // 購物
-        { name: "🛒", label: "MaxValu", x: 70, y: 40, type: "shop" },
-        { name: "🏪", label: "Foodway", x: 55, y: 70, type: "shop" },
-        { name: "📷", label: "Bic Camera", x: 35, y: 30, type: "shop" },
-        { name: "🛍️", label: "天神地下街", x: 20, y: 25, type: "shop" },
+        { name: "🛒", label: "MaxValu", x: 70, y: 48, type: "shop" },
+        { name: "🏪", label: "Foodway", x: 58, y: 72, type: "shop" },
+        { name: "📷", label: "Bic Camera", x: 30, y: 28, type: "shop" },
+        { name: "🛍️", label: "天神地下街", x: 18, y: 22, type: "shop" },
+        { name: "🏯", label: "唐吉訶德", x: 20, y: 40, type: "shop" },
+        // 景點（行程Day 1）
+        { name: "⛩️", label: "櫛田神社", x: 62, y: 40, type: "attraction" },
+        { name: "🏮", label: "川端商店街", x: 58, y: 35, type: "attraction" },
+        { name: "🌊", label: "博多運河城", x: 68, y: 55, type: "attraction" },
+        { name: "🐟", label: "柳橋市場", x: 35, y: 65, type: "attraction" },
         // 交通
-        { name: "🚇", label: "中洲川端", x: 45, y: 25, type: "transport" },
-        { name: "🚇", label: "櫛田神社前", x: 60, y: 45, type: "transport" },
-        { name: "🚃", label: "西鉄天神", x: 15, y: 30, type: "transport" }
+        { name: "🚇", label: "中洲川端", x: 48, y: 25, type: "transport" },
+        { name: "🚇", label: "櫛田神社前", x: 65, y: 38, type: "transport" },
+        { name: "🚃", label: "西鉄天神", x: 15, y: 28, type: "transport" },
+        { name: "🚄", label: "博多站", x: 82, y: 30, type: "transport" }
     ];
     
     const visualMap = document.createElement('div');
@@ -1945,6 +1984,7 @@ function addVisualMapSection() {
                 <span class="legend-item"><span class="dot food"></span>美食</span>
                 <span class="legend-item"><span class="dot cafe"></span>咖啡</span>
                 <span class="legend-item"><span class="dot shop"></span>購物</span>
+                <span class="legend-item"><span class="dot attraction"></span>景點</span>
                 <span class="legend-item"><span class="dot transport"></span>交通</span>
             </div>
             <div class="map-area">
@@ -2000,6 +2040,7 @@ function addVisualMapSection() {
         .dot.food { background: #ff6b6b; }
         .dot.cafe { background: #51cf66; }
         .dot.shop { background: #339af0; }
+        .dot.attraction { background: #a66cff; }
         .dot.transport { background: #fcc419; }
         .map-area {
             position: relative;
