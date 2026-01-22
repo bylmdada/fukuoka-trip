@@ -749,6 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addAirportShopSection();
     addHotelAreaMapSection();
     addVisualMapSection();
+    addDayTripsSection();
     addEmergencySection();
     addPhrasesSection();
 });
@@ -2236,6 +2237,228 @@ function addVisualMapSection() {
         .hotel-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; z-index: 0; }
         .pulse-ring { position: absolute; width: 100%; height: 100%; border: 2px solid var(--primary); border-radius: 50%; animation: pulse 2s ease-out infinite; opacity: 0.5; }
         @keyframes pulse { 0% { transform: scale(0.5); opacity: 0.7; } 100% { transform: scale(2); opacity: 0; } }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===== 二月近郊一日遊推薦 =====
+function addDayTripsSection() {
+    const metroSection = document.getElementById('metro');
+    if (!metroSection) return;
+    
+    const dayTrips = [
+        {
+            id: 'dazaifu',
+            icon: '🌸',
+            name: '太宰府梅花賞梅',
+            season: '1月下旬～2月上旬',
+            color: '#e91e63',
+            transport: '西鐵電車約30分',
+            highlights: ['6000株梅花', '飛梅神樹', '梅ヶ枝餅', '竈門神社'],
+            desc: '太宰府天滿宮擁有超過6000株梅花、200多個品種。最著名的是樹齡超過1000年的「飛梅」神樹，傳說是一夜之間從京都飛來的梅花。參道可品嚐「梅ヶ枝餅」，步行30分可達竈門神社。',
+            mapUrl: 'https://www.google.com/maps/search/?api=1&query=太宰府天満宮'
+        },
+        {
+            id: 'yanagawa',
+            icon: '🎎',
+            name: '柳川女兒節遊船',
+            season: '2/11～4/3',
+            color: '#9c27b0',
+            transport: '西鐵電車或水都號約1小時',
+            highlights: ['柳川遊船', 'Sagemon吊飾', '柳川毬', '鰻魚飯'],
+            desc: '二月至四月是柳川女兒節期間。搭乘觀光列車「水都」前往柳川，體驗船夫跨橋跳船表演，欣賞傳統「Sagemon」布藝裝飾。午餐推薦元祖本吉屋鰻魚飯，可參觀柳川藩主立花邸御花。',
+            mapUrl: 'https://www.google.com/maps/search/?api=1&query=柳川川下り'
+        },
+        {
+            id: 'itoshima',
+            icon: '🏖️',
+            name: '糸島山海放空',
+            season: '全年適合',
+            color: '#00bcd4',
+            transport: 'JR筑肥線約45分+巴士',
+            highlights: ['白絲瀑布', '夫婦岩', '四季茶屋', '海邊咖啡'],
+            desc: '距離福岡約40分鐘車程的輕旅行路線。上午走山線到白絲瀑布賞景，中午在四季茶屋享用山女魚蕎麥麵，午後沿海線到櫻井二見浦夫婦岩拍照，兩塊巨石間的白色鳥居是糸島象徵。',
+            mapUrl: 'https://www.google.com/maps/search/?api=1&query=糸島市'
+        }
+    ];
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'day-trips';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">🚃</span>二月近郊一日遊</h2>
+        <p class="section-subtitle">福岡周邊精選路線推薦</p>
+        
+        <div class="day-trips-container">
+            ${dayTrips.map(trip => `
+                <div class="day-trip-card" style="--trip-color: ${trip.color}">
+                    <div class="trip-header">
+                        <span class="trip-icon">${trip.icon}</span>
+                        <div class="trip-title-group">
+                            <h3 class="trip-name">${trip.name}</h3>
+                            <span class="trip-season">🗓️ ${trip.season}</span>
+                        </div>
+                    </div>
+                    <div class="trip-transport">
+                        <span class="transport-icon">🚃</span>
+                        <span>${trip.transport}</span>
+                    </div>
+                    <p class="trip-desc">${trip.desc}</p>
+                    <div class="trip-highlights">
+                        ${trip.highlights.map(h => `<span class="highlight-chip">${h}</span>`).join('')}
+                    </div>
+                    <a href="${trip.mapUrl}" target="_blank" class="trip-map-btn" style="background: ${trip.color}">
+                        🗺️ 查看地圖
+                    </a>
+                </div>
+            `).join('')}
+        </div>
+        
+        <div class="transport-summary">
+            <h4>🚉 交通方式</h4>
+            <div class="transport-items">
+                <div class="transport-item">
+                    <span class="route-name">太宰府</span>
+                    <span class="route-detail">博多站 → 西鐵電車約30分</span>
+                </div>
+                <div class="transport-item">
+                    <span class="route-name">柳川</span>
+                    <span class="route-detail">西鐵電車或觀光列車「水都」約1小時</span>
+                </div>
+                <div class="transport-item">
+                    <span class="route-name">糸島</span>
+                    <span class="route-detail">JR筑肥線約45分+昭和巴士，或高速巴士約1小時</span>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    metroSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .section-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: -8px;
+            margin-bottom: 16px;
+        }
+        .day-trips-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .day-trip-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: var(--border-width) solid var(--border);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--trip-color);
+        }
+        .trip-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .trip-icon {
+            font-size: 2rem;
+        }
+        .trip-title-group {
+            flex: 1;
+        }
+        .trip-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .trip-season {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .trip-transport {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg-elevated);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+        }
+        .transport-icon {
+            font-size: 0.9rem;
+        }
+        .trip-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .trip-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .highlight-chip {
+            background: linear-gradient(135deg, var(--trip-color) 0%, color-mix(in srgb, var(--trip-color) 70%, white) 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .trip-map-btn {
+            display: block;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 10px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .trip-map-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .transport-summary {
+            margin-top: 20px;
+            background: var(--bg-elevated);
+            border-radius: var(--radius);
+            padding: 16px;
+            border: 1px solid var(--border);
+        }
+        .transport-summary h4 {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        .transport-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .transport-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+        }
+        .route-name {
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            min-width: 50px;
+            text-align: center;
+        }
+        .route-detail {
+            color: var(--text-secondary);
+        }
     `;
     document.head.appendChild(style);
 }
