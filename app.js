@@ -2279,6 +2279,17 @@ function addDayTripsSection() {
             highlights: ['白絲瀑布', '夫婦岩', '四季茶屋', '海邊咖啡'],
             desc: '距離福岡約40分鐘車程的輕旅行路線。上午走山線到白絲瀑布賞景，中午在四季茶屋享用山女魚蕎麥麵，午後沿海線到櫻井二見浦夫婦岩拍照，兩塊巨石間的白色鳥居是糸島象徵。',
             mapUrl: 'https://www.google.com/maps/search/?api=1&query=糸島市'
+        },
+        {
+            id: 'uminonakamichi',
+            icon: '🐬',
+            name: '海之中道親子一日遊',
+            season: '全年適合',
+            color: '#2196f3',
+            transport: 'JR香椎線約45分',
+            highlights: ['海洋世界水族館', '海豚表演', '彩虹溜滑梯', '動物園', '腳踏車'],
+            desc: '最經典的親子組合！海洋世界有350+種海洋生物，室內暖氣充足。海濱公園約350公頃，有超長彩虹溜滑梯、開放式動物園可與小動物互動，還能租腳踏車遊園。門票大人約¥2,500、小孩半價。',
+            mapUrl: 'https://www.google.com/maps/search/?api=1&query=マリンワールド海の中道'
         }
     ];
     
@@ -2328,6 +2339,10 @@ function addDayTripsSection() {
                 <div class="transport-item">
                     <span class="route-name">糸島</span>
                     <span class="route-detail">JR筑肥線約45分+昭和巴士，或高速巴士約1小時</span>
+                </div>
+                <div class="transport-item">
+                    <span class="route-name">海之中道</span>
+                    <span class="route-detail">博多站 → JR香椎線約45分</span>
                 </div>
             </div>
         </div>
