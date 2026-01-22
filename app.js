@@ -2061,6 +2061,8 @@ function addVisualMapSection() {
         { name: "🧸", label: "麻包超人", x: 73, y: 62, type: "attraction" },
         { name: "🌳", label: "大濠公園", x: 5, y: 50, type: "attraction" },
         { name: "⚾", label: "福岡巨蛋", x: 3, y: 55, type: "attraction" },
+        { name: "👷", label: "KidZania", x: 92, y: 65, type: "attraction" },
+        { name: "🚂", label: "鉄道記念館", x: 95, y: 5, type: "attraction" },
         
         // === 夜生活 ===
         { name: "🍺", label: "水炊長野", x: 57, y: 65, type: "nightlife" },
