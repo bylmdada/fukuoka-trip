@@ -2290,6 +2290,17 @@ function addDayTripsSection() {
             highlights: ['海洋世界水族館', '海豚表演', '彩虹溜滑梯', '動物園', '腳踏車'],
             desc: '最經典的親子組合！海洋世界有350+種海洋生物，室內暖氣充足。海濱公園約350公頃，有超長彩虹溜滑梯、開放式動物園可與小動物互動，還能租腳踏車遊園。門票大人約¥2,500、小孩半價。',
             mapUrl: 'https://www.google.com/maps/search/?api=1&query=マリンワールド海の中道'
+        },
+        {
+            id: 'futsukaichi',
+            icon: '♨️',
+            name: '二日市溫泉泡湯',
+            season: '全年適合（冬季最佳）',
+            color: '#ff5722',
+            transport: 'JR鹿兒島本線約20分',
+            highlights: ['1300年歷史', '美肌之湯', '博多湯', '御前湯', '¥300入浴'],
+            desc: '福岡近郊最方便的溫泉！1300年歷史，曾被《萬葉集》收錄。鹼性單純溫泉「美肌之湯」，對神經痛、皮膚病有療效。博多湯、御前湯入浴費僅¥300。可結合太宰府行程，參拜後泡湯放鬆。',
+            mapUrl: 'https://www.google.com/maps/search/?api=1&query=二日市温泉'
         }
     ];
     
@@ -2343,6 +2354,10 @@ function addDayTripsSection() {
                 <div class="transport-item">
                     <span class="route-name">海之中道</span>
                     <span class="route-detail">博多站 → JR香椎線約45分</span>
+                </div>
+                <div class="transport-item">
+                    <span class="route-name">二日市</span>
+                    <span class="route-detail">博多站 → JR鹿兒島本線約20分 → 步行15分</span>
                 </div>
             </div>
         </div>
