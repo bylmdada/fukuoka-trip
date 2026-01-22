@@ -2021,6 +2021,9 @@ function addVisualMapSection() {
         { name: "🍜", label: "博多一雙", x: 78, y: 35, type: "food" },
         { name: "🍜", label: "博多達摩", x: 80, y: 42, type: "food" },
         { name: "🥩", label: "肉いち", x: 83, y: 48, type: "food" },
+        { name: "🍜", label: "一蘭總本店", x: 68, y: 45, type: "food" },
+        { name: "🍜", label: "大砲拉麵", x: 75, y: 52, type: "food" },
+        { name: "🍔", label: "挽肉與米", x: 72, y: 48, type: "food" },
         
         // === 咖啡甜點 ===
         { name: "☕", label: "FUK祇園", x: 68, y: 30, type: "cafe" },
@@ -2039,28 +2042,35 @@ function addVisualMapSection() {
         { name: "🛍️", label: "天神地下街", x: 15, y: 20, type: "shop" },
         { name: "🏯", label: "唐吉訶德", x: 18, y: 42, type: "shop" },
         { name: "🪙", label: "3COINS", x: 25, y: 22, type: "shop" },
+        { name: "🏬", label: "mina天神", x: 24, y: 24, type: "shop" },
+        { name: "👓", label: "JINS mina", x: 25, y: 25, type: "shop" },
+        { name: "🧥", label: "Workman", x: 8, y: 48, type: "shop" },
         
         // === 藥妝店 ===
         { name: "💊", label: "松本清", x: 22, y: 28, type: "drugstore" },
         { name: "💊", label: "大國藥妝", x: 26, y: 35, type: "drugstore" },
         { name: "💊", label: "Sundrug", x: 15, y: 35, type: "drugstore" },
         
-        // === 100円商店 ===
         { name: "🔴", label: "DAISO", x: 30, y: 20, type: "yen100" },
-        { name: "🟢", label: "Seria", x: 24, y: 18, type: "yen100" },
+        { name: "🟢", label: "Seria天神", x: 24, y: 18, type: "yen100" },
+        { name: "🟢", label: "Seria博多", x: 75, y: 55, type: "yen100" },
         { name: "🟡", label: "Can Do", x: 18, y: 15, type: "yen100" },
         
-        // === 夾娃娃機 ===
         { name: "🎮", label: "GiGO天神", x: 12, y: 28, type: "arcade" },
+        { name: "🎮", label: "GiGO mina", x: 24, y: 27, type: "arcade" },
         { name: "🎮", label: "namco博多", x: 82, y: 38, type: "arcade" },
         { name: "🎮", label: "Taito", x: 70, y: 58, type: "arcade" },
         
-        // === 景點 ===
         { name: "⛩️", label: "櫛田神社", x: 65, y: 42, type: "attraction" },
         { name: "⛩️", label: "警固神社", x: 20, y: 28, type: "attraction" },
         { name: "🏮", label: "川端商店街", x: 60, y: 35, type: "attraction" },
         { name: "🌊", label: "運河城", x: 70, y: 60, type: "attraction" },
         { name: "🐟", label: "柳橋市場", x: 35, y: 68, type: "attraction" },
+        { name: "🏢", label: "ONE Fukuoka", x: 78, y: 32, type: "attraction" },
+        { name: "🎄", label: "Pixel Tree", x: 80, y: 30, type: "attraction" },
+        { name: "🧸", label: "麻包超人", x: 73, y: 62, type: "attraction" },
+        { name: "🌳", label: "大濠公園", x: 5, y: 50, type: "attraction" },
+        { name: "⚾", label: "福岡巨蛋", x: 3, y: 55, type: "attraction" },
         
         // === 夜生活 ===
         { name: "🍺", label: "水炊長野", x: 57, y: 65, type: "nightlife" },
