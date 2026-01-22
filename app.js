@@ -827,13 +827,7 @@ function renderHotel() {
         <div class="hotel-family-section">
             <h4>👨‍👩‍👧 親子設施資訊</h4>
             <div class="family-features">
-                <div class="family-item good">
-                    <span class="family-icon">🛏️</span>
-                    <div class="family-text">
-                        <strong>寬敞房型</strong>
-                        <p>房間30㎡以上・空間舒適</p>
-                    </div>
-                </div>
+
                 <div class="family-item good">
                     <span class="family-icon">☕</span>
                     <div class="family-text">
@@ -855,13 +849,7 @@ function renderHotel() {
                         <p>推車無障礙・全天候服務</p>
                     </div>
                 </div>
-                <div class="family-item warn">
-                    <span class="family-icon">⚠️</span>
-                    <div class="family-text">
-                        <strong>無嬰兒床/加床</strong>
-                        <p>需自備旅行嬰兒床或與大人同睡</p>
-                    </div>
-                </div>
+
                 <div class="family-item note">
                     <span class="family-icon">💰</span>
                     <div class="family-text">
@@ -873,7 +861,9 @@ function renderHotel() {
                     <span class="family-icon">🍳</span>
                     <div class="family-text">
                         <strong>早餐資訊</strong>
-                        <p>需至步行1分鐘的Hotel Il Palazzo用餐（另計費）</p>
+                        <p>Hotel Il Palazzo B1F「EL DORADO」</p>
+                        <p>⏰ 7:00-11:00 ｜ 💰 ¥4,500/人</p>
+                        <p>和洋自助餐約70種・步行1分鐘</p>
                     </div>
                 </div>
             </div>
