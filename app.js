@@ -13,7 +13,7 @@ const itineraryData = [
         day: 1, date: "2/8", weekday: "日", theme: "抵達福岡・博多漫遊", icon: "🛬", weather: "5-11°C ☁️",
         schedule: [
             { time: "10:00", title: "抵達福岡機場", desc: "🚕 搭計程車至飯店約15分鐘（5km）", map: "福岡空港" },
-            { time: "11:30", title: "寄放行李", desc: "The OneFive Villa Fukuoka", map: "The OneFive Villa Fukuoka" },
+            { time: "11:30", title: "寄放行李", desc: "Il Palazzo（16:00入住）", map: "Hotel Il Palazzo 福岡" },
             { time: "12:00", title: "天神黒毛流 焼肉 参星", desc: "🍖 A5黑毛和牛商業午餐 ¥1,500~3,000", tag: "lunch", map: "天神黒毛流 焼肉 参星" },
             { time: "13:30", title: "櫛田神社", desc: "博多總鎮守・山笠發源地", map: "櫛田神社 福岡" },
             { time: "14:30", title: "川端商店街", desc: "福岡最古老商店街", map: "川端商店街" },
@@ -95,7 +95,7 @@ const itineraryData = [
         day: 8, date: "2/15", weekday: "日", theme: "最後採買・賦歸", icon: "✈️", weather: "5-11°C ☁️",
         schedule: [
             { time: "09:00", title: "柳橋連合市場", desc: "博多的廚房・新鮮海產", map: "柳橋連合市場" },
-            { time: "10:30", title: "Check-out", desc: "寄放行李", map: "The OneFive Villa Fukuoka" },
+            { time: "12:00", title: "Check-out", desc: "寄放行李（退房12:00）", map: "Hotel Il Palazzo 福岡" },
             { time: "11:00", title: "最後採買", desc: "藥妝・伴手禮", map: "ドン・キホーテ 天神" },
             { time: "12:00", title: "最後一餐拉麵", desc: "🍜 午餐", tag: "lunch", map: "一蘭 天神店" },
             { time: "14:00", title: "前往機場", desc: "預留充足時間", map: "福岡空港" },
@@ -117,7 +117,7 @@ const foodData = [
     { icon: "🍡", name: "梅枝餅", shops: "太宰府表參道" }
 ];
 
-// 飯店附近推薦（The OneFive Villa Fukuoka 周邊美食）
+// 飯店附近推薦（Il Palazzo 周邊美食）
 const nearbyData = [
     {
         icon: "🍜",
@@ -816,12 +816,13 @@ function renderHotel() {
     container.innerHTML = `
         <div class="hotel-main">
             <div class="hotel-info">
-                <h3>The OneFive Villa Fukuoka</h3>
-                <p class="en">ザ・ワンファイブヴィラ福岡</p>
-                <p class="addr">📍 福岡市中央區春吉3-4-6</p>
-                <p class="hotel-access">🚇 中洲川端站1號出口步行7分</p>
-                <p class="hotel-access">🚇 櫛田神社站1號出口步行5分</p>
-                <p class="hotel-access">🚶 西鉄福岡(天神)站南口步行7分</p>
+                <h3>Il Palazzo</h3>
+                <p class="en">ホテル イル・パラッツォ</p>
+                <p class="addr">📍 福岡市中央區春吉3-13-1</p>
+                <p class="hotel-access">🚇 中洲川端站步行5分</p>
+                <p class="hotel-access">🚶 天神站步行10分</p>
+                <p class="hotel-access">🏮 中洲屋台街步行3分</p>
+                <p class="hotel-checkin">🕓 入住 16:00 ｜ 退房 12:00</p>
             </div>
         </div>
         
@@ -875,8 +876,8 @@ function renderHotel() {
         </div>
         
         <div class="hotel-actions">
-            <a href="https://www.google.com/maps/search/?api=1&query=The+OneFive+Villa+Fukuoka" target="_blank" class="btn btn-secondary">🗺️ 地圖</a>
-            <a href="https://www.booking.com/hotel/jp/the-onefive-villa-fukuoka.html" target="_blank" class="btn btn-accent">📅 Booking</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Il+Palazzo+福岡" target="_blank" class="btn btn-secondary">🗺️ 地圖</a>
+            <a href="https://www.booking.com/hotel/jp/il-palazzo.html" target="_blank" class="btn btn-accent">📅 Booking</a>
         </div>
     `;
     
