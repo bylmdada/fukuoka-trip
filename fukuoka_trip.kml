@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>福岡八天七夜旅遊地圖</name>
+    <description>2026/2/8-2/15 福岡親子旅遊完整行程地點</description>
+    
+    <!-- 樣式定義 -->
+    <Style id="hotel"><IconStyle><color>ff4444ff</color><scale>1.2</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href></Icon></IconStyle></Style>
+    <Style id="food"><IconStyle><color>ff0000ff</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
+    <Style id="attraction"><IconStyle><color>ffff00ff</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/purple-circle.png</href></Icon></IconStyle></Style>
+    <Style id="shop"><IconStyle><color>ffff8800</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/blu-circle.png</href></Icon></IconStyle></Style>
+    <Style id="transport"><IconStyle><color>ff00ff00</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/ylw-circle.png</href></Icon></IconStyle></Style>
+    <Style id="cafe"><IconStyle><color>ff00aa00</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/grn-circle.png</href></Icon></IconStyle></Style>
+    
+    <!-- ===== 飯店 ===== -->
+    <Folder>
+      <name>🏨 住宿</name>
+      <Placemark>
+        <name>The OneFive Villa Fukuoka（住宿飯店）</name>
+        <description>2/8-2/15 七晚住宿</description>
+        <styleUrl>#hotel</styleUrl>
+        <Point><coordinates>130.4068,33.5896,0</coordinates></Point>
+      </Placemark>
+    </Folder>
+    
+    <!-- ===== Day 1 ===== -->
+    <Folder>
+      <name>Day 1 (2/8) 抵達福岡・博多漫遊</name>
+      <Placemark><name>福岡機場</name><description>抵達・搭地鐵至天神</description><styleUrl>#transport</styleUrl><Point><coordinates>130.4517,33.5859,0</coordinates></Point></Placemark>
+      <Placemark><name>天神黒毛流 焼肉 参星</name><description>午餐：A5黑毛和牛</description><styleUrl>#food</styleUrl><Point><coordinates>130.3992,33.5894,0</coordinates></Point></Placemark>
+      <Placemark><name>櫛田神社</name><description>博多總鎮守・山笠發源地</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4112,33.5914,0</coordinates></Point></Placemark>
+      <Placemark><name>川端商店街</name><description>福岡最古老商店街</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4098,33.5930,0</coordinates></Point></Placemark>
+      <Placemark><name>博多運河城</name><description>大型購物中心・噴泉表演</description><styleUrl>#shop</styleUrl><Point><coordinates>130.4107,33.5897,0</coordinates></Point></Placemark>
+      <Placemark><name>博多もつ鍋 やま中</name><description>晚餐：牛腸鍋名店</description><styleUrl>#food</styleUrl><Point><coordinates>130.3955,33.5892,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 2 ===== -->
+    <Folder>
+      <name>Day 2 (2/9) 太宰府・柳川</name>
+      <Placemark><name>西鐵福岡站</name><description>購買太宰府柳川套票</description><styleUrl>#transport</styleUrl><Point><coordinates>130.3992,33.5917,0</coordinates></Point></Placemark>
+      <Placemark><name>太宰府天滿宮</name><description>學問之神・菅原道真公</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.5353,33.5212,0</coordinates></Point></Placemark>
+      <Placemark><name>太宰府表參道</name><description>必吃梅枝餅・星巴克特別店</description><styleUrl>#food</styleUrl><Point><coordinates>130.5330,33.5198,0</coordinates></Point></Placemark>
+      <Placemark><name>柳川 若松屋</name><description>午餐：柳川籠蒸鰻魚飯</description><styleUrl>#food</styleUrl><Point><coordinates>130.4076,33.1638,0</coordinates></Point></Placemark>
+      <Placemark><name>柳川遊船</name><description>約70分鐘搖櫓船</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4086,33.1630,0</coordinates></Point></Placemark>
+      <Placemark><name>博多一雙</name><description>晚餐：濃厚豚骨拉麵</description><styleUrl>#food</styleUrl><Point><coordinates>130.4237,33.5903,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 3 ===== -->
+    <Folder>
+      <name>Day 3 (2/10) 🤖 鋼彈朝聖日</name>
+      <Placemark><name>LaLaport 福岡（ν鋼彈）</name><description>全球最大RX-93ff ν鋼彈</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4417,33.5771,0</coordinates></Point></Placemark>
+      <Placemark><name>GUNDAM SIDE-F</name><description>鋼彈核心區域・獨家周邊</description><styleUrl>#shop</styleUrl><Point><coordinates>130.4420,33.5773,0</coordinates></Point></Placemark>
+      <Placemark><name>teamLab Forest</name><description>數位藝術互動體驗</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4415,33.5769,0</coordinates></Point></Placemark>
+      <Placemark><name>VS PARK WITH G</name><description>鋼彈主題體育娛樂</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4418,33.5772,0</coordinates></Point></Placemark>
+      <Placemark><name>焼肉チャンピオン</name><description>晚餐：博多站高級燒肉</description><styleUrl>#food</styleUrl><Point><coordinates>130.4207,33.5897,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 4 ===== -->
+    <Folder>
+      <name>Day 4 (2/11) 門司港・小倉</name>
+      <Placemark><name>博多站</name><description>JR博多站・新幹線樞紐</description><styleUrl>#transport</styleUrl><Point><coordinates>130.4207,33.5897,0</coordinates></Point></Placemark>
+      <Placemark><name>門司港懷舊區</name><description>大正浪漫風情</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.9614,33.9467,0</coordinates></Point></Placemark>
+      <Placemark><name>門司港燒咖哩</name><description>午餐：門司港名物</description><styleUrl>#food</styleUrl><Point><coordinates>130.9610,33.9465,0</coordinates></Point></Placemark>
+      <Placemark><name>門司港展望室</name><description>360度港口美景</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.9620,33.9470,0</coordinates></Point></Placemark>
+      <Placemark><name>小倉城</name><description>北九州市的象徵</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.8725,33.8837,0</coordinates></Point></Placemark>
+      <Placemark><name>旦過市場</name><description>北九州的廚房</description><styleUrl>#shop</styleUrl><Point><coordinates>130.8790,33.8785,0</coordinates></Point></Placemark>
+      <Placemark><name>博多華味鳥 天神店</name><description>晚餐：水炊鍋專門店</description><styleUrl>#food</styleUrl><Point><coordinates>130.3998,33.5905,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 5 ===== -->
+    <Folder>
+      <name>Day 5 (2/12) 海之中道・水族館</name>
+      <Placemark><name>海洋世界 海之中道</name><description>九州最大水族館</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3648,33.6534,0</coordinates></Point></Placemark>
+      <Placemark><name>海之中道海濱公園</name><description>可租自行車遊覽</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3580,33.6490,0</coordinates></Point></Placemark>
+      <Placemark><name>博多達摩</name><description>晚餐：濃厚系拉麵</description><styleUrl>#food</styleUrl><Point><coordinates>130.4085,33.5920,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 6 ===== -->
+    <Folder>
+      <name>Day 6 (2/13) 福岡塔・百道海濱</name>
+      <Placemark><name>福岡市博物館</name><description>國寶金印・中學生以下免費</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3511,33.5934,0</coordinates></Point></Placemark>
+      <Placemark><name>海濱百道公園</name><description>沙灘散步・適合親子</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3515,33.5920,0</coordinates></Point></Placemark>
+      <Placemark><name>Marizon</name><description>午餐：海濱餐廳</description><styleUrl>#food</styleUrl><Point><coordinates>130.3505,33.5910,0</coordinates></Point></Placemark>
+      <Placemark><name>FUK COFFEE Parks</name><description>大濠公園旁・昭和布丁</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.3780,33.5875,0</coordinates></Point></Placemark>
+      <Placemark><name>大濠公園</name><description>租天鵝船遊湖</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3785,33.5862,0</coordinates></Point></Placemark>
+      <Placemark><name>福岡城跡</name><description>夕陽時刻・舞鶴公園</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3820,33.5850,0</coordinates></Point></Placemark>
+      <Placemark><name>福岡塔</name><description>234m百萬夜景</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3511,33.5934,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 7 ===== -->
+    <Folder>
+      <name>Day 7 (2/14) 天神購物・中洲夜市</name>
+      <Placemark><name>天神地下街</name><description>150+店舖・歐風裝潢</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3992,33.5917,0</coordinates></Point></Placemark>
+      <Placemark><name>福岡焼肉 kintan</name><description>午餐：優質燒肉套餐</description><styleUrl>#food</styleUrl><Point><coordinates>130.3988,33.5910,0</coordinates></Point></Placemark>
+      <Placemark><name>中洲屋台街</name><description>晚餐：路邊攤文化</description><styleUrl>#food</styleUrl><Point><coordinates>130.4050,33.5925,0</coordinates></Point></Placemark>
+      <Placemark><name>屋台 小金ちゃん</name><description>招牌炒拉麵</description><styleUrl>#food</styleUrl><Point><coordinates>130.4055,33.5922,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 8 ===== -->
+    <Folder>
+      <name>Day 8 (2/15) 最後採買・賦歸</name>
+      <Placemark><name>柳橋連合市場</name><description>博多的廚房・新鮮海產</description><styleUrl>#shop</styleUrl><Point><coordinates>130.4015,33.5850,0</coordinates></Point></Placemark>
+      <Placemark><name>唐吉訶德 天神</name><description>最後採買・藥妝伴手禮</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3978,33.5888,0</coordinates></Point></Placemark>
+      <Placemark><name>一蘭 天神店</name><description>最後一餐拉麵</description><styleUrl>#food</styleUrl><Point><coordinates>130.3985,33.5905,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== 飯店周邊美食 ===== -->
+    <Folder>
+      <name>🍜 飯店周邊推薦餐廳</name>
+      <Placemark><name>燒肉すどう 春吉</name><description>Tabelog百名店・厚切和牛（步行3分）</description><styleUrl>#food</styleUrl><Point><coordinates>130.4045,33.5878,0</coordinates></Point></Placemark>
+      <Placemark><name>樂天地 中洲本店</name><description>在地人最愛牛腸鍋（步行5分）</description><styleUrl>#food</styleUrl><Point><coordinates>130.4060,33.5915,0</coordinates></Point></Placemark>
+      <Placemark><name>元祖博多明太重</name><description>明太子丼專門店（步行3分）</description><styleUrl>#food</styleUrl><Point><coordinates>130.4035,33.5890,0</coordinates></Point></Placemark>
+      <Placemark><name>うお田</name><description>散壽司・CP值超高海鮮丼</description><styleUrl>#food</styleUrl><Point><coordinates>130.4055,33.5910,0</coordinates></Point></Placemark>
+      <Placemark><name>一蘭 天神西通店</name><description>24H營業・宵夜首選</description><styleUrl>#food</styleUrl><Point><coordinates>130.3965,33.5898,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== 咖啡甜點 ===== -->
+    <Folder>
+      <name>☕ 咖啡甜點</name>
+      <Placemark><name>FUK COFFEE 祇園店</name><description>機場主題咖啡廳・昭和布丁必點</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.4115,33.5905,0</coordinates></Point></Placemark>
+      <Placemark><name>RINGO 蘋果派</name><description>現烤卡士達蘋果派（天神地下街）</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.3990,33.5915,0</coordinates></Point></Placemark>
+      <Placemark><name>BAKE CHEESE TART</name><description>濃起司卡士達（天神地下街）</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.3988,33.5912,0</coordinates></Point></Placemark>
+      <Placemark><name>鈴懸</name><description>福岡老字號和菓子・生銅鑼燒</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.4210,33.5895,0</coordinates></Point></Placemark>
+      <Placemark><name>伊都きんぐ</name><description>甘王草莓銅鑼燒</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.4215,33.5893,0</coordinates></Point></Placemark>
+      <Placemark><name>Dacomecca</name><description>人氣麵包咖啡店（7:00-20:00）</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.4180,33.5880,0</coordinates></Point></Placemark>
+      <Placemark><name>Blue Bottle Coffee 天神</name><description>警固神社旁</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.3970,33.5885,0</coordinates></Point></Placemark>
+      <Placemark><name>Mister Donut</name><description>甜甜圈</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.3995,33.5900,0</coordinates></Point></Placemark>
+      <Placemark><name>I'm donut?</name><description>超人氣生甜甜圈（天神渡邊通）</description><styleUrl>#cafe</styleUrl><Point><coordinates>130.3980,33.5870,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== 購物 ===== -->
+    <Folder>
+      <name>🛒 購物</name>
+      <Placemark><name>MaxValu Express 博多祇園店</name><description>24H超市（櫛田神社旁）</description><styleUrl>#shop</styleUrl><Point><coordinates>130.4115,33.5910,0</coordinates></Point></Placemark>
+      <Placemark><name>Foodway 中洲ゲイツ店</name><description>24H超市（中洲川端站直結）</description><styleUrl>#shop</styleUrl><Point><coordinates>130.4080,33.5935,0</coordinates></Point></Placemark>
+      <Placemark><name>Bic Camera 天神2号館</name><description>家電3C・藥妝・免稅</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3995,33.5908,0</coordinates></Point></Placemark>
+      <Placemark><name>3COINS +plus ミーナ天神</name><description>300円均一雜貨</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3988,33.5905,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== 藥妝店 ===== -->
+    <Folder>
+      <name>💊 藥妝店</name>
+      <Placemark><name>松本清 天神店</name><description>藥妝・免稅</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3985,33.5902,0</coordinates></Point></Placemark>
+      <Placemark><name>大國藥妝 天神店</name><description>藥妝・免稅</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3978,33.5895,0</coordinates></Point></Placemark>
+      <Placemark><name>Sundrug</name><description>平價藥妝</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3972,33.5890,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== 100円商店 ===== -->
+    <Folder>
+      <name>🔴 100円商店</name>
+      <Placemark><name>DAISO ラシック福岡天神店</name><description>3品牌複合店</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3990,33.5898,0</coordinates></Point></Placemark>
+      <Placemark><name>Seria ミーナ天神店</name><description>大型百元店（6F）</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3988,33.5903,0</coordinates></Point></Placemark>
+      <Placemark><name>Can Do 天神店</name><description>新天町地下</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3982,33.5895,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== 夾娃娃機 ===== -->
+    <Folder>
+      <name>🎮 夾娃娃機・遊樂場</name>
+      <Placemark><name>GiGO 福岡天神</name><description>夾娃娃・大頭貼・音Game</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3975,33.5905,0</coordinates></Point></Placemark>
+      <Placemark><name>namco 博多バスターミナル店</name><description>最新機台・限定景品（7F）</description><styleUrl>#shop</styleUrl><Point><coordinates>130.4205,33.5900,0</coordinates></Point></Placemark>
+      <Placemark><name>タイトーステーション キャナルシティ</name><description>大型遊樂場・適合全家</description><styleUrl>#shop</styleUrl><Point><coordinates>130.4110,33.5895,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== 神社景點 ===== -->
+    <Folder>
+      <name>⛩️ 神社景點</name>
+      <Placemark><name>警固神社</name><description>天神中心地標</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3975,33.5880,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== 交通 ===== -->
+    <Folder>
+      <name>🚇 交通站點</name>
+      <Placemark><name>中洲川端站</name><description>地鐵空港線・箱崎線</description><styleUrl>#transport</styleUrl><Point><coordinates>130.4080,33.5930,0</coordinates></Point></Placemark>
+      <Placemark><name>天神站</name><description>地鐵空港線</description><styleUrl>#transport</styleUrl><Point><coordinates>130.3992,33.5917,0</coordinates></Point></Placemark>
+      <Placemark><name>櫛田神社前站</name><description>地鐵七隈線</description><styleUrl>#transport</styleUrl><Point><coordinates>130.4110,33.5912,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- ===== 新增地點 (2026/1/22) ===== -->
+    <Folder>
+      <name>🆕 新增餐廳</name>
+      <Placemark><name>一蘭拉麵 總本店</name><description>一蘭本店・必朝聖</description><styleUrl>#food</styleUrl><Point><coordinates>130.4108,33.5918,0</coordinates></Point></Placemark>
+      <Placemark><name>大砲拉麵</name><description>久留米系豚骨拉麵</description><styleUrl>#food</styleUrl><Point><coordinates>130.4200,33.5885,0</coordinates></Point></Placemark>
+      <Placemark><name>挽肉與米（金泉）</name><description>人氣漢堡排專門店</description><styleUrl>#food</styleUrl><Point><coordinates>130.4195,33.5890,0</coordinates></Point></Placemark>
+      <Placemark><name>Nikuichi 肉いち</name><description>博多站南人氣燒肉（16:00-00:00）</description><styleUrl>#food</styleUrl><Point><coordinates>130.4210,33.5875,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <Folder>
+      <name>🛍️ 新增購物</name>
+      <Placemark><name>mina天神</name><description>天神購物中心・Seria/GiGO/JINS</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3988,33.5908,0</coordinates></Point></Placemark>
+      <Placemark><name>JINS mina天神</name><description>平價眼鏡</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3988,33.5909,0</coordinates></Point></Placemark>
+      <Placemark><name>Seria 博多店</name><description>博多站附近百元店</description><styleUrl>#shop</styleUrl><Point><coordinates>130.4210,33.5895,0</coordinates></Point></Placemark>
+      <Placemark><name>Workman</name><description>戶外工作服專門店</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3750,33.5870,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <Folder>
+      <name>🎮 新增遊樂場</name>
+      <Placemark><name>GiGO mina天神</name><description>mina天神內夾娃娃機</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3988,33.5907,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <Folder>
+      <name>🏛️ 新增景點</name>
+      <Placemark><name>ONE Fukuoka Building</name><description>博多站前地標建築</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4215,33.5900,0</coordinates></Point></Placemark>
+      <Placemark><name>Pixel Tree</name><description>博多站前藝術裝置</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4218,33.5902,0</coordinates></Point></Placemark>
+      <Placemark><name>福岡麵包超人博物館</name><description>親子必訪・運河城內</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4110,33.5890,0</coordinates></Point></Placemark>
+      <Placemark><name>福岡巨蛋（PayPay Dome）</name><description>軟銀鷹主場・日本最大巨蛋</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3620,33.5953,0</coordinates></Point></Placemark>
+    </Folder>
+    
+  </Document>
+</kml>

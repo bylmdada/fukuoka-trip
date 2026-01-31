@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>🇯🇵 福岡八天七夜行程</name>
+    <description>2026/2/8-2/15 福岡旅遊景點、餐廳、美食地圖</description>
+    
+    <!-- 住宿 -->
+    <Style id="hotel"><IconStyle><Icon><href>https://maps.google.com/mapfiles/kml/shapes/lodging.png</href></Icon></IconStyle></Style>
+    <!-- 景點 -->
+    <Style id="attraction"><IconStyle><Icon><href>https://maps.google.com/mapfiles/kml/shapes/star.png</href></Icon></IconStyle></Style>
+    <!-- 美食 -->
+    <Style id="food"><IconStyle><Icon><href>https://maps.google.com/mapfiles/kml/shapes/dining.png</href></Icon></IconStyle></Style>
+    <!-- 鋼彈 -->
+    <Style id="gundam"><IconStyle><color>ff00ff00</color><Icon><href>https://maps.google.com/mapfiles/kml/shapes/target.png</href></Icon></IconStyle></Style>
+    
+    <!-- ===== 住宿 ===== -->
+    <Folder>
+      <name>🏨 住宿</name>
+      <Placemark>
+        <name>福岡索拉利亞西鐵酒店</name>
+        <description>Solaria Nishitetsu Hotel Fukuoka - 7晚住宿</description>
+        <styleUrl>#hotel</styleUrl>
+        <address>福岡市中央區天神2-2-43</address>
+      </Placemark>
+    </Folder>
+    
+    <!-- ===== Day 1 博多 ===== -->
+    <Folder>
+      <name>📍 Day 1 - 博多漫遊</name>
+      <Placemark><name>櫛田神社</name><description>博多總鎮守・山笠發源地</description><styleUrl>#attraction</styleUrl><address>福岡市博多区上川端町1-41</address></Placemark>
+      <Placemark><name>川端商店街</name><description>福岡最古老商店街</description><styleUrl>#attraction</styleUrl><address>福岡市博多区上川端町</address></Placemark>
+      <Placemark><name>博多運河城 Canal City</name><description>大型購物中心・噴泉表演</description><styleUrl>#attraction</styleUrl><address>福岡市博多区住吉1-2</address></Placemark>
+      <Placemark><name>天神黒毛流 焼肉 参星</name><description>🍖 A5黑毛和牛商業午餐</description><styleUrl>#food</styleUrl><address>福岡市中央区天神2-4-38</address></Placemark>
+      <Placemark><name>博多もつ鍋 やま中 赤坂店</name><description>🍲 牛腸鍋名店</description><styleUrl>#food</styleUrl><address>福岡市中央区赤坂1-9-1</address></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 2 太宰府・柳川 ===== -->
+    <Folder>
+      <name>📍 Day 2 - 太宰府・柳川</name>
+      <Placemark><name>太宰府天滿宮</name><description>學問之神・菅原道真公</description><styleUrl>#attraction</styleUrl><address>福岡県太宰府市宰府4-7-1</address></Placemark>
+      <Placemark><name>太宰府表參道</name><description>🍡 必吃梅枝餅</description><styleUrl>#food</styleUrl><address>福岡県太宰府市宰府</address></Placemark>
+      <Placemark><name>柳川遊船乘船處</name><description>約70分鐘搖櫓船體驗</description><styleUrl>#attraction</styleUrl><address>福岡県柳川市三橋町下百町</address></Placemark>
+      <Placemark><name>若松屋</name><description>🍱 柳川籠蒸鰻魚飯 - 創業300年老舖</description><styleUrl>#food</styleUrl><address>福岡県柳川市沖端町26</address></Placemark>
+      <Placemark><name>博多一雙 博多駅東本店</name><description>🍜 濃厚豚骨拉麵</description><styleUrl>#food</styleUrl><address>福岡市博多区博多駅東3-1-6</address></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 3 鋼彈 ===== -->
+    <Folder>
+      <name>📍 Day 3 - 🤖 鋼彈朝聖</name>
+      <Placemark><name>LaLaport 福岡</name><description>全球最大RX-93ff ν鋼彈！24.8公尺</description><styleUrl>#gundam</styleUrl><address>福岡市博多区那珂6-23-1</address></Placemark>
+      <Placemark><name>GUNDAM SIDE-F</name><description>鋼彈公園・獨家周邊商品</description><styleUrl>#gundam</styleUrl><address>福岡市博多区那珂6-23-1 ららぽーと福岡4F</address></Placemark>
+      <Placemark><name>焼肉チャンピオン 博多駅</name><description>🍖 博多站高級燒肉</description><styleUrl>#food</styleUrl><address>福岡市博多区博多駅中央街1-1</address></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 4 門司港・小倉 ===== -->
+    <Folder>
+      <name>📍 Day 4 - 門司港・小倉</name>
+      <Placemark><name>門司港懷舊區</name><description>大正浪漫風情建築群</description><styleUrl>#attraction</styleUrl><address>北九州市門司区港町</address></Placemark>
+      <Placemark><name>門司港懷舊展望室</name><description>360度港口美景</description><styleUrl>#attraction</styleUrl><address>北九州市門司区東港町1-32</address></Placemark>
+      <Placemark><name>小倉城</name><description>北九州市的象徵</description><styleUrl>#attraction</styleUrl><address>北九州市小倉北区城内2-1</address></Placemark>
+      <Placemark><name>旦過市場</name><description>北九州的廚房</description><styleUrl>#attraction</styleUrl><address>北九州市小倉北区魚町4</address></Placemark>
+      <Placemark><name>博多華味鳥 天神店</name><description>🍲 水炊鍋專門店</description><styleUrl>#food</styleUrl><address>福岡市中央区天神1-12-7</address></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 5 海之中道 ===== -->
+    <Folder>
+      <name>📍 Day 5 - 海之中道</name>
+      <Placemark><name>海洋世界 海之中道</name><description>九州最大水族館</description><styleUrl>#attraction</styleUrl><address>福岡市東区西戸崎18-28</address></Placemark>
+      <Placemark><name>海之中道海濱公園</name><description>可租自行車遊覽的廣大公園</description><styleUrl>#attraction</styleUrl><address>福岡市東区西戸崎18-25</address></Placemark>
+      <Placemark><name>博多だるま 総本店</name><description>🍜 濃厚系拉麵</description><styleUrl>#food</styleUrl><address>福岡市中央区渡辺通1-8-26</address></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 6 福岡塔 ===== -->
+    <Folder>
+      <name>📍 Day 6 - 福岡塔・百道</name>
+      <Placemark><name>福岡塔</name><description>日本最高海濱塔 234m</description><styleUrl>#attraction</styleUrl><address>福岡市早良区百道浜2-3-26</address></Placemark>
+      <Placemark><name>海濱百道公園</name><description>海邊散步・沙灘</description><styleUrl>#attraction</styleUrl><address>福岡市早良区百道浜</address></Placemark>
+      <Placemark><name>大濠公園</name><description>市中心綠洲・可租船</description><styleUrl>#attraction</styleUrl><address>福岡市中央区大濠公園</address></Placemark>
+      <Placemark><name>福岡城跡</name><description>舞鶴公園・歷史遺跡</description><styleUrl>#attraction</styleUrl><address>福岡市中央区城内</address></Placemark>
+      <Placemark><name>俺の焼肉 博多</name><description>🍖 A5黑毛和牛午餐</description><styleUrl>#food</styleUrl><address>福岡市博多区博多駅中央街1-1</address></Placemark>
+      <Placemark><name>元祖博多めんたい重</name><description>🍱 明太子料理專門店</description><styleUrl>#food</styleUrl><address>福岡市中央区西中洲6-15</address></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 7 天神 ===== -->
+    <Folder>
+      <name>📍 Day 7 - 天神購物・中洲夜市</name>
+      <Placemark><name>天神地下街</name><description>150+店舖・歐風裝潢</description><styleUrl>#attraction</styleUrl><address>福岡市中央区天神2</address></Placemark>
+      <Placemark><name>中洲屋台街</name><description>🏮 福岡獨特路邊攤文化</description><styleUrl>#food</styleUrl><address>福岡市博多区中洲</address></Placemark>
+      <Placemark><name>屋台 小金ちゃん</name><description>🍜 招牌炒拉麵</description><styleUrl>#food</styleUrl><address>福岡市博多区中洲</address></Placemark>
+      <Placemark><name>焼肉kintan 福岡天神店</name><description>🍖 優質燒肉套餐</description><styleUrl>#food</styleUrl><address>福岡市中央区天神2-3-24</address></Placemark>
+    </Folder>
+    
+    <!-- ===== Day 8 賦歸 ===== -->
+    <Folder>
+      <name>📍 Day 8 - 賦歸</name>
+      <Placemark><name>柳橋連合市場</name><description>博多的廚房・新鮮海產</description><styleUrl>#attraction</styleUrl><address>福岡市中央区春吉1</address></Placemark>
+      <Placemark><name>一蘭拉麵 天神店</name><description>🍜 最後一餐拉麵</description><styleUrl>#food</styleUrl><address>福岡市中央区天神2-7-12</address></Placemark>
+      <Placemark><name>唐吉訶德 天神店</name><description>🛒 藥妝・伴手禮</description><styleUrl>#attraction</styleUrl><address>福岡市中央区天神2-6-29</address></Placemark>
+      <Placemark><name>福岡機場 國際線</name><description>✈️ 回程航廈</description><styleUrl>#attraction</styleUrl><address>福岡市博多区大字下臼井</address></Placemark>
+    </Folder>
+    
+    <!-- ===== 其他推薦拉麵 ===== -->
+    <Folder>
+      <name>🍜 其他推薦拉麵</name>
+      <Placemark><name>一風堂 大名本店</name><description>國際知名豚骨拉麵</description><styleUrl>#food</styleUrl><address>福岡市中央区大名1-13-14</address></Placemark>
+      <Placemark><name>博多らーめんShin-Shin 天神本店</name><description>在地人推薦拉麵</description><styleUrl>#food</styleUrl><address>福岡市中央区天神3-2-19</address></Placemark>
+    </Folder>
+    
+  </Document>
+</kml>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>🛒 天神購物店家</name>
+    <description>飯店附近的購物店家</description>
+    
+    <Style id="shopping"><IconStyle><color>ff00ffff</color><Icon><href>https://maps.google.com/mapfiles/kml/shapes/shopping.png</href></Icon></IconStyle></Style>
+    
+    <Folder>
+      <name>🛒 購物店家</name>
+      
+      <Placemark>
+        <name>3COINS +plus ミーナ天神店</name>
+        <description>300円均一雜貨・B1F・10:00-21:00
+步行約5-7分鐘
+有食品區「ごはんもん」「おかしもん」</description>
+        <styleUrl>#shopping</styleUrl>
+        <address>福岡市中央区天神4-3-8 ミーナ天神B1F</address>
+      </Placemark>
+      
+      <Placemark>
+        <name>Bic Camera 天神2号館 ⭐最近</name>
+        <description>家電3C・藥妝・10:00-21:00
+步行約2-3分鐘（離飯店最近！）
+有免稅服務</description>
+        <styleUrl>#shopping</styleUrl>
+        <address>福岡市中央区天神2-4-5</address>
+      </Placemark>
+      
+      <Placemark>
+        <name>Bic Camera 天神1号館</name>
+        <description>家電3C・眼鏡・自行車・10:00-21:00
+步行約5-7分鐘
+有免稅服務</description>
+        <styleUrl>#shopping</styleUrl>
+        <address>福岡市中央区今泉1-25-1</address>
+      </Placemark>
+      
+    </Folder>
+  </Document>
+</kml>

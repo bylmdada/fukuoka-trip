@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>福岡新增地點 (2026/1/22)</name>
+    <description>新增14個地點</description>
+    
+    <!-- 樣式定義 -->
+    <Style id="food"><IconStyle><color>ff0000ff</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
+    <Style id="attraction"><IconStyle><color>ffff00ff</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/purple-circle.png</href></Icon></IconStyle></Style>
+    <Style id="shop"><IconStyle><color>ffff8800</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/blu-circle.png</href></Icon></IconStyle></Style>
+    
+    <!-- 新增餐廳 -->
+    <Folder>
+      <name>🍜 新增餐廳</name>
+      <Placemark><name>一蘭拉麵 總本店</name><description>一蘭本店・必朝聖</description><styleUrl>#food</styleUrl><Point><coordinates>130.4108,33.5918,0</coordinates></Point></Placemark>
+      <Placemark><name>大砲拉麵</name><description>久留米系豚骨拉麵</description><styleUrl>#food</styleUrl><Point><coordinates>130.4200,33.5885,0</coordinates></Point></Placemark>
+      <Placemark><name>挽肉與米（金泉）</name><description>人氣漢堡排專門店</description><styleUrl>#food</styleUrl><Point><coordinates>130.4195,33.5890,0</coordinates></Point></Placemark>
+      <Placemark><name>Nikuichi 肉いち</name><description>博多站南人氣燒肉（16:00-00:00）</description><styleUrl>#food</styleUrl><Point><coordinates>130.4210,33.5875,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- 新增購物 -->
+    <Folder>
+      <name>🛍️ 新增購物</name>
+      <Placemark><name>mina天神</name><description>天神購物中心・Seria/GiGO/JINS</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3988,33.5908,0</coordinates></Point></Placemark>
+      <Placemark><name>JINS mina天神</name><description>平價眼鏡</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3988,33.5909,0</coordinates></Point></Placemark>
+      <Placemark><name>Seria 博多店</name><description>博多站附近百元店</description><styleUrl>#shop</styleUrl><Point><coordinates>130.4210,33.5895,0</coordinates></Point></Placemark>
+      <Placemark><name>Workman</name><description>戶外工作服專門店</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3750,33.5870,0</coordinates></Point></Placemark>
+      <Placemark><name>GiGO mina天神</name><description>mina天神內夾娃娃機</description><styleUrl>#shop</styleUrl><Point><coordinates>130.3988,33.5907,0</coordinates></Point></Placemark>
+    </Folder>
+    
+    <!-- 新增景點 -->
+    <Folder>
+      <name>🏛️ 新增景點</name>
+      <Placemark><name>櫛田神社</name><description>博多總鎮守・山笠發源地</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4112,33.5914,0</coordinates></Point></Placemark>
+      <Placemark><name>ONE Fukuoka Building</name><description>博多站前地標建築</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4215,33.5900,0</coordinates></Point></Placemark>
+      <Placemark><name>Pixel Tree</name><description>博多站前藝術裝置</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4218,33.5902,0</coordinates></Point></Placemark>
+      <Placemark><name>福岡麵包超人博物館</name><description>親子必訪・運河城內</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.4110,33.5890,0</coordinates></Point></Placemark>
+      <Placemark><name>大濠公園</name><description>天鵝船・散步放鬆</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3785,33.5862,0</coordinates></Point></Placemark>
+      <Placemark><name>福岡巨蛋（PayPay Dome）</name><description>軟銀鷹主場・日本最大巨蛋</description><styleUrl>#attraction</styleUrl><Point><coordinates>130.3620,33.5953,0</coordinates></Point></Placemark>
+    </Folder>
+    
+  </Document>
+</kml>

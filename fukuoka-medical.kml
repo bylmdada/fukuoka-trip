@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>🏥 福岡醫療・藥妝</name>
+    <description>猛健樂Mounjaro診所・藥妝店</description>
+    
+    <Style id="clinic"><IconStyle><color>ff0000ff</color><Icon><href>https://maps.google.com/mapfiles/kml/shapes/hospitals.png</href></Icon></IconStyle></Style>
+    <Style id="pharmacy"><IconStyle><color>ff00ff00</color><Icon><href>https://maps.google.com/mapfiles/kml/shapes/pharmacy_rx.png</href></Icon></IconStyle></Style>
+    
+    <!-- ===== 猛健樂 Mounjaro 診所 ===== -->
+    <Folder>
+      <name>💉 猛健樂 Mounjaro 診所</name>
+      
+      <Placemark>
+        <name>🏥 クララ美容皮膚科 天神院</name>
+        <description>💉 猛健樂 Mounjaro 處方
+💰 2.5mg ¥4,400起
+📍 天神站旁・診察料免費
+✨ 有注射教學</description>
+        <styleUrl>#clinic</styleUrl>
+        <address>福岡市中央区天神2丁目</address>
+      </Placemark>
+      
+      <Placemark>
+        <name>🏥 東郷美容形成外科</name>
+        <description>💉 猛健樂 Mounjaro 處方
+💰 初回 ¥4,400・2回目 ¥5,500
+📍 博多站步行3-5分
+✨ 2回目以後可郵寄</description>
+        <styleUrl>#clinic</styleUrl>
+        <address>福岡市博多区博多駅前2-17-26</address>
+      </Placemark>
+      
+      <Placemark>
+        <name>🏥 クリニーク福岡天神</name>
+        <description>💉 猛健樂 Mounjaro 處方
+💰 多款GLP-1可選・可散買
+📍 天神站步行5分
+✨ 美容外科・美容皮膚科</description>
+        <styleUrl>#clinic</styleUrl>
+        <address>福岡市中央区天神2-7-28</address>
+      </Placemark>
+      
+      <Placemark>
+        <name>🏥 福岡博多駅前通中央クリニック</name>
+        <description>💉 猛健樂 Mounjaro 處方
+💰 初回 ¥8,800起
+📍 博多站步行6分・祇園站步行1分
+✨ 土日祝診療</description>
+        <styleUrl>#clinic</styleUrl>
+        <address>福岡市博多区祇園町4-13</address>
+      </Placemark>
+      
+    </Folder>
+    
+    <!-- ===== 藥妝店（可買Minoxidil） ===== -->
+    <Folder>
+      <name>💊 藥妝店</name>
+      
+      <Placemark>
+        <name>💊 Bic Camera 天神2号館</name>
+        <description>藥妝區有販售
+📍 步行2-3分鐘（離飯店最近）
+⏰ 10:00-21:00</description>
+        <styleUrl>#pharmacy</styleUrl>
+        <address>福岡市中央区天神2-4-5</address>
+      </Placemark>
+      
+      <Placemark>
+        <name>💊 唐吉訶德 天神店</name>
+        <description>藥妝區有販售
+📍 天神
+⏰ 營業至深夜</description>
+        <styleUrl>#pharmacy</styleUrl>
+        <address>福岡市中央区天神2-6-35</address>
+      </Placemark>
+      
+      <Placemark>
+        <name>💊 松本清藥妝 天神</name>
+        <description>連鎖藥妝店・種類齊全
+📍 天神
+⏰ 10:00-22:00</description>
+        <styleUrl>#pharmacy</styleUrl>
+        <address>福岡市中央区天神2丁目</address>
+      </Placemark>
+      
+    </Folder>
+    
+  </Document>
+</kml>

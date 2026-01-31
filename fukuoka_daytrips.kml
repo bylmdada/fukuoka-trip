@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>福岡新增景點 (2026/1/22)</name>
+    <description>新增親子景點及近郊一日遊路線</description>
+    
+    <!-- 樣式定義 -->
+    <Style id="attraction"><IconStyle><color>ffff00ff</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/purple-circle.png</href></Icon></IconStyle></Style>
+    <Style id="daytrip"><IconStyle><color>ff00aaff</color><scale>1.2</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/orange-stars.png</href></Icon></IconStyle></Style>
+    <Style id="onsen"><IconStyle><color>ff0000ff</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
+    
+    <!-- 新增親子景點 -->
+    <Folder>
+      <name>👶 新增親子景點</name>
+      <Placemark>
+        <name>KidZania Fukuoka（兒童職業體驗館）</name>
+        <description>LaLaport福岡2F・親子必訪</description>
+        <styleUrl>#attraction</styleUrl>
+        <Point><coordinates>130.4417,33.5771,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>九州鉄道記念館</name>
+        <description>門司港站步行3分・鐵道迷必訪</description>
+        <styleUrl>#attraction</styleUrl>
+        <Point><coordinates>130.9608,33.9460,0</coordinates></Point>
+      </Placemark>
+    </Folder>
+    
+    <!-- 近郊一日遊路線 -->
+    <Folder>
+      <name>🚃 近郊一日遊路線</name>
+      
+      <Placemark>
+        <name>🌸 太宰府天滿宮（梅花賞梅）</name>
+        <description>6000株梅花・飛梅神樹・梅ヶ枝餅｜西鐵電車約30分</description>
+        <styleUrl>#daytrip</styleUrl>
+        <Point><coordinates>130.5353,33.5212,0</coordinates></Point>
+      </Placemark>
+      
+      <Placemark>
+        <name>🎎 柳川遊船（女兒節）</name>
+        <description>Sagemon吊飾・鰻魚飯・2/11～4/3｜西鐵約1小時</description>
+        <styleUrl>#daytrip</styleUrl>
+        <Point><coordinates>130.4086,33.1630,0</coordinates></Point>
+      </Placemark>
+      
+      <Placemark>
+        <name>🏖️ 糸島 白絲瀑布</name>
+        <description>山線起點・避暑賞景｜JR筑肥線約45分+巴士</description>
+        <styleUrl>#daytrip</styleUrl>
+        <Point><coordinates>130.2850,33.4950,0</coordinates></Point>
+      </Placemark>
+      
+      <Placemark>
+        <name>🏖️ 糸島 夫婦岩（櫻井二見浦）</name>
+        <description>白色鳥居・糸島象徵｜海線必拍</description>
+        <styleUrl>#daytrip</styleUrl>
+        <Point><coordinates>130.1720,33.6050,0</coordinates></Point>
+      </Placemark>
+      
+      <Placemark>
+        <name>🐬 海洋世界 海之中道</name>
+        <description>九州最大水族館・350+種海洋生物・海豚表演｜JR香椎線約45分</description>
+        <styleUrl>#daytrip</styleUrl>
+        <Point><coordinates>130.3648,33.6534,0</coordinates></Point>
+      </Placemark>
+      
+      <Placemark>
+        <name>🐬 海之中道海濱公園</name>
+        <description>350公頃・彩虹溜滑梯・動物園・腳踏車租借</description>
+        <styleUrl>#daytrip</styleUrl>
+        <Point><coordinates>130.3580,33.6490,0</coordinates></Point>
+      </Placemark>
+    </Folder>
+    
+    <!-- 二日市溫泉 -->
+    <Folder>
+      <name>♨️ 二日市溫泉</name>
+      <Placemark>
+        <name>♨️ 二日市溫泉街</name>
+        <description>1300年歷史・美肌之湯・可結合太宰府行程｜JR鹿兒島本線約20分</description>
+        <styleUrl>#onsen</styleUrl>
+        <Point><coordinates>130.5150,33.5080,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>♨️ 博多湯</name>
+        <description>公眾浴場・入浴費¥300</description>
+        <styleUrl>#onsen</styleUrl>
+        <Point><coordinates>130.5148,33.5078,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>♨️ 御前湯</name>
+        <description>公眾浴場・入浴費¥300</description>
+        <styleUrl>#onsen</styleUrl>
+        <Point><coordinates>130.5152,33.5082,0</coordinates></Point>
+      </Placemark>
+    </Folder>
+    
+  </Document>
+</kml>
