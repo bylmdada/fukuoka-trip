@@ -614,6 +614,41 @@ const souvenirData = [
     { icon: "🐤", name: "ひよ子蛋糕", desc: "小雞造型・黃豆沙", where: "機場/博多站" }
 ];
 
+// 桃園機場停車資料（國泰小樹點折抵）
+const taoyuanParkingData = {
+    info: {
+        title: "桃園機場外圍停車",
+        subtitle: "國泰小樹點折抵",
+        note: "出發前記得在國泰 App 兌換停車券！"
+    },
+    lots: [
+        {
+            name: "大園停車場",
+            addr: "大園區中正東路附近",
+            shuttle: "24H 接駁至桃機",
+            points: "120點/日",
+            note: "國泰合作停車場",
+            recommended: true,
+            map: "大園停車場 桃園機場"
+        },
+        {
+            name: "日月亭平安停車場",
+            addr: "大園區平安路157號",
+            shuttle: "接駁到一、二航廈",
+            points: "可用小樹點折抵",
+            note: "部分方案不適用，請確認卡片權益",
+            recommended: false,
+            map: "日月亭平安停車場"
+        }
+    ],
+    tips: [
+        "🌳 小樹點兌換：國泰App → 點數兌換 → 停車優惠",
+        "⏰ 建議出發前1-2天兌換完成",
+        "🚗 停好車後搭免費接駁車至航廈",
+        "📱 記得截圖兌換憑證備用"
+    ]
+};
+
 // 地鐵交通資料
 const metroData = {
     stations: [
@@ -3418,6 +3453,27 @@ function addMetroSection() {
             `).join('')}
         </div>
         
+        <h3 class="metro-subtitle">🅿️ 桃園機場停車（小樹點折抵）</h3>
+        <div class="parking-section">
+            <p class="parking-note">${taoyuanParkingData.info.note}</p>
+            <div class="parking-list">
+                ${taoyuanParkingData.lots.map(lot => `
+                    <div class="parking-card ${lot.recommended ? 'recommended' : ''}" onclick="openMapSearch('${lot.map}')">
+                        <div class="parking-header">
+                            <h4>${lot.name} ${lot.recommended ? '<span class="parking-badge">推薦</span>' : ''}</h4>
+                            <span class="parking-points">🌳 ${lot.points}</span>
+                        </div>
+                        <p class="parking-addr">📍 ${lot.addr}</p>
+                        <p class="parking-shuttle">🚌 ${lot.shuttle}</p>
+                        <p class="parking-tip">💡 ${lot.note}</p>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="parking-tips">
+                ${taoyuanParkingData.tips.map(tip => `<p>${tip}</p>`).join('')}
+            </div>
+        </div>
+        
         <a href="https://www.google.com/maps/search/?api=1&query=福岡市地下鉄+天神駅" 
            target="_blank" class="metro-map-btn">🗺️ 開啟天神站地圖</a>
     `;
@@ -3537,6 +3593,91 @@ function addMetroSection() {
             margin-top: 16px;
             border: var(--border-width) solid var(--border);
             box-shadow: 3px 3px 0 var(--border);
+        }
+        
+        /* 桃園機場停車 */
+        .parking-section {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px;
+            border: var(--border-width) solid var(--border);
+        }
+        .parking-note {
+            font-size: 0.8rem;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .parking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .parking-card {
+            background: var(--bg-elevated);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            border: var(--border-width) solid var(--border);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .parking-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .parking-card.recommended {
+            background: linear-gradient(135deg, rgba(76,175,80,0.1) 0%, rgba(139,195,74,0.1) 100%);
+            border-color: #4CAF50;
+        }
+        .parking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .parking-header h4 {
+            font-size: 0.9rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .parking-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .parking-points {
+            font-size: 0.75rem;
+            color: #4CAF50;
+            font-weight: 900;
+        }
+        .parking-addr, .parking-shuttle, .parking-tip {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+        .parking-tip {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        .parking-tips {
+            background: rgba(76,175,80,0.1);
+            border-radius: var(--radius-sm);
+            padding: 10px 12px;
+        }
+        .parking-tips p {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .parking-tips p:last-child {
+            margin-bottom: 0;
         }
     `;
     document.head.appendChild(style);
