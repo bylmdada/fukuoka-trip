@@ -2473,6 +2473,19 @@ function addDayTripsSection() {
             highlights: ['1300年歷史', '美肌之湯', '博多湯', '御前湯', '¥300入浴'],
             desc: '福岡近郊最方便的溫泉！1300年歷史，曾被《萬葉集》收錄。鹼性單純溫泉「美肌之湯」，對神經痛、皮膚病有療效。博多湯、御前湯入浴費僅¥300。可結合太宰府行程，參拜後泡湯放鬆。',
             mapUrl: 'https://www.google.com/maps/search/?api=1&query=二日市温泉'
+        },
+        {
+            id: 'african-safari',
+            icon: '🦁',
+            name: '九州自然動物園',
+            season: '全年（冬季10:00開園）',
+            color: '#795548',
+            transport: 'JR別府站→巴士約50分',
+            highlights: ['叢林巴士', '餵食獅子', '餵食大象', '小動物互動', '別府溫泉'],
+            desc: '日本最大級野生動物園！必搭「叢林巴士」近距離餵食獅子、黑熊、大象，超震撼。建議搭配別府溫泉行程，別府站買套票省錢（含來回巴士+門票+叢林巴士約¥4,300）。開園前30分抵達排隊！',
+            mapUrl: 'https://www.google.com/maps/search/?api=1&query=九州自然動物公園アフリカンサファリ',
+            tips: '冬季10:00開園、最後入園15:00',
+            price: '大人¥2,600+巴士¥1,300'
         }
     ];
     
@@ -2530,6 +2543,10 @@ function addDayTripsSection() {
                 <div class="transport-item">
                     <span class="route-name">二日市</span>
                     <span class="route-detail">博多站 → JR鹿兒島本線約20分 → 步行15分</span>
+                </div>
+                <div class="transport-item">
+                    <span class="route-name">動物園</span>
+                    <span class="route-detail">博多→JR別府站約2hr→龜之井巴士約50分</span>
                 </div>
             </div>
         </div>
