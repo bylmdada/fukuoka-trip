@@ -2480,12 +2480,12 @@ function addDayTripsSection() {
             name: '九州自然動物園',
             season: '全年（冬季10:00開園）',
             color: '#795548',
-            transport: '天神→高速巴士約2.5h或JR Sonic約2h→別府站→龜之井巴士41號約50分',
-            highlights: ['叢林巴士', '餵食獅子', '餵食大象', '小動物互動', '別府溫泉', 'SUNQ PASS適用'],
-            desc: '日本最大級野生動物園！必搭「叢林巴士」近距離餵食獅子、黑熊、大象。從天神出發約3小時，推薦SUNQ PASS（¥9,000/3日無限巴士）+別府站套票（¥4,600含門票+叢林巴士+當地公車）最划算！',
+            transport: '天神→高速巴士約2.5h→別府北濱→龜之井巴士41號約50分',
+            highlights: ['叢林巴士', '餵食獅子', '餵食大象', '小動物互動', '別府溫泉', '單買票最省'],
+            desc: '日本最大級野生動物園！必搭「叢林巴士」近距離餵食獅子、黑熊、大象。一日來回單買票最省（約¥11,320），不要買Pass！別府站觀光案內所買套票（¥4,300含門票+叢林巴士+當地公車）。',
             mapUrl: 'https://www.google.com/maps/search/?api=1&query=九州自然動物公園アフリカンサファリ',
             tips: '冬季10:00開園、最後入園15:00・叢林巴士需開園前30分排隊',
-            price: '門票¥2,600+叢林巴士¥1,300｜套票約¥4,600'
+            price: '一日來回約¥11,320（交通+門票+叢林巴士）'
         }
     ];
     
@@ -2546,7 +2546,7 @@ function addDayTripsSection() {
                 </div>
                 <div class="transport-item">
                     <span class="route-name">動物園</span>
-                    <span class="route-detail">天神→高速巴士約2.5h或JR Sonic約2h→別府站→龜之井巴士41號約50分｜推薦SUNQ PASS</span>
+                    <span class="route-detail">天神→高速巴士約2.5h→別府→龜之井巴士41號約50分｜一日來回單買票最省約¥11,320</span>
                 </div>
             </div>
         </div>
