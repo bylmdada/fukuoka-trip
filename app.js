@@ -48,15 +48,20 @@ const itineraryData = [
         ]
     },
     {
-        day: 4, date: "2/11", weekday: "三", theme: "門司港・小倉懷舊", icon: "🚂", weather: "5-12°C ☁️",
+        day: 4, date: "2/11", weekday: "三", theme: "門司港・小倉・皿倉山夜景", icon: "🌃", weather: "5-12°C ☁️",
         schedule: [
-            { time: "09:00", title: "博多站", desc: "搭JR往門司港", map: "博多駅" },
-            { time: "10:30", title: "門司港懷舊區", desc: "大正浪漫風情", map: "門司港レトロ" },
-            { time: "12:00", title: "燒咖哩", desc: "🍛 午餐：門司港名物！", tag: "lunch", map: "門司港 焼きカレー" },
-            { time: "13:30", title: "門司港展望室", desc: "360度港口美景", map: "門司港レトロ展望室" },
-            { time: "15:00", title: "小倉城", desc: "北九州市的象徵", map: "小倉城" },
-            { time: "16:30", title: "旦過市場", desc: "北九州的廚房", map: "旦過市場" },
-            { time: "18:30", title: "博多華味鳥", desc: "🍲 晚餐：水炊鍋專門店", tag: "food", map: "博多華味鳥 天神店" }
+            { time: "07:00", title: "天神南站出發", desc: "🚇 地鐵七隈線→天神→JR Sonic至小倉（約40分鐘）", map: "天神南駅" },
+            { time: "08:30", title: "小倉城", desc: "🏯 北九州市象徵・門票¥400/成人", tag: "ticket", map: "小倉城" },
+            { time: "10:00", title: "旦過市場", desc: "🍜 北九州的廚房・早市散策", map: "旦過市場" },
+            { time: "11:00", title: "JR至門司港", desc: "🚃 普通列車約15分・¥500/成人", map: "門司港駅" },
+            { time: "11:30", title: "門司港懷舊區", desc: "🏛️ 大正浪漫風情建築群", map: "門司港レトロ" },
+            { time: "12:30", title: "午餐：燒咖哩", desc: "🍛 門司港名物！", tag: "lunch", map: "門司港 焼きカレー" },
+            { time: "13:30", title: "潮風號小火車", desc: "🚂 懷舊觀光列車・¥500/成人", tag: "highlight", map: "門司港トロッコ潮風号" },
+            { time: "14:30", title: "返回小倉", desc: "🚃 JR門司港→小倉（15分）", map: "小倉駅" },
+            { time: "15:00", title: "小倉自由購物", desc: "🛍️ 彈性休息時間", map: "小倉駅" },
+            { time: "17:00", title: "皿倉山纜車", desc: "🚡 西鐵巴士18號→纜車・來回¥1,200/成人", tag: "highlight", map: "皿倉山ケーブルカー" },
+            { time: "18:00", title: "皿倉山夜景", desc: "🌃 新日本三大夜景！冬季亮燈至20:00", tag: "nightview", map: "皿倉山展望台" },
+            { time: "19:30", title: "返回天神", desc: "🚌 巴士→小倉→JR Sonic→天神（末班確認）", map: "天神駅" }
         ]
     },
     {
