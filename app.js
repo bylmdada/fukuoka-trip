@@ -421,6 +421,44 @@ const jinsData = [
     }
 ];
 
+// Mounjaro（マンジャロ） 減重診所資料
+const mounjaroClinicData = [
+    {
+        icon: "💉",
+        name: "Fontana Clinic 天神",
+        addr: "中央區天神2丁目（近唐吉訶德天神店）",
+        phone: "需電話或LINE預約",
+        hours: "平日 10:00-19:00",
+        distance: "步行10-15分鐘",
+        tag: "推薦",
+        note: "專門Mounjaro處方諮詢・適合短期旅客・可線上預約",
+        map: "Fontana Clinic 天神",
+        recommended: true
+    },
+    {
+        icon: "🏥",
+        name: "Murayama Clinic",
+        addr: "天神2-4-20 天神Plaza 2F",
+        phone: "需電話預約",
+        hours: "診療時間需確認",
+        distance: "步行約8分鐘",
+        tag: "內科・胃腸科",
+        note: "內科腸胃科為主・需詢問減重處方",
+        map: "Murayama Clinic 天神"
+    },
+    {
+        icon: "📱",
+        name: "線上診所（DMM等）",
+        addr: "線上診療・可宅配至飯店",
+        phone: "網路預約",
+        hours: "24小時線上",
+        distance: "無需外出",
+        tag: "宅配方便",
+        note: "適合不方便外出者・可配送至 Il Palazzo",
+        map: ""
+    }
+];
+
 // 福岡機場購物資料
 const airportShopData = {
     dutyfree: [
@@ -819,6 +857,7 @@ document.addEventListener('DOMContentLoaded', () => {
     add100YenSection();
     addClothingSection();
     addJinsSection();
+    addMounjaroSection();
     addDessertSection();
     addStrawberrySection();
     addMetroSection();
@@ -3398,8 +3437,118 @@ function addJinsSection() {
     document.head.appendChild(style);
 }
 
-function addDessertSection() {
+function addMounjaroSection() {
     const jinsSection = document.getElementById('jins');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'mounjaro';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">💉</span>Mounjaro 減重診所</h2>
+        <p class="section-subtitle">マンジャロ（Tirzepatide）處方・Il Palazzo 飯店附近</p>
+        
+        <div class="mounjaro-notice">
+            <div class="notice-icon">⚠️</div>
+            <div class="notice-content">
+                <strong>注意事項</strong>
+                <ul>
+                    <li>日本 Mounjaro 為處方藥，需醫師診斷（糖尿病或BMI適格）</li>
+                    <li>費用約 ¥20,000-40,000/月（含診察費）</li>
+                    <li>旅客憑護照即可就診</li>
+                    <li>建議出發前確認診所地址及預約方式</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="mounjaro-list">
+            ${mounjaroClinicData.map(c => `
+                <${c.map ? 'a' : 'div'} ${c.map ? `href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.map)}" target="_blank"` : ''} 
+                   class="mounjaro-card ${c.recommended ? 'mounjaro-recommended' : ''}">
+                    <div class="mounjaro-icon">${c.icon}</div>
+                    <div class="mounjaro-info">
+                        <div class="mounjaro-header">
+                            <h4>${c.name}</h4>
+                            ${c.tag ? `<span class="mounjaro-tag">${c.tag}</span>` : ''}
+                        </div>
+                        <p class="mounjaro-addr">📍 ${c.addr}</p>
+                        <p class="mounjaro-hours">🕐 ${c.hours}</p>
+                        <p class="mounjaro-distance">🚶 ${c.distance}</p>
+                        <p class="mounjaro-phone">📞 ${c.phone}</p>
+                        <p class="mounjaro-note">💡 ${c.note}</p>
+                    </div>
+                    ${c.map ? '<span class="mounjaro-arrow">→</span>' : ''}
+                </${c.map ? 'a' : 'div'}>
+            `).join('')}
+        </div>
+    `;
+    
+    jinsSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .mounjaro-notice {
+            display: flex;
+            gap: 12px;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 152, 0, 0.1));
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+        .notice-icon { font-size: 1.5rem; }
+        .notice-content ul {
+            margin: 8px 0 0 0;
+            padding-left: 18px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .notice-content li { margin: 4px 0; }
+        .notice-content strong { font-size: 0.85rem; color: var(--text-primary); }
+        
+        .mounjaro-list { display: flex; flex-direction: column; gap: 12px; }
+        .mounjaro-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 14px;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+        a.mounjaro-card:hover {
+            transform: translateX(4px);
+            border-color: var(--secondary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .mounjaro-recommended {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.05));
+            border-color: var(--secondary);
+        }
+        .mounjaro-icon { font-size: 2rem; }
+        .mounjaro-info { flex: 1; min-width: 0; }
+        .mounjaro-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+        .mounjaro-header h4 { font-size: 0.9rem; font-weight: 700; }
+        .mounjaro-tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .mounjaro-addr, .mounjaro-hours, .mounjaro-phone, .mounjaro-distance { font-size: 0.7rem; color: var(--text-secondary); margin: 2px 0; }
+        .mounjaro-note { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+        .mounjaro-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; margin-top: 8px; }
+    `;
+    document.head.appendChild(style);
+}
+
+function addDessertSection() {
+    const mounjaroSection = document.getElementById('mounjaro');
     
     const section = document.createElement('section');
     section.className = 'section';
