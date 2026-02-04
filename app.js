@@ -22,14 +22,17 @@ const itineraryData = [
         ]
     },
     {
-        day: 2, date: "2/9", weekday: "一", theme: "太宰府・柳川水鄉", icon: "⛩️", weather: "4-10°C 🌤️",
+        day: 2, date: "2/9", weekday: "一", theme: "🦁 九州自然動物園親子包車", icon: "🦁", weather: "4-10°C 🌤️",
         schedule: [
-            { time: "09:00", title: "西鐵福岡站", desc: "購買太宰府柳川套票 ¥3,150", map: "西鉄福岡駅" },
-            { time: "10:00", title: "太宰府天滿宮", desc: "學問之神・菅原道真公", map: "太宰府天満宮" },
-            { time: "10:30", title: "表參道", desc: "🍡 必吃梅枝餅", tag: "food", map: "太宰府天満宮 表参道" },
-            { time: "12:30", title: "若松屋/元祖本吉屋", desc: "🍱 午餐：柳川籠蒸鰻魚飯", tag: "lunch", map: "柳川 若松屋" },
-            { time: "14:00", title: "柳川遊船", desc: "約70分鐘搖櫓船", map: "柳川川下り" },
-            { time: "18:00", title: "博多一雙", desc: "🍜 晚餐：濃厚豚骨拉麵", tag: "food", map: "博多一双 博多駅東本店" }
+            { time: "08:00", title: "天神Il Palazzo出發", desc: "🚐 10人座海獅包車・準時集合", map: "Hotel Il Palazzo 福岡" },
+            { time: "09:45", title: "抵達九州自然動物園", desc: "車程約1.5-2小時（100公里）", map: "九州自然動物公園アフリカンサファリ" },
+            { time: "10:00", title: "預約叢林巴士", desc: "🎟️ 至綜合案內所預約10:30或11:00場次", tag: "ticket", map: "九州自然動物公園アフリカンサファリ" },
+            { time: "10:30", title: "🦁 叢林巴士體驗", desc: "約50分鐘・近距離餵食獅子老虎大象", tag: "highlight", map: "九州自然動物公園アフリカンサファリ" },
+            { time: "11:30", title: "園區自由參觀", desc: "🐘 動物互動・拍照打卡", map: "九州自然動物公園アフリカンサファリ" },
+            { time: "12:30", title: "園區內午餐", desc: "🍱 園區餐廳用餐", tag: "lunch", map: "九州自然動物公園アフリカンサファリ" },
+            { time: "14:00", title: "備案：由布院或別府", desc: "由布院金鱗湖(20-30分車程)或別府地獄(25-30分車程)", map: "湯布院 金鱗湖" },
+            { time: "16:00", title: "啟程返回天神", desc: "🚐 返程約1.5-2小時", map: "" },
+            { time: "17:30", title: "抵達天神飯店", desc: "總行程約10小時結束", map: "Hotel Il Palazzo 福岡" }
         ]
     },
     {
