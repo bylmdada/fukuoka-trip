@@ -378,6 +378,44 @@ const clothingData = [
     }
 ];
 
+// JINS 眼鏡店資料（天神地區）
+const jinsData = [
+    {
+        icon: "👓",
+        name: "JINS 天神地下街店",
+        addr: "天神2丁目地下3號西2街區A區",
+        phone: "092-726-7188",
+        hours: "10:00-21:00",
+        rating: "⭐ 4.3（31則評論）",
+        tag: "地下街內",
+        note: "購物順便配鏡・交通便利",
+        map: "JINS 天神地下街店"
+    },
+    {
+        icon: "👓",
+        name: "JINS ミーナ天神店",
+        addr: "天神4丁目3番8號ミーナ天神1F",
+        phone: "092-761-7070",
+        hours: "10:00-20:00",
+        rating: "⭐ 4.1（80則評論）",
+        tag: "人氣最高",
+        note: "最快30分鐘完成・護照免稅省10%",
+        map: "JINS ミーナ天神店",
+        recommended: true
+    },
+    {
+        icon: "👓",
+        name: "JINS 天神西通り店",
+        addr: "天神2丁目4番20號天神プラッサ1F",
+        phone: "092-726-2080",
+        hours: "10:00-20:00",
+        rating: "⭐ 4.1（25則評論）",
+        tag: "信用卡/行動支付",
+        note: "支援多種付款方式",
+        map: "JINS 天神西通り店"
+    }
+];
+
 // 福岡機場購物資料
 const airportShopData = {
     dutyfree: [
@@ -775,6 +813,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addDrugstoreSection();
     add100YenSection();
     addClothingSection();
+    addJinsSection();
     addDessertSection();
     addStrawberrySection();
     addMetroSection();
@@ -3266,8 +3305,96 @@ function addClothingSection() {
     document.head.appendChild(style);
 }
 
-function addDessertSection() {
+function addJinsSection() {
     const clothingSection = document.getElementById('clothing');
+    
+    const section = document.createElement('section');
+    section.className = 'section';
+    section.id = 'jins';
+    section.innerHTML = `
+        <h2 class="section-title"><span class="title-icon">👓</span>JINS 眼鏡</h2>
+        <p class="section-subtitle">快速配鏡・30分鐘取件・免稅購物</p>
+        <div class="jins-list">
+            ${jinsData.map(j => `
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(j.map)}" 
+                   target="_blank" class="jins-card ${j.recommended ? 'jins-recommended' : ''}">
+                    <div class="jins-icon">${j.icon}</div>
+                    <div class="jins-info">
+                        <div class="jins-header">
+                            <h4>${j.name}</h4>
+                            ${j.tag ? `<span class="jins-tag">${j.tag}</span>` : ''}
+                        </div>
+                        <p class="jins-addr">📍 ${j.addr}</p>
+                        <p class="jins-hours">🕐 ${j.hours}</p>
+                        <p class="jins-phone">📞 ${j.phone}</p>
+                        <p class="jins-rating">${j.rating}</p>
+                        <p class="jins-note">💡 ${j.note}</p>
+                    </div>
+                    <span class="jins-arrow">→</span>
+                </a>
+            `).join('')}
+        </div>
+    `;
+    
+    clothingSection.after(section);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .section-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: -8px 0 12px 0;
+            padding-left: 2px;
+        }
+        .jins-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .jins-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            border: var(--border-width) solid var(--border);
+            box-shadow: 4px 4px 0px var(--border);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.15s;
+        }
+        .jins-card:hover {
+            transform: translateX(4px);
+            background: var(--bg-elevated);
+        }
+        .jins-recommended {
+            border-color: var(--primary);
+            box-shadow: 4px 4px 0px var(--primary);
+        }
+        .jins-icon { font-size: 1.8rem; margin-top: 4px; }
+        .jins-info { flex: 1; min-width: 0; }
+        .jins-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+        .jins-header h4 { font-size: 0.9rem; font-weight: 700; }
+        .jins-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+        .jins-addr, .jins-hours, .jins-phone { font-size: 0.7rem; color: var(--text-secondary); margin: 2px 0; }
+        .jins-rating { font-size: 0.7rem; color: var(--secondary); font-weight: 600; margin: 4px 0; }
+        .jins-note { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+        .jins-arrow { font-size: 1.2rem; color: var(--secondary); font-weight: 900; margin-top: 8px; }
+    `;
+    document.head.appendChild(style);
+}
+
+function addDessertSection() {
+    const jinsSection = document.getElementById('jins');
     
     const section = document.createElement('section');
     section.className = 'section';
@@ -3291,7 +3418,7 @@ function addDessertSection() {
         </div>
     `;
     
-    clothingSection.after(section);
+    jinsSection.after(section);
     
     const style = document.createElement('style');
     style.textContent = `
