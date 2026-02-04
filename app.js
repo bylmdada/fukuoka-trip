@@ -3000,7 +3000,7 @@ if ('speechSynthesis' in window) {
 
 // ===== 伴手禮區塊 =====
 function addSouvenirSection() {
-    const foodSection = document.getElementById('food');
+    const nearbySection = document.getElementById('nearby');
     
     const section = document.createElement('section');
     section.className = 'section';
@@ -3019,7 +3019,7 @@ function addSouvenirSection() {
         </div>
     `;
     
-    foodSection.after(section);
+    nearbySection.after(section);
     
     const style = document.createElement('style');
     style.textContent = `
@@ -3572,7 +3572,7 @@ function addDessertSection() {
         </div>
     `;
     
-    jinsSection.after(section);
+    mounjaroSection.after(section);
     
     const style = document.createElement('style');
     style.textContent = `
