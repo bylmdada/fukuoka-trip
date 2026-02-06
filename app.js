@@ -4044,6 +4044,14 @@ function addTransportMapsSection() {
             image: '西鐵.png'
         },
         {
+            id: 'jr',
+            icon: '🚆',
+            name: 'JR線路線圖',
+            desc: '九州北部鐵路網',
+            note: '往小倉・門司港・由布院',
+            image: 'jr_map.png'
+        },
+        {
             id: 'taxi',
             icon: '🚕',
             name: '計程車乘車處',
@@ -4058,7 +4066,7 @@ function addTransportMapsSection() {
     section.id = 'transport-maps';
     section.innerHTML = `
         <h2 class="section-title"><span class="title-icon">🗺️</span>交通路線圖</h2>
-        <p class="section-desc">點擊查看大圖</p>
+        <p class="section-desc">點擊圖片開啟縮放模式</p>
         <div class="transport-maps-grid">
             ${transportMapsData.map(m => `
                 <div class="transport-map-card" onclick="openTransportMapModal('${m.image}', '${m.name}')">
@@ -4093,13 +4101,18 @@ function addTransportMapsSection() {
             <div class="modal-container">
                 <div class="modal-header">
                     <h3 id="transportMapTitle">路線圖</h3>
-                    <button class="modal-close" onclick="closeTransportMapModal()">✕</button>
+                    <div class="modal-actions">
+                        <button class="zoom-btn" onclick="zoomMap(0.5)">➕</button>
+                        <button class="zoom-btn" onclick="zoomMap(-0.5)">➖</button>
+                        <button class="zoom-btn" onclick="resetMapZoom()">🔄</button>
+                        <button class="modal-close" onclick="closeTransportMapModal()">✕</button>
+                    </div>
                 </div>
                 <div class="modal-image-wrapper">
                     <img id="transportMapImage" src="" alt="" />
                 </div>
                 <div class="modal-footer">
-                    <span class="pinch-hint">📱 可雙指縮放</span>
+                    <span class="pinch-hint">🖱️ 拖曳移動 / 滾輪縮放</span>
                 </div>
             </div>
         `;
@@ -4112,10 +4125,11 @@ function addTransportMapsSection() {
             font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 12px;
+            text-align: center;
         }
         .transport-maps-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 12px;
         }
         .transport-map-card {
@@ -4234,7 +4248,7 @@ function addTransportMapsSection() {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 16px;
+            padding: 8px 16px;
             background: var(--bg-elevated);
             border-bottom: 1px solid var(--border);
         }
@@ -4267,6 +4281,32 @@ function addTransportMapsSection() {
             max-width: 100%;
             height: auto;
             display: block;
+            margin: auto;
+            align-self: center;
+        }
+        .modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .zoom-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.1);
+            color: var(--text-primary);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .zoom-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary);
         }
         .transport-map-modal .modal-footer {
             padding: 8px 16px;
@@ -4291,17 +4331,86 @@ function addTransportMapsSection() {
     document.head.appendChild(style);
 }
 
+// ===== 地圖縮放邏輯 =====
+let currentMapZoom = 1;
+let isMapDragging = false;
+let mapStartX, mapStartY, mapTranslateX = 0, mapTranslateY = 0;
+
+function updateMapTransform() {
+    const img = document.getElementById('transportMapImage');
+    if (img) {
+        img.style.transform = `translate(${mapTranslateX}px, ${mapTranslateY}px) scale(${currentMapZoom})`;
+    }
+}
+
+function zoomMap(delta) {
+    currentMapZoom += delta;
+    if (currentMapZoom < 0.5) currentMapZoom = 0.5;
+    if (currentMapZoom > 5) currentMapZoom = 5;
+    updateMapTransform();
+}
+
+function resetMapZoom() {
+    currentMapZoom = 1;
+    mapTranslateX = 0;
+    mapTranslateY = 0;
+    updateMapTransform();
+}
+
+function startMapDrag(e) {
+    if (currentMapZoom === 1) return;
+    isMapDragging = true;
+    e.preventDefault(); // 防止圖片拖曳預設行為
+    
+    const clientX = e.clientX || e.touches[0].clientX;
+    const clientY = e.clientY || e.touches[0].clientY;
+    
+    mapStartX = clientX - mapTranslateX;
+    mapStartY = clientY - mapTranslateY;
+}
+
+function endMapDrag() {
+    isMapDragging = false;
+}
+
+function doMapDrag(e) {
+    if (!isMapDragging) return;
+    e.preventDefault();
+    
+    const clientX = e.clientX || e.touches[0].clientX;
+    const clientY = e.clientY || e.touches[0].clientY;
+    
+    mapTranslateX = clientX - mapStartX;
+    mapTranslateY = clientY - mapStartY;
+    
+    updateMapTransform();
+}
+
 // 開啟路線圖 Modal
 function openTransportMapModal(imageSrc, title) {
     const modal = document.getElementById('transportMapModal');
     const img = document.getElementById('transportMapImage');
     const titleEl = document.getElementById('transportMapTitle');
+    const container = document.querySelector('.modal-image-wrapper');
     
     img.src = imageSrc;
     img.alt = title;
     titleEl.textContent = title;
+    
+    // 重置縮放
+    resetMapZoom();
+    
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+    
+    // 綁定拖曳事件
+    img.onmousedown = startMapDrag;
+    img.ontouchstart = startMapDrag;
+    
+    window.addEventListener('mouseup', endMapDrag);
+    window.addEventListener('touchend', endMapDrag);
+    window.addEventListener('mousemove', doMapDrag);
+    window.addEventListener('touchmove', doMapDrag, { passive: false });
 }
 
 // 關閉路線圖 Modal
@@ -4309,6 +4418,12 @@ function closeTransportMapModal() {
     const modal = document.getElementById('transportMapModal');
     modal.classList.remove('open');
     document.body.style.overflow = '';
+    
+    // 移除事件監聽
+    window.removeEventListener('mouseup', endMapDrag);
+    window.removeEventListener('touchend', endMapDrag);
+    window.removeEventListener('mousemove', doMapDrag);
+    window.removeEventListener('touchmove', doMapDrag);
 }
 
 // 支援 ESC 鍵關閉
